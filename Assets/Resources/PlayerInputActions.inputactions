@@ -360,6 +360,234 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Generator",
+            "id": "ccbaa5c7-739d-4136-8c40-84c075ae711b",
+            "actions": [
+                {
+                    "name": "RedirectEnergy",
+                    "type": "Value",
+                    "id": "8e137261-7b4e-4562-ac3b-6c090874e4fd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ExitModule",
+                    "type": "Button",
+                    "id": "07da7213-cf88-4279-b601-acfddf5e0d55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Composite [Keyboard]",
+                    "id": "7c440e2d-615f-4e63-b2cf-57c07d6cfc6d",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RedirectEnergy",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "bba4a479-de15-4af5-ac39-3311fea1aa8a",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergy",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "8e124492-edc0-4c8f-a50b-c72b77b69265",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergy",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "2c09c091-6154-465e-b4ab-7c3f0bd1bf91",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergy",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "31d17bb1-ff71-4936-a0a5-106caf59ee53",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergy",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "63bcf158-686c-4c94-9f4a-82cf3fac9c34",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Gamepad",
+                    "action": "RedirectEnergy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19b99a26-0c75-4407-8ff5-10983bbf27e2",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ExitModule",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19555639-742f-44e6-ba82-f391d82f2388",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "ExitModule",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "DroneControler",
+            "id": "5241d8a6-c411-42aa-90ca-ce609108b45b",
+            "actions": [
+                {
+                    "name": "MoveDrone",
+                    "type": "Value",
+                    "id": "e50e7cac-b6b3-47c9-8c1a-acc295cff35a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ExitModule",
+                    "type": "Button",
+                    "id": "5454ca04-aee3-4fe2-8638-6c67a5a35c0b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Composite [Keyboard]",
+                    "id": "f9cf1909-8e2b-4dbc-a8c0-13cc9e1c7294",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDrone",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "0b702b7b-3b6d-481d-96c8-f8212dffd7d9",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "MoveDrone",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "ed6c4fe6-4bdf-40e6-8e2e-3d0cfa96f6a6",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "MoveDrone",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "f8ad6230-e08e-4bd8-a0ad-a5fb36a45dd9",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "MoveDrone",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "efb166bd-3816-4bf4-85e7-640f52cbdbf1",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "MoveDrone",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "be7cdf87-781f-4519-a768-131aac891f50",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MoveDrone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecf4eb40-530a-4641-a8bc-4836b42910f6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "ExitModule",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f049f838-ac5b-48c1-929c-7468bd906179",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ExitModule",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
