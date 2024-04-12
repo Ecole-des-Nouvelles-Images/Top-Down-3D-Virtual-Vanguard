@@ -9,9 +9,11 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [Header("References")]
-        public Transform Convoy;
         public PlayerInput Input;
         public CharacterController Controller;
+        [Space]
+        public Transform Convoy;
+        public Laser Laser;
 
         [Header("Settings")]
         public float Speed = 1f;
@@ -93,23 +95,25 @@ namespace Player
 
         #region Laser
 
-        public void OnRotate(InputValue input)
-        {
-            Laser.Rotate(input);
-        }
+            public void OnRotate(InputValue input)
+            {
+                Laser.Rotate(input);
+            }
 
-        public void OnFire()
-        {
-            Laser.Fire();
-        }
+            public void OnFire(InputValue input)
+            {
+                float value = input.Get<float>();
+                
+                Debug.Log($"OnFire: {value}");
+                Laser.Fire();
+            }
 
         #endregion
-
-
-        public void OnExitModule()
-        {
-            Input.SwitchCurrentActionMap("Convoy");
-        }
+        
+            public void OnExitModule()
+            {
+                Input.SwitchCurrentActionMap("Convoy");
+            }
 
         #endregion
     }

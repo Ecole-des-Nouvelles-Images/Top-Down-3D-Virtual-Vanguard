@@ -2036,9 +2036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1e47770d08e8c4cac336b61b16879a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Convoy: {fileID: 2116989427}
   Input: {fileID: 1219644860}
   Controller: {fileID: 1219644862}
+  Convoy: {fileID: 2116989427}
+  Laser: {fileID: 1654995163}
   Speed: 8
   ModuleLayer:
     serializedVersion: 2
@@ -2758,6 +2759,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1851815560960420740}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1654995163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 785345685728163816, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
+    type: 3}
+  m_PrefabInstance: {fileID: 1851815560960420740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1813702723643ab8a3a04ab9af15a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1777080970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6976471189616030155, guid: 459f6baa87cf7d74985f872a416b755c,
@@ -3151,13 +3164,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2881010574839872814, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
         type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881010574839872814, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
-        type: 3}
-      propertyPath: m_Positions.Array.size
-      value: 11
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2881010574839872814, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
         type: 3}
@@ -3208,16 +3216,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[10].z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881010574839872814, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
-        type: 3}
-      propertyPath: m_Parameters.colorGradient.atime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881010574839872814, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
-        type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.a
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2881010574839872814, guid: 65bb4ccea4d55dd41b09abbf88dc2d85,
         type: 3}

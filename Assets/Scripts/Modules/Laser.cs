@@ -19,8 +19,8 @@ namespace Modules
         public float Torque = 10f;
         public float LaserRange;
 
-        private static float CurrentAngle { get; set; }
-        private static float TargetAngle { get; set; }
+        private float CurrentAngle { get; set; }
+        private float TargetAngle { get; set; }
 
         #region Debug
 
@@ -42,7 +42,7 @@ namespace Modules
 
         #region Actions
         
-        public static void Rotate(InputValue input)
+        public void Rotate(InputValue input)
         {
             Vector2 value = input.Get<Vector2>();
 
@@ -50,9 +50,13 @@ namespace Modules
                 TargetAngle = Mathf.Atan2(value.x, value.y) * Mathf.Rad2Deg;
         }
 
-        public static void Fire()
+        public void Fire()
         {
-            
+            if (!LaserBeam.enabled)
+            {
+                LaserBeam.enabled = true;
+                
+            }
         }
 
         #endregion
