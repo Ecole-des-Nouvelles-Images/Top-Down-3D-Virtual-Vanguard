@@ -34,11 +34,6 @@ namespace Modules
 
         #endregion
 
-        private void Awake()
-        {
-            LaserBeam.SetPosition(0, FirePoint.position);
-        }
-
         public void Update()
         {
             CurrentAngle = Mathf.LerpAngle(CurrentAngle, TargetAngle, Torque * Time.deltaTime);
