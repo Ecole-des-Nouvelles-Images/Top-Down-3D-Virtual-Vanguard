@@ -1,4 +1,5 @@
 using System;
+using Modules;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,16 +20,7 @@ namespace Player
         public LayerMask ModuleLayer;
         public float ModuleDetectionRadius;
 
-        private InputActionMap _convoy;
-        private InputActionMap _laser;
-        private InputActionMap _shield;
-        private InputActionMap _generator;
-        private InputActionMap _drones;
-
-        private Vector3 Position {
-            get => transform.position;
-            set => transform.position = value;
-        } 
+        private Vector3 Position => transform.position;
         private Vector3 _direction;
 
         #region Debug
@@ -46,17 +38,14 @@ namespace Player
 
         #endregion
 
-        private void Awake()
-        {
-        }
-
         private void Update()
         {
             Controller.Move(_direction);
         }
-
-
+        
         #region Actions
+
+        #region Convoy
 
         public void OnMove(InputValue input)
         {
@@ -67,6 +56,7 @@ namespace Player
         
         public void OnEnterModule()
         {
+            // ReSharper disable once Unity.PreferNonAllocApi
             Collider[] colliders = Physics.OverlapSphere(Position, ModuleDetectionRadius, ModuleLayer);
 
             Collider closestModule = null;
@@ -87,13 +77,34 @@ namespace Player
                 }
             }
 
-            if (closestModule == null) return;
+            if (closestModule == null)
+            {
+                Debug.LogError("No module has been find upon input");
+                return;
+            }
             
             GameObject module = closestModule.gameObject;
             Debug.Log("Player is inside module: " + module.gameObject.name);
             
             Input.SwitchCurrentActionMap($"{module.gameObject.name}");
         }
+
+        #endregion
+
+        #region Laser
+
+        public void OnRotate(InputValue input)
+        {
+            Laser.Rotate(input);
+        }
+
+        public void OnFire()
+        {
+            Laser.Fire();
+        }
+
+        #endregion
+
 
         public void OnExitModule()
         {
