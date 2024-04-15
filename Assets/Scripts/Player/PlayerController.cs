@@ -14,6 +14,7 @@ namespace Player
         [Space]
         public Transform Convoy;
         public Laser Laser;
+        public DroneController DroneController;
 
         [Header("Settings")]
         public float Speed = 1f;
@@ -95,25 +96,35 @@ namespace Player
 
         #region Laser
 
-            public void OnRotate(InputValue input)
-            {
-                Laser.Rotate(input);
-            }
+        public void OnRotate(InputValue input)
+        {
+            Laser.Rotate(input);
+        }
 
-            public void OnFire(InputValue input)
-            {
-                float value = input.Get<float>();
+        public void OnFire(InputValue input)
+        {
+            float value = input.Get<float>();
                 
-                Debug.Log($"OnFire: {value}");
-                Laser.Fire();
-            }
+            Laser.Fire();
+        }
+
+        #endregion
+
+        #region DroneController
+
+        public void OnMoveDrone(InputValue input)
+        {
+            Vector2 value = input.Get<Vector2>();
+            DroneController.UpdateMove(value);
+        }
 
         #endregion
         
-            public void OnExitModule()
-            {
-                Input.SwitchCurrentActionMap("Convoy");
-            }
+        public void OnExitModule()
+        {
+            DroneController.ResetDrone();
+            Input.SwitchCurrentActionMap("Convoy");
+        }
 
         #endregion
     }

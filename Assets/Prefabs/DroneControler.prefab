@@ -48,6 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BatteryCapacity: 0
+  DroneJ1: {fileID: 0}
+  DroneJ2: {fileID: 0}
+  DroneJ3: {fileID: 0}
+  DroneJ4: {fileID: 0}
+  DroneSpeed: 5
+  RespawnDelay: 0
 --- !u!33 &1800504461876340461
 MeshFilter:
   m_ObjectHideFlags: 0

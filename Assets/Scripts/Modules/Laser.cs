@@ -55,7 +55,11 @@ namespace Modules
             if (!LaserBeam.enabled)
             {
                 LaserBeam.enabled = true;
-                
+                // Damage, Battery, Raycasting
+            }
+            else
+            {
+                LaserBeam.enabled = false;
             }
         }
 
