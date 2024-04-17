@@ -3,19 +3,34 @@ using UnityEngine;
 
 namespace LandmassGeneration
 {
+    public enum GenerationMode
+    {
+        NoiseMap,
+        Mesh
+    }
+    
+    [RequireComponent(typeof(MapDisplay))]
     public class MapGenerator : MonoBehaviour
     {
+        [Header("Components")]
+        public MapDisplay MapDisplay;
+        
+        [Header("Map Scale")]
         public int MapWidth;
         public int MapHeight;
         public float NoiseScale;
 
+        [Header("Noise Precision")]
         public int Octaves;
         [Range(0, 1)] public float Persistance;
         public float Lacunarity;
 
+        [Header("Randomness")]
         public int Seed;
         public Vector2 Offset;
 
+        [Header("Generation")]
+        public GenerationMode DrawMode;
         public bool AutoUpdate;
 
         private void OnValidate()
@@ -30,8 +45,20 @@ namespace LandmassGeneration
         public void GenerateMap()
         {
             float[,] noiseMap = Noise.GenerateNoiseMap(MapWidth, MapHeight, Seed, NoiseScale, Octaves, Persistance, Lacunarity, Offset);
+
+            switch (DrawMode)
+            {
+                case GenerationMode.NoiseMap:
+                    MapDisplay.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap, MapDisplay.FilterMode));
+                    break;
+                case GenerationMode.Mesh:
+                    MapDisplay.DrawMesh(MeshGenerator.GenerateMesh(noiseMap), TextureGenerator.TextureFromHeightMap(noiseMap, MapDisplay.FilterMode));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
             
-            FindObjectOfType<MapDisplay>().DrawNoiseMap(noiseMap);
         }
     }
 }
