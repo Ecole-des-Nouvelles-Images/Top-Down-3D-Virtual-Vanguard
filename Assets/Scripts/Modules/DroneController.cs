@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Modules
@@ -15,7 +14,9 @@ namespace Modules
         [Header("Gameplay")]
         public float DroneSpeed;
         public float RespawnDelay;
-
+        
+        public override float CurrentBattery { get; set; }
+        
         private Vector3 _initialPosJ1;
         private Vector3 _initialPosJ2;
         private Vector3 _initialPosJ3;
@@ -34,8 +35,8 @@ namespace Modules
         }
 
         #endregion
-
-        private void Awake()
+        
+        protected override void Start()
         {
             _initialPosJ1 = DroneJ1.transform.position;
             _initialPosJ2 = DroneJ2.transform.position;

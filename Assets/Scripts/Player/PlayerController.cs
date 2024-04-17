@@ -15,6 +15,7 @@ namespace Player
         public Transform Convoy;
         public Laser Laser;
         public DroneController DroneController;
+        public Generator Generator;
 
         [Header("Settings")]
         public float Speed = 1f;
@@ -106,6 +107,26 @@ namespace Player
             float value = input.Get<float>();
                 
             Laser.Fire();
+        }
+
+        #endregion
+
+        #region Shield
+
+        
+
+        #endregion
+
+        #region Generator
+
+        public void OnRedirectEnergyLeft()
+        {
+            Generator.SwitchEnergy(-1);
+        }
+        
+        public void OnRedirectEnergyRight(InputValue input)
+        {
+            Generator.SwitchEnergy(1);
         }
 
         #endregion

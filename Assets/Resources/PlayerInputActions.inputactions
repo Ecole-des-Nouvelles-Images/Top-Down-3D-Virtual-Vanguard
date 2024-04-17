@@ -366,13 +366,22 @@
             "id": "ccbaa5c7-739d-4136-8c40-84c075ae711b",
             "actions": [
                 {
-                    "name": "RedirectEnergy",
-                    "type": "Value",
+                    "name": "RedirectEnergyLeft",
+                    "type": "Button",
                     "id": "8e137261-7b4e-4562-ac3b-6c090874e4fd",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RedirectEnergyRight",
+                    "type": "Button",
+                    "id": "b1e3e1ae-56e8-4e5c-a1c8-dec9b4fec538",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ExitModule",
@@ -386,68 +395,46 @@
             ],
             "bindings": [
                 {
-                    "name": "Composite [Keyboard]",
-                    "id": "7c440e2d-615f-4e63-b2cf-57c07d6cfc6d",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "8681acce-364b-43af-9a46-c13e5cbf81da",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "RedirectEnergy",
-                    "isComposite": true,
+                    "groups": "Gamepad",
+                    "action": "RedirectEnergyLeft",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "bba4a479-de15-4af5-ac39-3311fea1aa8a",
-                    "path": "<Keyboard>/w",
+                    "name": "",
+                    "id": "7f86bfc0-f787-4de4-884e-090ecfc5f865",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard (Test)",
-                    "action": "RedirectEnergy",
+                    "groups": "Gamepad",
+                    "action": "RedirectEnergyLeft",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "down",
-                    "id": "8e124492-edc0-4c8f-a50b-c72b77b69265",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard (Test)",
-                    "action": "RedirectEnergy",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "2c09c091-6154-465e-b4ab-7c3f0bd1bf91",
+                    "name": "",
+                    "id": "5a77e84e-d9dd-4899-8f04-2f2525210676",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard (Test)",
-                    "action": "RedirectEnergy",
+                    "action": "RedirectEnergyLeft",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "31d17bb1-ff71-4936-a0a5-106caf59ee53",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard (Test)",
-                    "action": "RedirectEnergy",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "63bcf158-686c-4c94-9f4a-82cf3fac9c34",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "3e6f492b-a269-4a89-9c09-a93f45985dc5",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "Gamepad",
-                    "action": "RedirectEnergy",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergyLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -470,6 +457,50 @@
                     "processors": "",
                     "groups": "Keyboard (Test)",
                     "action": "ExitModule",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f13239be-7a04-4494-93db-2dd49b48bf81",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RedirectEnergyRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07cfe485-8734-45e8-a870-87a86cfe8fdd",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RedirectEnergyRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbe76262-f22a-4be6-983e-0b426bfe6e4c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergyRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baf07e5e-684b-4a64-a1b7-1d5ec7ae7fc4",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard (Test)",
+                    "action": "RedirectEnergyRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
