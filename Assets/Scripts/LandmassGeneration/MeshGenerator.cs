@@ -4,7 +4,7 @@ namespace LandmassGeneration
 {
     public static class MeshGenerator
     {
-        public static MeshData GenerateMesh(float[,] heightMap)
+        public static MeshData GenerateMesh(float[,] heightMap, float heightScale)
         {
             int width = heightMap.GetLength(0);
             int height = heightMap.GetLength(1);
@@ -18,7 +18,7 @@ namespace LandmassGeneration
             {
                 for (int x = 0; x < width; x++)
                 {
-                    meshData.Vertices[vertexIndex] = new Vector3(topLeftX + x, heightMap[x, y], topLeftZ - y);
+                    meshData.Vertices[vertexIndex] = new Vector3(topLeftX + x, heightMap[x, y] * heightScale, topLeftZ - y);
                     meshData.UVs[vertexIndex] = new Vector2(x / (float)width, y / (float)height);
                     
                     if (x < width - 1 && y < height - 1)

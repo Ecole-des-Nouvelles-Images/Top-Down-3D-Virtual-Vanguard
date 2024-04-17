@@ -19,10 +19,11 @@ namespace LandmassGeneration
         public int MapWidth;
         public int MapHeight;
         public float NoiseScale;
+        public float HeightScale;
 
         [Header("Noise Precision")]
         public int Octaves;
-        [Range(0, 1)] public float Persistance;
+        [Range(0, 1)] public float Persistence;
         public float Lacunarity;
 
         [Header("Randomness")]
@@ -44,7 +45,7 @@ namespace LandmassGeneration
 
         public void GenerateMap()
         {
-            float[,] noiseMap = Noise.GenerateNoiseMap(MapWidth, MapHeight, Seed, NoiseScale, Octaves, Persistance, Lacunarity, Offset);
+            float[,] noiseMap = Noise.GenerateNoiseMap(MapWidth, MapHeight, Seed, NoiseScale, Octaves, Persistence, Lacunarity, Offset);
 
             switch (DrawMode)
             {
@@ -52,13 +53,11 @@ namespace LandmassGeneration
                     MapDisplay.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap, MapDisplay.FilterMode));
                     break;
                 case GenerationMode.Mesh:
-                    MapDisplay.DrawMesh(MeshGenerator.GenerateMesh(noiseMap), TextureGenerator.TextureFromHeightMap(noiseMap, MapDisplay.FilterMode));
+                    MapDisplay.DrawMesh(MeshGenerator.GenerateMesh(noiseMap, HeightScale), TextureGenerator.TextureFromHeightMap(noiseMap, MapDisplay.FilterMode));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            
         }
     }
 }
