@@ -134,7 +134,7 @@
                     "id": "2a2b51dd-f7d1-4844-956c-f50902eb6dde",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=1)",
                     "initialStateCheck": true
                 },
                 {
@@ -152,7 +152,7 @@
                     "name": "",
                     "id": "b2f90ada-0039-493c-9ec5-4164cde70af3",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Hold(duration=0.1,pressPoint=0.2)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Fire",
@@ -163,7 +163,7 @@
                     "name": "",
                     "id": "03dfc285-77b0-4216-95de-d4ccef5ccebb",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard (Test)",
                     "action": "Fire",
@@ -296,7 +296,7 @@
                 {
                     "name": "",
                     "id": "c97f0d0a-ed17-406b-9524-248ff3dcaf8c",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -318,7 +318,7 @@
                 {
                     "name": "",
                     "id": "74d11e73-93f3-46c8-b155-7fa14ae112bc",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

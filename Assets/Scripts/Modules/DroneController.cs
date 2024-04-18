@@ -52,16 +52,7 @@ namespace Modules
         public void UpdateMove(Vector2 value)
         {
             _value = value;
-            _direction = _value * DroneSpeed  * Time.deltaTime;
-        }
-
-        public void ResetDrone()
-        {
-            Debug.Log("Reset Drones");
-            DroneJ1.transform.position = _initialPosJ1;
-            DroneJ2.transform.position = _initialPosJ2;
-            DroneJ3.transform.position = _initialPosJ3;
-            DroneJ4.transform.position = _initialPosJ4;
+            _direction = new Vector3(_value.x, 0, _value.y) * DroneSpeed  * Time.deltaTime;
         }
     }
 }

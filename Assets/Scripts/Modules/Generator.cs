@@ -17,7 +17,8 @@ namespace Modules
         protected override void Start()
         {
             base.Start();
-            CoupledModuleIndex = 2;
+            CoupledModuleIndex = 3;
+            UpdateChargeStatus(true);
         }
 
         private void Update()
@@ -38,6 +39,8 @@ namespace Modules
 
         public void SwitchEnergy(int direction)
         {
+            Convoy.Modules[CoupledModuleIndex].UpdateChargeStatus(false);
+            
             if (direction == -1) {
                 if (CoupledModuleIndex <= 0) CoupledModuleIndex = 0;
                 else CoupledModuleIndex--;
@@ -47,7 +50,7 @@ namespace Modules
                 else CoupledModuleIndex = Convoy.Modules.Count - 1;
             }
             
-            UIManager.UpdateChargeStatus.Invoke(Convoy.Modules[CoupledModuleIndex].RechargeIndicator);
+            Convoy.Modules[CoupledModuleIndex].UpdateChargeStatus(true);
         }
     }
 }

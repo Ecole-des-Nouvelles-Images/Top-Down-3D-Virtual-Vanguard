@@ -19,16 +19,24 @@ namespace Modules
         protected virtual void Start()
         {
             CurrentBattery = BatteryCapacity;
+            
+            if (BatteryUI == null) return;
+            BatteryUI.minValue = 0;
+            BatteryUI.maxValue = BatteryCapacity;
+            UpdateBattery();
         }
 
-        public virtual void UpdateBattery(float capacity)
+        protected void UpdateBattery()
         {
-            
+            if (!BatteryUI) return;
+            BatteryUI.value = CurrentBattery;
         }
         
-        public virtual void UpdateChargeStatus()
+        public void UpdateChargeStatus(bool enable)
         {
-            
+            Color color = enable ? Color.white : Color.black;
+
+            RechargeIndicator.color = color;
         }
     }
 }

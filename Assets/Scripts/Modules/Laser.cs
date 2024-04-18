@@ -19,13 +19,15 @@ namespace Modules
         public float LaserRange;
         public float TickRate;
 
+        private Vector2 _laserTarget;
+
         public override float CurrentBattery
         {
             get => _currentBattery;
             set {
                 _currentBattery = value;
                 _currentBattery = Mathf.Clamp(_currentBattery, 0, BatteryCapacity);
-                UIManager.UpdateBattery.Invoke(BatteryUI, _currentBattery);
+                UpdateBattery();
             }
         }
 
@@ -46,13 +48,6 @@ namespace Modules
         }
 
         #endregion
-
-        protected override void Start()
-        {
-            base.Start();
-            BatteryUI.minValue = 0;
-            BatteryUI.maxValue = BatteryCapacity;
-        }
 
         public void Update()
         {
@@ -86,8 +81,7 @@ namespace Modules
 
         public void Fire()
         {
-            if (CurrentBattery <= 0)
-            {
+            if (CurrentBattery <= 0) {
                 LaserBeam.enabled = false;
                 return;
             }

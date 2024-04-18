@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using Modules;
 using UnityEditor;
 using UnityEngine;
@@ -6,16 +7,12 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
+    [RequireComponent(typeof(PlayerInfo))]
     public class PlayerController : MonoBehaviour
     {
         [Header("References")]
         public PlayerInput Input;
         public CharacterController Controller;
-        [Space]
-        public Transform Convoy;
-        public Laser Laser;
-        public DroneController DroneController;
-        public Generator Generator;
 
         [Header("Settings")]
         public float Speed = 1f;
@@ -23,6 +20,12 @@ namespace Player
         [Header("Internal")]
         public LayerMask ModuleLayer;
         public float ModuleDetectionRadius;
+
+        private PlayerInfo _info;
+        private MeshRenderer _renderer;
+
+        private Transform _convoy;
+        private Module _currentActiveModule;
 
         private Vector3 Position => transform.position;
         private Vector3 _direction;
@@ -42,6 +45,18 @@ namespace Player
 
         #endregion
 
+        private void Awake()
+        {
+            _info = GetComponent<PlayerInfo>();
+            _renderer = GetComponent<MeshRenderer>();
+
+            _renderer.material = _info.Material;
+            _info.UIPositionIcon.color = _info.Material.color;
+            _info.UIPositionText.color = _info.Material.color;
+
+            _convoy = GameObject.Find("Convoy").transform;
+        }
+
         private void Update()
         {
             Controller.Move(_direction);
@@ -55,7 +70,7 @@ namespace Player
         {
             Vector2 value = input.Get<Vector2>();
             _value = value;
-            _direction = Convoy.right * (Mathf.Abs(value.x) >= Math.Abs(value.y) ? value.x : value.y) * Speed * Time.deltaTime;
+            _direction = _convoy.right * (Mathf.Abs(value.x) >= Math.Abs(value.y) ? value.x : value.y) * Speed * Time.deltaTime;
         }
         
         public void OnEnterModule()
@@ -83,14 +98,13 @@ namespace Player
 
             if (closestModule == null)
             {
-                Debug.LogError("No module has been find upon input");
+                Debug.LogError("No module object has been found upon input");
                 return;
             }
             
-            GameObject module = closestModule.gameObject;
-            Debug.Log("Player is inside module: " + module.gameObject.name);
-            
-            Input.SwitchCurrentActionMap($"{module.gameObject.name}");
+            _currentActiveModule = closestModule.gameObject.GetComponent<Module>();
+            Input.SwitchCurrentActionMap($"{Regex.Replace(_currentActiveModule.gameObject.name, @"\d", "")}");
+            Debug.Log("Player is inside module: " + _currentActiveModule.gameObject.name);
         }
 
         #endregion
@@ -99,21 +113,43 @@ namespace Player
 
         public void OnRotate(InputValue input)
         {
-            Laser.Rotate(input);
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(Laser))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            Laser laser = _currentActiveModule as Laser;
+            laser.Rotate(input);
         }
 
-        public void OnFire(InputValue input)
+        public void OnFire()
         {
-            float value = input.Get<float>();
-                
-            Laser.Fire();
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(Laser))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            Laser laser = _currentActiveModule as Laser;
+            laser.Fire();
         }
 
         #endregion
 
         #region Shield
 
-        
+        public void OnSwitchPower()
+        {
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(Shield))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            Shield shield = _currentActiveModule as Shield;
+            shield.SwitchPower();
+        }
+
+        public void OnSwitchPolarity()
+        {
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(Shield))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            Shield shield = _currentActiveModule as Shield;
+            shield.SwitchPolarity();
+        }
 
         #endregion
 
@@ -121,12 +157,20 @@ namespace Player
 
         public void OnRedirectEnergyLeft()
         {
-            Generator.SwitchEnergy(-1);
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(Generator))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            Generator generator = _currentActiveModule as Generator;
+            generator.SwitchEnergy(-1);
         }
         
         public void OnRedirectEnergyRight(InputValue input)
-        {
-            Generator.SwitchEnergy(1);
+        {            
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(Generator))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            Generator generator = _currentActiveModule as Generator;
+            generator.SwitchEnergy(1);
         }
 
         #endregion
@@ -135,15 +179,18 @@ namespace Player
 
         public void OnMoveDrone(InputValue input)
         {
+            if (_currentActiveModule == null || _currentActiveModule.GetType() != typeof(DroneController))
+                throw new Exception("Unexpected error: no module found or module type mismatch");
+            
+            DroneController droneController = _currentActiveModule as DroneController;
             Vector2 value = input.Get<Vector2>();
-            DroneController.UpdateMove(value);
+            droneController.UpdateMove(value);
         }
 
         #endregion
         
         public void OnExitModule()
         {
-            DroneController.ResetDrone();
             Input.SwitchCurrentActionMap("Convoy");
         }
 
