@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,7 @@ namespace Modules
     public class Laser: Module
     {
         public int EnergyConsumptionPerSecond;
-        public int DamageOverTime;
+        public int DamagePerSecond;
 
         [Header("References")]
         public Transform Body;
@@ -18,6 +19,7 @@ namespace Modules
         public float Torque = 10f;
         public float LaserRange;
         public float TickRate;
+        public int LineRendererSegmentPrecision;
 
         private Vector2 _laserTarget;
 
@@ -39,6 +41,14 @@ namespace Modules
 
         #region Debug
 
+        private void OnValidate()
+        {
+            if (LineRendererSegmentPrecision <= 5)
+            {
+                LineRendererSegmentPrecision = 5;
+            }
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
@@ -53,22 +63,41 @@ namespace Modules
         {
             CurrentAngle = Mathf.LerpAngle(CurrentAngle, TargetAngle, Torque * Time.deltaTime);
             Body.eulerAngles = new Vector3(0, CurrentAngle, 0);
-
+            
+            if (CurrentBattery <= 0) LaserBeam.enabled = false;
+            
             if (!LaserBeam.enabled) return;
             
             if (_timer >= TickRate)
             {
-                if (CurrentBattery > 0)
-                    CurrentBattery -= EnergyConsumptionPerSecond * TickRate;
-                else
-                    LaserBeam.enabled = false;
+                CurrentBattery -= EnergyConsumptionPerSecond * TickRate;
+                HandleTarget();
                 
-                _timer = 0;
+                _timer = 0f;
             }
 
             _timer += Time.deltaTime;
         }
 
+        private void HandleTarget()
+        {
+            Ray laserRay = new Ray(FirePoint.position, Body.forward);
+
+            if (Physics.Raycast(laserRay, out RaycastHit hit, LaserRange))
+            {
+                float hitDistance = hit.distance;
+                Alien targetHit = hit.collider.gameObject.GetComponent<Alien>();
+
+                LaserBeam.SetPositions(CalculateLineVertices(hitDistance));
+                
+                if (targetHit)
+                    targetHit.CurrentHealth -= DamagePerSecond * TickRate;
+            }
+            else {
+                LaserBeam.SetPositions(CalculateLineVertices(LaserRange));
+            }
+        }
+        
         #region Actions
         
         public void Rotate(InputValue input)
@@ -85,14 +114,24 @@ namespace Modules
                 LaserBeam.enabled = false;
                 return;
             }
-            
-            if (!LaserBeam.enabled) {
-                LaserBeam.enabled = true;
-                // Damage, Battery, Raycasting
+
+            LaserBeam.enabled = !LaserBeam.enabled;
+        }
+
+        #endregion
+
+        #region Utils
+
+        private Vector3[] CalculateLineVertices(float distance)
+        {
+            Vector3[] linePoints = new Vector3[Mathf.CeilToInt(distance / LineRendererSegmentPrecision) + 1];
+            for (int z = 0, i = 0; z <= distance; z += LineRendererSegmentPrecision, i++) {
+                z = Mathf.Clamp(z, 0, Mathf.FloorToInt(distance));
+                linePoints[i] = new Vector3(0, 0, z);
             }
-            else {
-                LaserBeam.enabled = false;
-            }
+
+            LaserBeam.positionCount = linePoints.GetLength(0);
+            return linePoints;
         }
 
         #endregion

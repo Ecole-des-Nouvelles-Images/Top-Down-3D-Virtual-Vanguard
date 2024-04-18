@@ -716,13 +716,14 @@ MonoBehaviour:
   RechargeIndicator: {fileID: 5791450120313876700}
   BatteryCapacity: 100
   EnergyConsumptionPerSecond: 15
-  DamageOverTime: 10
+  DamagePerSecond: 20
   Body: {fileID: 628851606799284113}
   FirePoint: {fileID: 1834646701567385001}
   LaserBeam: {fileID: 2881010574839872814}
-  Torque: 1
+  Torque: 2
   LaserRange: 100
   TickRate: 0.1
+  LineRendererSegmentPrecision: 10
 --- !u!33 &8964430017854391518
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1168,7 +1169,7 @@ LineRenderer:
     numCornerVertices: 90
     numCapVertices: 90
     alignment: 0
-    textureMode: 0
+    textureMode: 2
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 1

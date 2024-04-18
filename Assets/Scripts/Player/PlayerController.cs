@@ -117,6 +117,7 @@ namespace Player
                 throw new Exception("Unexpected error: no module found or module type mismatch");
             
             Laser laser = _currentActiveModule as Laser;
+            System.Diagnostics.Debug.Assert(laser != null, nameof(laser) + " != null");
             laser.Rotate(input);
         }
 
@@ -126,6 +127,7 @@ namespace Player
                 throw new Exception("Unexpected error: no module found or module type mismatch");
             
             Laser laser = _currentActiveModule as Laser;
+            System.Diagnostics.Debug.Assert(laser != null, nameof(laser) + " != null");
             laser.Fire();
         }
 
@@ -139,6 +141,7 @@ namespace Player
                 throw new Exception("Unexpected error: no module found or module type mismatch");
             
             Shield shield = _currentActiveModule as Shield;
+            System.Diagnostics.Debug.Assert(shield != null, nameof(shield) + " != null");
             shield.SwitchPower();
         }
 
@@ -148,6 +151,7 @@ namespace Player
                 throw new Exception("Unexpected error: no module found or module type mismatch");
             
             Shield shield = _currentActiveModule as Shield;
+            System.Diagnostics.Debug.Assert(shield != null, nameof(shield) + " != null");
             shield.SwitchPolarity();
         }
 
@@ -161,6 +165,7 @@ namespace Player
                 throw new Exception("Unexpected error: no module found or module type mismatch");
             
             Generator generator = _currentActiveModule as Generator;
+            System.Diagnostics.Debug.Assert(generator != null, nameof(generator) + " != null");
             generator.SwitchEnergy(-1);
         }
         
@@ -170,6 +175,7 @@ namespace Player
                 throw new Exception("Unexpected error: no module found or module type mismatch");
             
             Generator generator = _currentActiveModule as Generator;
+            System.Diagnostics.Debug.Assert(generator != null, nameof(generator) + " != null");
             generator.SwitchEnergy(1);
         }
 
@@ -184,7 +190,8 @@ namespace Player
             
             DroneController droneController = _currentActiveModule as DroneController;
             Vector2 value = input.Get<Vector2>();
-            droneController.UpdateMove(value);
+            System.Diagnostics.Debug.Assert(droneController != null, nameof(droneController) + " != null");
+            droneController.ActivateDrone(_info, value);
         }
 
         #endregion

@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace Modules
@@ -6,53 +9,81 @@ namespace Modules
     public class DroneController: Module
     {
         [Header("References")]
-        public CharacterController DroneJ1;
-        public CharacterController DroneJ2;
-        public CharacterController DroneJ3;
-        public CharacterController DroneJ4;
+        public GameObject DronePrefab;
+        public List<Drone> Drones = new();
+        public List<Anchor> Anchors = new();
 
         [Header("Gameplay")]
         public float DroneSpeed;
         public float RespawnDelay;
-        
+
+        public static float GlobalDroneSpeed { get; private set; }
         public override float CurrentBattery { get; set; }
-        
-        private Vector3 _initialPosJ1;
-        private Vector3 _initialPosJ2;
-        private Vector3 _initialPosJ3;
-        private Vector3 _initialPosJ4;
 
-        private Vector3 _direction;
-
-        #region Debug
-
-        private Vector2 _value;
-
-        private void OnDrawGizmosSelected()
+        private void Awake()
         {
-            Vector3 labelPosition = transform.position + Vector3.up * 1.5f;
-            Handles.Label(labelPosition, $"({_value.x:F3}, {_value.y:F3})");
+            GlobalDroneSpeed = DroneSpeed;
         }
 
-        #endregion
-        
         protected override void Start()
         {
-            _initialPosJ1 = DroneJ1.transform.position;
-            _initialPosJ2 = DroneJ2.transform.position;
-            _initialPosJ3 = DroneJ3.transform.position;
-            _initialPosJ4 = DroneJ4.transform.position;
+            StartCoroutine(RebuildDroneWatcher());
+        }
+        
+        public void ActivateDrone(PlayerInfo issuer, Vector2 value)
+        {
+            Drone userDrone = Drones.Find(drone => drone.IsRegistered && drone.User == issuer);
+
+            if (userDrone == null)
+            {
+                userDrone = Drones.Find(drone => !drone.IsRegistered);
+                if (userDrone == null) {
+                    Debug.Log("No available drone to control");
+                    return;
+                }
+                
+                userDrone.RegisterPlayer(issuer);
+                userDrone.UpdateDirection(value);
+            }
+            
+            userDrone.UpdateDirection(value);
         }
 
-        private void Update()
+        private IEnumerator RebuildDroneWatcher()
         {
-            DroneJ1.Move(_direction);
+            while (gameObject)
+            {
+                if (Drones.Count < 4)
+                {
+                    yield return new WaitForSeconds(RespawnDelay);
+                    Anchor availableAnchor = FindFirstAvailableAnchor();
+                    Drone drone = Instantiate(DronePrefab, availableAnchor.Position, Quaternion.identity, null).GetComponent<Drone>();
+                    availableAnchor.Occupant = drone;
+                    drone.Anchor = availableAnchor;
+                    Drones.Add(drone);
+                }
+
+                yield return null;
+            }
         }
 
-        public void UpdateMove(Vector2 value)
+        public void DockAllDrone()
         {
-            _value = value;
-            _direction = new Vector3(_value.x, 0, _value.y) * DroneSpeed  * Time.deltaTime;
+            foreach (Drone drone in Drones)
+                drone.ReturnToAnchor();
         }
+
+        #region Utils
+
+        private Anchor FindFirstAvailableAnchor()
+        {
+            Anchor availableAnchor = Anchors.Find(anchor => !anchor.IsTaken);
+
+            if (!availableAnchor) throw new Exception("No suitable drone's anchor found when at least one should be");
+            return availableAnchor;
+        }
+
+
+        #endregion
     }
 }
