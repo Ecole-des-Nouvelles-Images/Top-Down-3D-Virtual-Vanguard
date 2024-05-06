@@ -26,7 +26,7 @@ namespace Script.Player
     ""name"": ""PlayerInputs"",
     ""maps"": [
         {
-            ""name"": ""Convoy"",
+            ""name"": ""Player"",
             ""id"": ""a30bc7e7-431f-45eb-b685-477c3de81ea7"",
             ""actions"": [
                 {
@@ -39,13 +39,49 @@ namespace Script.Player
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""EnterModule"",
+                    ""name"": ""ModuleEnter"",
                     ""type"": ""Button"",
                     ""id"": ""9014fb0a-238b-4f05-8af5-5fe9facea511"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ModuleExit"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7c68561-6b3d-4509-a43b-f69aead37c17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ModuleOperate"",
+                    ""type"": ""Value"",
+                    ""id"": ""2a9d4a78-4a58-434b-9775-7e52ed76ad77"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ModuleInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a805b3c-d5e4-477e-b723-95ba06c8298c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ModuleAim"",
+                    ""type"": ""Value"",
+                    ""id"": ""a62e7d28-660e-40d3-90a3-6897d2f1fe84"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -67,48 +103,13 @@ namespace Script.Player
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""EnterModule"",
+                    ""action"": ""ModuleEnter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Laser"",
-            ""id"": ""0ad13577-6d22-42b7-8034-a82a1bfeeaf6"",
-            ""actions"": [
-                {
-                    ""name"": ""ModuleExit"",
-                    ""type"": ""Button"",
-                    ""id"": ""fc70400b-65d6-418b-955c-b9f2eaf0ddee"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""Value"",
-                    ""id"": ""db9a1ee6-d558-4dd2-b334-a4c2c0e68f37"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""ba32371e-1813-40b9-9aac-82c8467597d1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""b9d58b09-8b0a-4f71-95ed-81d5455666a1"",
+                    ""id"": ""b5933ba6-f7d5-4123-a3d3-c7daac4f0593"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -119,262 +120,34 @@ namespace Script.Player
                 },
                 {
                     ""name"": """",
-                    ""id"": ""613cd96e-be42-41a8-af61-2cdceb02bc77"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e12ee654-4436-47f6-9041-df660634a8a5"",
+                    ""id"": ""00c5610c-ffe5-4620-bb85-09c673666908"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Shield"",
-            ""id"": ""478b2547-92db-43f4-8f82-1e2ac4fe97c0"",
-            ""actions"": [
-                {
-                    ""name"": ""ModuleExit"",
-                    ""type"": ""Button"",
-                    ""id"": ""f1328d82-57be-4d75-a2af-b992cd283e09"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TogglePower"",
-                    ""type"": ""Button"",
-                    ""id"": ""c874a0b9-2aff-447b-b22e-b89cf86815c7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TogglePolarity"",
-                    ""type"": ""Button"",
-                    ""id"": ""cde59b40-ab81-46ca-a154-f9d55897e54d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""5e057562-e4a0-42cd-b9cd-f9725dcc9e49"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ModuleExit"",
+                    ""action"": ""ModuleOperate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""178270c3-b53c-437b-b383-9659bc4bd174"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""TogglePower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2c78e7bd-0147-4b81-b06b-e728db20d00b"",
+                    ""id"": ""6845e02a-3cbc-46a7-bcf4-faee99ad78d8"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TogglePolarity"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Generator"",
-            ""id"": ""37bfca49-b2d8-4af6-a3fc-159a61b59f92"",
-            ""actions"": [
-                {
-                    ""name"": ""ModuleExit"",
-                    ""type"": ""Button"",
-                    ""id"": ""56c9fbf2-477a-4033-aad8-4140dfc37223"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RedirectPower"",
-                    ""type"": ""Button"",
-                    ""id"": ""e5cc4147-168b-4664-92c1-10c1922fb6f4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""bc457db5-2ee9-4614-b7f2-8bd79f73ceb3"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""ModuleExit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Composite [Gamepad]"",
-                    ""id"": ""9e945576-28a7-4138-871b-edeadac43146"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RedirectPower"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""c56ebd41-5d72-45f3-b9ea-3ad5621d4839"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RedirectPower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""4d7e99b1-cf58-4439-ac7f-7834e25435e9"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RedirectPower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Composite [Gamepad]"",
-                    ""id"": ""d4038689-3379-4a42-a9c9-805a4c26b599"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RedirectPower"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""b57dad39-40b6-4828-9d4c-39914de4cf29"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RedirectPower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""56f99534-c355-486d-999e-8f2ca05c7821"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RedirectPower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""DroneController"",
-            ""id"": ""d883a131-9e8c-495e-a7ab-1cdc6eecfc01"",
-            ""actions"": [
-                {
-                    ""name"": ""ModuleExit"",
-                    ""type"": ""Button"",
-                    ""id"": ""36c03e38-610e-4285-b712-7ac677d7bdc2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DroneMove"",
-                    ""type"": ""Value"",
-                    ""id"": ""d51daed8-e62d-4ec5-a07f-886de1a14013"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""DroneInteract"",
-                    ""type"": ""Button"",
-                    ""id"": ""b45e2b6c-2c1d-4fa5-9057-f4bc08da0ea6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""f6ad4f71-eac3-4c20-a2b3-a90ae475e87e"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ModuleExit"",
+                    ""action"": ""ModuleInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""021936ea-1011-4a26-897e-a32841f5137d"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""id"": ""54fbb09f-6ebe-4c00-b91f-5f7ff8378d35"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""DroneMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d4f8f2ad-318b-4c21-b8d6-eca5d4def9ef"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""DroneInteract"",
+                    ""action"": ""ModuleAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -584,29 +357,14 @@ namespace Script.Player
         }
     ]
 }");
-            // Convoy
-            m_Convoy = asset.FindActionMap("Convoy", throwIfNotFound: true);
-            m_Convoy_Move = m_Convoy.FindAction("Move", throwIfNotFound: true);
-            m_Convoy_EnterModule = m_Convoy.FindAction("EnterModule", throwIfNotFound: true);
-            // Laser
-            m_Laser = asset.FindActionMap("Laser", throwIfNotFound: true);
-            m_Laser_ModuleExit = m_Laser.FindAction("ModuleExit", throwIfNotFound: true);
-            m_Laser_Aim = m_Laser.FindAction("Aim", throwIfNotFound: true);
-            m_Laser_Fire = m_Laser.FindAction("Fire", throwIfNotFound: true);
-            // Shield
-            m_Shield = asset.FindActionMap("Shield", throwIfNotFound: true);
-            m_Shield_ModuleExit = m_Shield.FindAction("ModuleExit", throwIfNotFound: true);
-            m_Shield_TogglePower = m_Shield.FindAction("TogglePower", throwIfNotFound: true);
-            m_Shield_TogglePolarity = m_Shield.FindAction("TogglePolarity", throwIfNotFound: true);
-            // Generator
-            m_Generator = asset.FindActionMap("Generator", throwIfNotFound: true);
-            m_Generator_ModuleExit = m_Generator.FindAction("ModuleExit", throwIfNotFound: true);
-            m_Generator_RedirectPower = m_Generator.FindAction("RedirectPower", throwIfNotFound: true);
-            // DroneController
-            m_DroneController = asset.FindActionMap("DroneController", throwIfNotFound: true);
-            m_DroneController_ModuleExit = m_DroneController.FindAction("ModuleExit", throwIfNotFound: true);
-            m_DroneController_DroneMove = m_DroneController.FindAction("DroneMove", throwIfNotFound: true);
-            m_DroneController_DroneInteract = m_DroneController.FindAction("DroneInteract", throwIfNotFound: true);
+            // Player
+            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+            m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_ModuleEnter = m_Player.FindAction("ModuleEnter", throwIfNotFound: true);
+            m_Player_ModuleExit = m_Player.FindAction("ModuleExit", throwIfNotFound: true);
+            m_Player_ModuleOperate = m_Player.FindAction("ModuleOperate", throwIfNotFound: true);
+            m_Player_ModuleInteract = m_Player.FindAction("ModuleInteract", throwIfNotFound: true);
+            m_Player_ModuleAim = m_Player.FindAction("ModuleAim", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -670,299 +428,91 @@ namespace Script.Player
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Convoy
-        private readonly InputActionMap m_Convoy;
-        private List<IConvoyActions> m_ConvoyActionsCallbackInterfaces = new List<IConvoyActions>();
-        private readonly InputAction m_Convoy_Move;
-        private readonly InputAction m_Convoy_EnterModule;
-        public struct ConvoyActions
+        // Player
+        private readonly InputActionMap m_Player;
+        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+        private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_ModuleEnter;
+        private readonly InputAction m_Player_ModuleExit;
+        private readonly InputAction m_Player_ModuleOperate;
+        private readonly InputAction m_Player_ModuleInteract;
+        private readonly InputAction m_Player_ModuleAim;
+        public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
-            public ConvoyActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Convoy_Move;
-            public InputAction @EnterModule => m_Wrapper.m_Convoy_EnterModule;
-            public InputActionMap Get() { return m_Wrapper.m_Convoy; }
+            public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_Player_Move;
+            public InputAction @ModuleEnter => m_Wrapper.m_Player_ModuleEnter;
+            public InputAction @ModuleExit => m_Wrapper.m_Player_ModuleExit;
+            public InputAction @ModuleOperate => m_Wrapper.m_Player_ModuleOperate;
+            public InputAction @ModuleInteract => m_Wrapper.m_Player_ModuleInteract;
+            public InputAction @ModuleAim => m_Wrapper.m_Player_ModuleAim;
+            public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(ConvoyActions set) { return set.Get(); }
-            public void AddCallbacks(IConvoyActions instance)
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+            public void AddCallbacks(IPlayerActions instance)
             {
-                if (instance == null || m_Wrapper.m_ConvoyActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_ConvoyActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @EnterModule.started += instance.OnEnterModule;
-                @EnterModule.performed += instance.OnEnterModule;
-                @EnterModule.canceled += instance.OnEnterModule;
+                @ModuleEnter.started += instance.OnModuleEnter;
+                @ModuleEnter.performed += instance.OnModuleEnter;
+                @ModuleEnter.canceled += instance.OnModuleEnter;
+                @ModuleExit.started += instance.OnModuleExit;
+                @ModuleExit.performed += instance.OnModuleExit;
+                @ModuleExit.canceled += instance.OnModuleExit;
+                @ModuleOperate.started += instance.OnModuleOperate;
+                @ModuleOperate.performed += instance.OnModuleOperate;
+                @ModuleOperate.canceled += instance.OnModuleOperate;
+                @ModuleInteract.started += instance.OnModuleInteract;
+                @ModuleInteract.performed += instance.OnModuleInteract;
+                @ModuleInteract.canceled += instance.OnModuleInteract;
+                @ModuleAim.started += instance.OnModuleAim;
+                @ModuleAim.performed += instance.OnModuleAim;
+                @ModuleAim.canceled += instance.OnModuleAim;
             }
 
-            private void UnregisterCallbacks(IConvoyActions instance)
+            private void UnregisterCallbacks(IPlayerActions instance)
             {
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
-                @EnterModule.started -= instance.OnEnterModule;
-                @EnterModule.performed -= instance.OnEnterModule;
-                @EnterModule.canceled -= instance.OnEnterModule;
-            }
-
-            public void RemoveCallbacks(IConvoyActions instance)
-            {
-                if (m_Wrapper.m_ConvoyActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IConvoyActions instance)
-            {
-                foreach (var item in m_Wrapper.m_ConvoyActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_ConvoyActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public ConvoyActions @Convoy => new ConvoyActions(this);
-
-        // Laser
-        private readonly InputActionMap m_Laser;
-        private List<ILaserActions> m_LaserActionsCallbackInterfaces = new List<ILaserActions>();
-        private readonly InputAction m_Laser_ModuleExit;
-        private readonly InputAction m_Laser_Aim;
-        private readonly InputAction m_Laser_Fire;
-        public struct LaserActions
-        {
-            private @PlayerInputActions m_Wrapper;
-            public LaserActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ModuleExit => m_Wrapper.m_Laser_ModuleExit;
-            public InputAction @Aim => m_Wrapper.m_Laser_Aim;
-            public InputAction @Fire => m_Wrapper.m_Laser_Fire;
-            public InputActionMap Get() { return m_Wrapper.m_Laser; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(LaserActions set) { return set.Get(); }
-            public void AddCallbacks(ILaserActions instance)
-            {
-                if (instance == null || m_Wrapper.m_LaserActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_LaserActionsCallbackInterfaces.Add(instance);
-                @ModuleExit.started += instance.OnModuleExit;
-                @ModuleExit.performed += instance.OnModuleExit;
-                @ModuleExit.canceled += instance.OnModuleExit;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
-            }
-
-            private void UnregisterCallbacks(ILaserActions instance)
-            {
+                @ModuleEnter.started -= instance.OnModuleEnter;
+                @ModuleEnter.performed -= instance.OnModuleEnter;
+                @ModuleEnter.canceled -= instance.OnModuleEnter;
                 @ModuleExit.started -= instance.OnModuleExit;
                 @ModuleExit.performed -= instance.OnModuleExit;
                 @ModuleExit.canceled -= instance.OnModuleExit;
-                @Aim.started -= instance.OnAim;
-                @Aim.performed -= instance.OnAim;
-                @Aim.canceled -= instance.OnAim;
-                @Fire.started -= instance.OnFire;
-                @Fire.performed -= instance.OnFire;
-                @Fire.canceled -= instance.OnFire;
+                @ModuleOperate.started -= instance.OnModuleOperate;
+                @ModuleOperate.performed -= instance.OnModuleOperate;
+                @ModuleOperate.canceled -= instance.OnModuleOperate;
+                @ModuleInteract.started -= instance.OnModuleInteract;
+                @ModuleInteract.performed -= instance.OnModuleInteract;
+                @ModuleInteract.canceled -= instance.OnModuleInteract;
+                @ModuleAim.started -= instance.OnModuleAim;
+                @ModuleAim.performed -= instance.OnModuleAim;
+                @ModuleAim.canceled -= instance.OnModuleAim;
             }
 
-            public void RemoveCallbacks(ILaserActions instance)
+            public void RemoveCallbacks(IPlayerActions instance)
             {
-                if (m_Wrapper.m_LaserActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(ILaserActions instance)
+            public void SetCallbacks(IPlayerActions instance)
             {
-                foreach (var item in m_Wrapper.m_LaserActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_LaserActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public LaserActions @Laser => new LaserActions(this);
-
-        // Shield
-        private readonly InputActionMap m_Shield;
-        private List<IShieldActions> m_ShieldActionsCallbackInterfaces = new List<IShieldActions>();
-        private readonly InputAction m_Shield_ModuleExit;
-        private readonly InputAction m_Shield_TogglePower;
-        private readonly InputAction m_Shield_TogglePolarity;
-        public struct ShieldActions
-        {
-            private @PlayerInputActions m_Wrapper;
-            public ShieldActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ModuleExit => m_Wrapper.m_Shield_ModuleExit;
-            public InputAction @TogglePower => m_Wrapper.m_Shield_TogglePower;
-            public InputAction @TogglePolarity => m_Wrapper.m_Shield_TogglePolarity;
-            public InputActionMap Get() { return m_Wrapper.m_Shield; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(ShieldActions set) { return set.Get(); }
-            public void AddCallbacks(IShieldActions instance)
-            {
-                if (instance == null || m_Wrapper.m_ShieldActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_ShieldActionsCallbackInterfaces.Add(instance);
-                @ModuleExit.started += instance.OnModuleExit;
-                @ModuleExit.performed += instance.OnModuleExit;
-                @ModuleExit.canceled += instance.OnModuleExit;
-                @TogglePower.started += instance.OnTogglePower;
-                @TogglePower.performed += instance.OnTogglePower;
-                @TogglePower.canceled += instance.OnTogglePower;
-                @TogglePolarity.started += instance.OnTogglePolarity;
-                @TogglePolarity.performed += instance.OnTogglePolarity;
-                @TogglePolarity.canceled += instance.OnTogglePolarity;
-            }
-
-            private void UnregisterCallbacks(IShieldActions instance)
-            {
-                @ModuleExit.started -= instance.OnModuleExit;
-                @ModuleExit.performed -= instance.OnModuleExit;
-                @ModuleExit.canceled -= instance.OnModuleExit;
-                @TogglePower.started -= instance.OnTogglePower;
-                @TogglePower.performed -= instance.OnTogglePower;
-                @TogglePower.canceled -= instance.OnTogglePower;
-                @TogglePolarity.started -= instance.OnTogglePolarity;
-                @TogglePolarity.performed -= instance.OnTogglePolarity;
-                @TogglePolarity.canceled -= instance.OnTogglePolarity;
-            }
-
-            public void RemoveCallbacks(IShieldActions instance)
-            {
-                if (m_Wrapper.m_ShieldActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IShieldActions instance)
-            {
-                foreach (var item in m_Wrapper.m_ShieldActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_ShieldActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public ShieldActions @Shield => new ShieldActions(this);
-
-        // Generator
-        private readonly InputActionMap m_Generator;
-        private List<IGeneratorActions> m_GeneratorActionsCallbackInterfaces = new List<IGeneratorActions>();
-        private readonly InputAction m_Generator_ModuleExit;
-        private readonly InputAction m_Generator_RedirectPower;
-        public struct GeneratorActions
-        {
-            private @PlayerInputActions m_Wrapper;
-            public GeneratorActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ModuleExit => m_Wrapper.m_Generator_ModuleExit;
-            public InputAction @RedirectPower => m_Wrapper.m_Generator_RedirectPower;
-            public InputActionMap Get() { return m_Wrapper.m_Generator; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(GeneratorActions set) { return set.Get(); }
-            public void AddCallbacks(IGeneratorActions instance)
-            {
-                if (instance == null || m_Wrapper.m_GeneratorActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_GeneratorActionsCallbackInterfaces.Add(instance);
-                @ModuleExit.started += instance.OnModuleExit;
-                @ModuleExit.performed += instance.OnModuleExit;
-                @ModuleExit.canceled += instance.OnModuleExit;
-                @RedirectPower.started += instance.OnRedirectPower;
-                @RedirectPower.performed += instance.OnRedirectPower;
-                @RedirectPower.canceled += instance.OnRedirectPower;
-            }
-
-            private void UnregisterCallbacks(IGeneratorActions instance)
-            {
-                @ModuleExit.started -= instance.OnModuleExit;
-                @ModuleExit.performed -= instance.OnModuleExit;
-                @ModuleExit.canceled -= instance.OnModuleExit;
-                @RedirectPower.started -= instance.OnRedirectPower;
-                @RedirectPower.performed -= instance.OnRedirectPower;
-                @RedirectPower.canceled -= instance.OnRedirectPower;
-            }
-
-            public void RemoveCallbacks(IGeneratorActions instance)
-            {
-                if (m_Wrapper.m_GeneratorActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IGeneratorActions instance)
-            {
-                foreach (var item in m_Wrapper.m_GeneratorActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_GeneratorActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public GeneratorActions @Generator => new GeneratorActions(this);
-
-        // DroneController
-        private readonly InputActionMap m_DroneController;
-        private List<IDroneControllerActions> m_DroneControllerActionsCallbackInterfaces = new List<IDroneControllerActions>();
-        private readonly InputAction m_DroneController_ModuleExit;
-        private readonly InputAction m_DroneController_DroneMove;
-        private readonly InputAction m_DroneController_DroneInteract;
-        public struct DroneControllerActions
-        {
-            private @PlayerInputActions m_Wrapper;
-            public DroneControllerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ModuleExit => m_Wrapper.m_DroneController_ModuleExit;
-            public InputAction @DroneMove => m_Wrapper.m_DroneController_DroneMove;
-            public InputAction @DroneInteract => m_Wrapper.m_DroneController_DroneInteract;
-            public InputActionMap Get() { return m_Wrapper.m_DroneController; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(DroneControllerActions set) { return set.Get(); }
-            public void AddCallbacks(IDroneControllerActions instance)
-            {
-                if (instance == null || m_Wrapper.m_DroneControllerActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_DroneControllerActionsCallbackInterfaces.Add(instance);
-                @ModuleExit.started += instance.OnModuleExit;
-                @ModuleExit.performed += instance.OnModuleExit;
-                @ModuleExit.canceled += instance.OnModuleExit;
-                @DroneMove.started += instance.OnDroneMove;
-                @DroneMove.performed += instance.OnDroneMove;
-                @DroneMove.canceled += instance.OnDroneMove;
-                @DroneInteract.started += instance.OnDroneInteract;
-                @DroneInteract.performed += instance.OnDroneInteract;
-                @DroneInteract.canceled += instance.OnDroneInteract;
-            }
-
-            private void UnregisterCallbacks(IDroneControllerActions instance)
-            {
-                @ModuleExit.started -= instance.OnModuleExit;
-                @ModuleExit.performed -= instance.OnModuleExit;
-                @ModuleExit.canceled -= instance.OnModuleExit;
-                @DroneMove.started -= instance.OnDroneMove;
-                @DroneMove.performed -= instance.OnDroneMove;
-                @DroneMove.canceled -= instance.OnDroneMove;
-                @DroneInteract.started -= instance.OnDroneInteract;
-                @DroneInteract.performed -= instance.OnDroneInteract;
-                @DroneInteract.canceled -= instance.OnDroneInteract;
-            }
-
-            public void RemoveCallbacks(IDroneControllerActions instance)
-            {
-                if (m_Wrapper.m_DroneControllerActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IDroneControllerActions instance)
-            {
-                foreach (var item in m_Wrapper.m_DroneControllerActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_DroneControllerActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public DroneControllerActions @DroneController => new DroneControllerActions(this);
+        public PlayerActions @Player => new PlayerActions(this);
 
         // UI
         private readonly InputActionMap m_UI;
@@ -1034,33 +584,14 @@ namespace Script.Player
                 return asset.controlSchemes[m_GamepadSchemeIndex];
             }
         }
-        public interface IConvoyActions
+        public interface IPlayerActions
         {
             void OnMove(InputAction.CallbackContext context);
-            void OnEnterModule(InputAction.CallbackContext context);
-        }
-        public interface ILaserActions
-        {
+            void OnModuleEnter(InputAction.CallbackContext context);
             void OnModuleExit(InputAction.CallbackContext context);
-            void OnAim(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
-        }
-        public interface IShieldActions
-        {
-            void OnModuleExit(InputAction.CallbackContext context);
-            void OnTogglePower(InputAction.CallbackContext context);
-            void OnTogglePolarity(InputAction.CallbackContext context);
-        }
-        public interface IGeneratorActions
-        {
-            void OnModuleExit(InputAction.CallbackContext context);
-            void OnRedirectPower(InputAction.CallbackContext context);
-        }
-        public interface IDroneControllerActions
-        {
-            void OnModuleExit(InputAction.CallbackContext context);
-            void OnDroneMove(InputAction.CallbackContext context);
-            void OnDroneInteract(InputAction.CallbackContext context);
+            void OnModuleOperate(InputAction.CallbackContext context);
+            void OnModuleInteract(InputAction.CallbackContext context);
+            void OnModuleAim(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
