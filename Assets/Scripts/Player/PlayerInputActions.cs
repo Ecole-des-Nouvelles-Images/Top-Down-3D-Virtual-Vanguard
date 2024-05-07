@@ -34,7 +34,7 @@ namespace Script.Player
                     ""type"": ""Value"",
                     ""id"": ""ab7d6853-9365-4512-a836-1be24cbee988"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -79,7 +79,7 @@ namespace Script.Player
                     ""type"": ""Value"",
                     ""id"": ""a62e7d28-660e-40d3-90a3-6897d2f1fe84"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 }

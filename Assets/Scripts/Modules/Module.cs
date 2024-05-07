@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Modules
 {
@@ -33,7 +34,7 @@ namespace Modules
             BatteryCharge = BatteryCapacity;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!Online)
                 Deactivate();
@@ -74,6 +75,6 @@ namespace Modules
 
         public virtual void Interact() {}
 
-        public virtual void Aim() {}
+        public virtual void Aim(InputValue input) {}
     }
 }

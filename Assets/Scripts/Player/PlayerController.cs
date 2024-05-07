@@ -76,12 +76,14 @@ namespace Player
 
         public void OnModuleInteract()
         {
-            
+            if (_operatingModule == null || !IsBusy) return;
         }
 
         public void OnModuleAim(InputValue input)
         {
+            if (_operatingModule == null || !IsBusy) return;
             
+            _operatingModule.Aim(input);
         }
 
         #endregion
