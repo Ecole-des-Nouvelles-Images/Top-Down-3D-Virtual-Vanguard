@@ -49,11 +49,11 @@ namespace Convoy.Modules
             _turret.LookAt(_turret.position + new Vector3(value.x,0, value.y));
         }
 
-        public override void ExitModule(PlayerController currentController)
+        public override bool ExitModule(PlayerController currentController)
         {
             _firing = false;
             
-            base.ExitModule(currentController);
+            return base.ExitModule(currentController);
         }
 
         #endregion

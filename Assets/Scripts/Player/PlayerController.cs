@@ -1,6 +1,6 @@
 using System;
 using Convoy;
-using Script.Player;
+using Convoy.Drones;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,10 +17,11 @@ namespace Player
         
         private CharacterController _controller;
         private Module _operatingModule;
+        private Drone _operatingDrone;
         private TMP_Text _idPanel;
         
-        private int PlayerID { get; set; }
-        private Vector3 _motion;
+        public int PlayerID { get; private set; }
+        private Vector2 _value;
 
         private void Awake()
         {
@@ -33,7 +34,9 @@ namespace Player
         private void Update()
         {
             if (!IsBusy)
-                _controller.Move(_motion);
+                Move();
+            else if (IsBusy && _operatingDrone && _operatingDrone.Active)
+                _operatingDrone.Move(_value);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -49,7 +52,7 @@ namespace Player
         {
             Vector2 value = input.Get<Vector2>();
 
-            _motion = transform.right * (Mathf.Abs(value.x) >= Math.Abs(value.y) ? value.x : value.y) * MoveSpeed * Time.deltaTime;
+            _value = value;
         }
 
         public void OnModuleEnter()
@@ -88,5 +91,21 @@ namespace Player
         }
 
         #endregion
+
+        private void Move()
+        {
+            Vector3 motion = transform.right * (Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime;
+            _controller.Move(motion);
+        }
+
+        public void AssignDrone(Drone drone)
+        {
+            _operatingDrone = drone;
+        }
+
+        public void UnassignDrone()
+        {
+            _operatingDrone = null;
+        }
     }
 }

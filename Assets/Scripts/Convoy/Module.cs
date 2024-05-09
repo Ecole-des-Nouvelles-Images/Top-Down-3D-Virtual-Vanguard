@@ -66,26 +66,29 @@ namespace Convoy
 
         #region Actions
 
-        public void EnterModule(PlayerController newController)
+        public virtual bool EnterModule(PlayerController newController)
         {
-            if (IsFull || !Online) {
+            if (!Online || IsFull || Controllers.Contains(newController)) {
                 Debug.Log($"Can't enter in module {name}...");
-                return;
+                return false;
             }
 
             Controllers.Add(newController);
             newController.IsBusy = true;
             Debug.Log($"Entering module {name}");
+
+            return true;
         }
 
-        public virtual void ExitModule(PlayerController currentController)
+        public virtual bool ExitModule(PlayerController currentController)
         {
             if (!Controllers.Contains(currentController))
-                return;
+                return false;
 
             Controllers.Remove(currentController);
             currentController.IsBusy = false;
             Debug.Log($"Exiting module {name}");
+            return true;
         }
 
         public abstract void Operate();
