@@ -1,6 +1,7 @@
 using System;
-using Modules;
+using Convoy;
 using Script.Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,22 +12,22 @@ namespace Player
     {
         public static int PlayerNumber = 0;
         
-        public int ID;
+        public bool IsBusy { get; set; }
         public float MoveSpeed;
         
         private CharacterController _controller;
-        private PlayerInputActions _actions;
-
         private Module _operatingModule;
-        public bool IsBusy { get; set; }
+        private TMP_Text _idPanel;
         
+        private int PlayerID { get; set; }
         private Vector3 _motion;
 
         private void Awake()
         {
-            ID = ++PlayerNumber;
+            PlayerID = ++PlayerNumber;
             _controller = GetComponent<CharacterController>();
-            _actions = new PlayerInputActions();
+            _idPanel = GetComponentInChildren<TMP_Text>();
+            _idPanel.text = "J" + PlayerID;
         }
 
         private void Update()
@@ -55,7 +56,6 @@ namespace Player
         {
             if (_operatingModule == null) return;
 
-            Debug.Log($"Entering module {_operatingModule.name}");
             _operatingModule.EnterModule(this);
         }
 
@@ -63,7 +63,6 @@ namespace Player
         {
             if (_operatingModule == null) return;
             
-            Debug.Log($"Exiting module {_operatingModule.name}");
             _operatingModule.ExitModule(this);
         }
 
@@ -77,6 +76,8 @@ namespace Player
         public void OnModuleInteract()
         {
             if (_operatingModule == null || !IsBusy) return;
+            
+            _operatingModule.Interact();
         }
 
         public void OnModuleAim(InputValue input)

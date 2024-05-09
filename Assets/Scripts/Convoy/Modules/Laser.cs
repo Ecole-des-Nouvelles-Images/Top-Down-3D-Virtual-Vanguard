@@ -1,22 +1,19 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-
 using Player;
 
-namespace Modules
+namespace Convoy.Modules
 {
     public class Laser: Module
     {
-        [Header("Laser-specific")]
+        [Header("Laser specifics")]
         [SerializeField] private Transform _turret;
+        [SerializeField] private Transform _canon;
+        [SerializeField] private float _torque;
         [SerializeField] private int _range;
         [SerializeField] private int _damagePerSecond;
-        [SerializeField] private float _torque;
         
         private bool _firing;
-        private float _currentAngle;
-        private float _targetAngle;
 
         protected override void Awake()
         {
@@ -26,25 +23,16 @@ namespace Modules
 
         protected override void Update()
         {
-            if (!Online)
-                Deactivate();
+            if (!Online) return;
             
-            if (BatteryCharge < 0) {
+            if (BatteryCharge <= 0) {
                 _firing = false;
                 return;
             }
 
             if (_firing) {
-                Debug.Log($"{name} >>> Firing");
+                DrawLaser();
             }
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            
-            Vector3 labelPosition = transform.position + Vector3.up * 3f;
-            Handles.Label(labelPosition, $"({_targetAngle:F3} rad.)");
         }
 
         #region Actions
@@ -59,11 +47,6 @@ namespace Modules
             Vector2 value = input.Get<Vector2>();
             
             _turret.LookAt(_turret.position + new Vector3(value.x,0, value.y));
-            //Debug.Log(value.x);
-            //_turret.Rotate(0, value.x, 0);
-            //_turret.Rotate(new Vector3(0, _currentAngle, 0));
-
-            //_targetAngle = Mathf.Atan2(value.x, value.y) * Mathf.Rad2Deg;
         }
 
         public override void ExitModule(PlayerController currentController)
@@ -74,7 +57,20 @@ namespace Modules
         }
 
         #endregion
-        
-        
+
+        #region Debug
+
+        private void DrawLaser()
+        {
+            if (_range <= 0) {
+                Debug.LogWarning("Range must be greater than 0");
+                return;
+            }
+            
+            Vector3 endPoint = _canon.position + _turret.forward * _range;
+            Debug.DrawLine(_canon.position, endPoint, Color.red, Time.deltaTime);
+        }
+
+        #endregion
     }
 }

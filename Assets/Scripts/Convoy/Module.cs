@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Modules
+using Player;
+using UnityEditor;
+
+namespace Convoy
 {
     public abstract class Module : MonoBehaviour
     {
@@ -15,9 +17,11 @@ namespace Modules
         [SerializeField] protected int BatteryCapacity;
         [SerializeField] protected int ConsumptionPerSecond;
 
-        protected readonly List<PlayerController> Controllers = new();
-        protected int BatteryCharge { get; private set; }
+        public string Type => GetType().ToString();
+        public int BatteryMaxCapacity => BatteryCapacity;
+        public float BatteryCharge { get; set; }
 
+        protected readonly List<PlayerController> Controllers = new();
         protected bool IsFull
         {
             get
@@ -28,10 +32,20 @@ namespace Modules
         }
         protected bool IsOperated => Controllers.Count > 0;
 
+        #region Debug
+
+        protected virtual void OnDrawGizmos()
+        {
+            string batteryStatus = BatteryMaxCapacity > 0 ? $"Battery: {Mathf.RoundToInt(BatteryCharge)}/{Mathf.RoundToInt(BatteryCapacity)}" : "No battery";
+            Handles.Label(transform.position + (Vector3.down *2) + (Vector3.left * 2), batteryStatus);
+        }
+
+        #endregion
+        
         protected virtual void Awake()
         {
             Online = true;
-            BatteryCharge = BatteryCapacity;
+            // BatteryCharge = BatteryCapacity;
         }
 
         protected virtual void Update()
@@ -50,25 +64,28 @@ namespace Modules
             Online = false;
         }
 
+        #region Actions
+
         public void EnterModule(PlayerController newController)
         {
-            if (IsFull || !Online)
-            {
+            if (IsFull || !Online) {
                 Debug.Log($"Can't enter in module {name}...");
                 return;
             }
 
             Controllers.Add(newController);
             newController.IsBusy = true;
+            Debug.Log($"Entering module {name}");
         }
 
         public virtual void ExitModule(PlayerController currentController)
         {
             if (!Controllers.Contains(currentController))
-                throw new Exception($"Error: Player #{currentController.ID} tries to ExitModule() he wasn't controlling.");
+                return;
 
             Controllers.Remove(currentController);
             currentController.IsBusy = false;
+            Debug.Log($"Exiting module {name}");
         }
 
         public abstract void Operate();
@@ -76,5 +93,7 @@ namespace Modules
         public virtual void Interact() {}
 
         public virtual void Aim(InputValue input) {}
+
+        #endregion
     }
 }
