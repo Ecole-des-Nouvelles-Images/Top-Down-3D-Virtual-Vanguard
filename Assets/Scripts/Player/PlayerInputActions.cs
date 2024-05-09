@@ -82,6 +82,15 @@ namespace Script.Player
                     ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c13eb6a-74b2-4613-9a2a-5759b28b3c7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ namespace Script.Player
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ModuleAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b1076f0-b2dc-4ffc-b969-2254109fb022"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Join"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -365,6 +385,7 @@ namespace Script.Player
             m_Player_ModuleOperate = m_Player.FindAction("ModuleOperate", throwIfNotFound: true);
             m_Player_ModuleInteract = m_Player.FindAction("ModuleInteract", throwIfNotFound: true);
             m_Player_ModuleAim = m_Player.FindAction("ModuleAim", throwIfNotFound: true);
+            m_Player_Join = m_Player.FindAction("Join", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -437,6 +458,7 @@ namespace Script.Player
         private readonly InputAction m_Player_ModuleOperate;
         private readonly InputAction m_Player_ModuleInteract;
         private readonly InputAction m_Player_ModuleAim;
+        private readonly InputAction m_Player_Join;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -447,6 +469,7 @@ namespace Script.Player
             public InputAction @ModuleOperate => m_Wrapper.m_Player_ModuleOperate;
             public InputAction @ModuleInteract => m_Wrapper.m_Player_ModuleInteract;
             public InputAction @ModuleAim => m_Wrapper.m_Player_ModuleAim;
+            public InputAction @Join => m_Wrapper.m_Player_Join;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -474,6 +497,9 @@ namespace Script.Player
                 @ModuleAim.started += instance.OnModuleAim;
                 @ModuleAim.performed += instance.OnModuleAim;
                 @ModuleAim.canceled += instance.OnModuleAim;
+                @Join.started += instance.OnJoin;
+                @Join.performed += instance.OnJoin;
+                @Join.canceled += instance.OnJoin;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -496,6 +522,9 @@ namespace Script.Player
                 @ModuleAim.started -= instance.OnModuleAim;
                 @ModuleAim.performed -= instance.OnModuleAim;
                 @ModuleAim.canceled -= instance.OnModuleAim;
+                @Join.started -= instance.OnJoin;
+                @Join.performed -= instance.OnJoin;
+                @Join.canceled -= instance.OnJoin;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -592,6 +621,7 @@ namespace Script.Player
             void OnModuleOperate(InputAction.CallbackContext context);
             void OnModuleInteract(InputAction.CallbackContext context);
             void OnModuleAim(InputAction.CallbackContext context);
+            void OnJoin(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
