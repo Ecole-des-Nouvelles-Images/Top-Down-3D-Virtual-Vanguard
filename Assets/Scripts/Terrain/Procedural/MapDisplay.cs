@@ -1,0 +1,28 @@
+﻿using UnityEngine;
+
+namespace Terrain.Procedural
+{
+    public class MapDisplay : MonoBehaviour
+    {
+        public MeshRenderer Renderer;
+        
+        [Header("Texture Settings")]
+        public FilterMode FilterMode;
+
+        [Header("Mesh Settings")]
+        public MeshFilter MeshFilter;
+        public MeshRenderer MeshRenderer;
+
+        public void DrawTexture(Texture2D texture)
+        {
+            Renderer.sharedMaterial.mainTexture = texture;
+            Renderer.transform.localScale = new Vector3 (texture.width, 1, texture.height);
+        }
+
+        public void DrawMesh(MeshData meshData, Texture2D texture)
+        {
+            MeshFilter.sharedMesh = meshData.CreateMesh();
+            MeshRenderer.sharedMaterial.mainTexture = texture;
+        }
+    }
+}
