@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 709499057687119058}
   - component: {fileID: 1253307025124735943}
   - component: {fileID: 3961338989105318684}
-  - component: {fileID: 2627623303396747187}
+  - component: {fileID: 7088259847860279047}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -155,6 +155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c847c3ceed36e4ba4db9d64ae98f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PropsParent: {fileID: 0}
+  CristalPrefab: {fileID: 0}
+  CristalDensity: 10
+  RaycastHeight: 10
+  ConvoyDeadzoneWidth: 15
+  BoundariesSpacing: 20
   SlowDownTransitionTime: 0
   Generator: {fileID: 8110793446934602696}
   EnableScrolling: 1
@@ -222,6 +228,7 @@ MonoBehaviour:
   FilterMode: 2
   MeshFilter: {fileID: 1253307025124735943}
   MeshRenderer: {fileID: 3961338989105318684}
+  MeshCollider: {fileID: 0}
 --- !u!33 &1253307025124735943
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -272,7 +279,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2627623303396747187
+--- !u!64 &7088259847860279047
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,4 +300,4 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}

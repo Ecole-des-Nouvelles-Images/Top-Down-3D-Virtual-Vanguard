@@ -12,6 +12,7 @@ namespace Terrain.Procedural
         [Header("Mesh Settings")]
         public MeshFilter MeshFilter;
         public MeshRenderer MeshRenderer;
+        public MeshCollider MeshCollider;
 
         public void DrawTexture(Texture2D texture)
         {
@@ -22,6 +23,7 @@ namespace Terrain.Procedural
         public void DrawMesh(MeshData meshData, Texture2D texture)
         {
             MeshFilter.sharedMesh = meshData.CreateMesh();
+            MeshCollider.sharedMesh = MeshFilter.sharedMesh;
             MeshRenderer.sharedMaterial.mainTexture = texture;
         }
     }
