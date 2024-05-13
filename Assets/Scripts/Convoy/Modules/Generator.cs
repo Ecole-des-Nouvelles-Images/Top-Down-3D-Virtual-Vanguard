@@ -17,12 +17,12 @@ namespace Convoy.Modules
             get => _targetModuleID;
             set
             {
-                _targetModuleID =  Mathf.Clamp(value, 0, Convoy.Modules.Count - 1);
+                _targetModuleID =  Mathf.Clamp(value, 0, ConvoyEntity.Modules.Count - 1);
                 
-                if (_targetModuleID < 0 || _targetModuleID > Convoy.Modules.Count)
+                if (_targetModuleID < 0 || _targetModuleID > ConvoyEntity.Modules.Count)
                     throw new IndexOutOfRangeException("Error: Trying to access invalid module > TargetModuleID out-of-bounds");
                 
-                _targetModule = Convoy.Modules[_targetModuleID];
+                _targetModule = ConvoyEntity.Modules[_targetModuleID];
             }
         }
 
@@ -48,7 +48,7 @@ namespace Convoy.Modules
         private void Start()
         {
             base.Awake();
-            TargetModuleID = Convoy.Modules.FindIndex(module => module.GetType() == this.GetType());
+            TargetModuleID = ConvoyEntity.Modules.FindIndex(module => module.GetType() == this.GetType());
         }
 
         private void FixedUpdate()

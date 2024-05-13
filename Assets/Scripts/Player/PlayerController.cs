@@ -31,6 +31,12 @@ namespace Player
             _idPanel.text = "J" + PlayerID;
         }
 
+        private void Start()
+        {
+            transform.position = ConvoyEntity.Modules[0].transform.position;
+            _controller.enabled = true;
+        }
+
         private void Update()
         {
             if (!IsBusy)
@@ -92,9 +98,9 @@ namespace Player
 
         #endregion
 
-        private void Move()
+        public void Move()
         {
-            Vector3 motion = transform.right * (Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime;
+            Vector3 motion = transform.right * ((Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime);
             _controller.Move(motion);
         }
 

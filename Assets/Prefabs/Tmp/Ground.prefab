@@ -150,11 +150,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6610146974903786590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64c847c3ceed36e4ba4db9d64ae98f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlowDownTransitionTime: 0
   Generator: {fileID: 8110793446934602696}
   EnableScrolling: 1
   ScrollSpeed: 2
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapDisplay: {fileID: 709499057687119058}
-  LODReduction: 2
+  LODReduction: 3
   NoiseScale: 50
   HeightScale: 6
   HeightScaleDistributionCurve:
@@ -179,7 +180,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.01
+      value: 0.3469751
       inSlope: 0
       outSlope: 0
       tangentMode: 0

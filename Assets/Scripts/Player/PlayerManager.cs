@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Convoy;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,15 +11,12 @@ namespace Player
 
         public void OnPlayerJoined(PlayerInput player)
         {
-            PlayerController controller = player.GetComponent<PlayerController>();
-            
-            Debug.Log($"Player {controller.PlayerID + 1} joined !");
+            Debug.Log("Inside OnPlayerJoined");
         }
 
         public void OnPlayerLeft(PlayerInput player)
         {
             PlayerController controller = player.GetComponent<PlayerController>();
-            
             Debug.Log($"Player {controller.PlayerID} left !");
         }
     }

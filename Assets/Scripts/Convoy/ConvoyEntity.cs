@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Convoy
 {
-    public class Convoy: MonoBehaviour
+    public class ConvoyEntity: MonoBehaviour
     {
         public static List<Module> Modules;
 
