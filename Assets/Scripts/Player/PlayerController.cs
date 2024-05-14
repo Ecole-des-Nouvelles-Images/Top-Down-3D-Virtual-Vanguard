@@ -33,7 +33,7 @@ namespace Player
 
         private void Start()
         {
-            transform.position = ConvoyEntity.Modules[0].transform.position;
+            transform.position = ConvoyManager.Modules[0].transform.position;
             _controller.enabled = true;
         }
 

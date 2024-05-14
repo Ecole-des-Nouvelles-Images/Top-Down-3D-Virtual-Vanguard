@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Convoy.Drones;
 using UnityEngine;
 
+using Convoy.Drones;
 using Player;
 
 namespace Convoy.Modules
@@ -48,6 +48,12 @@ namespace Convoy.Modules
                 
                 Deactivate();
             }
+        }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            StopCoroutine(AutoRebuildDroneWatcher());
         }
 
         #region Actions

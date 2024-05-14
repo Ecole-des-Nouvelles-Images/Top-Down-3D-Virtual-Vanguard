@@ -150,20 +150,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6610146974903786590}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64c847c3ceed36e4ba4db9d64ae98f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PropsParent: {fileID: 0}
-  CristalPrefab: {fileID: 0}
-  CristalDensity: 10
-  RaycastHeight: 10
+  PropsParent: {fileID: 7170244489233458644}
+  CristalPrefab: {fileID: 4045245634760526327, guid: cb7970cc053b090479eb654e148b5fa7,
+    type: 3}
+  CristalDensity: 25
+  RaycastHeight: 50
   ConvoyDeadzoneWidth: 15
-  BoundariesSpacing: 20
+  PropsBounds: {x: 135, y: 135}
   SlowDownTransitionTime: 0
   Generator: {fileID: 8110793446934602696}
-  EnableScrolling: 1
+  EnableScrolling: 0
   ScrollSpeed: 2
 --- !u!114 &8110793446934602696
 MonoBehaviour:
@@ -228,7 +229,7 @@ MonoBehaviour:
   FilterMode: 2
   MeshFilter: {fileID: 1253307025124735943}
   MeshRenderer: {fileID: 3961338989105318684}
-  MeshCollider: {fileID: 0}
+  MeshCollider: {fileID: 7088259847860279047}
 --- !u!33 &1253307025124735943
 MeshFilter:
   m_ObjectHideFlags: 0

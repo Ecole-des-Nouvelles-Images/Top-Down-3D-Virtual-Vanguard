@@ -54,7 +54,7 @@ namespace Convoy
                 Deactivate();
         }
 
-        public void Deactivate()
+        public virtual void Deactivate()
         {
             foreach (PlayerController player in Controllers)
             {
