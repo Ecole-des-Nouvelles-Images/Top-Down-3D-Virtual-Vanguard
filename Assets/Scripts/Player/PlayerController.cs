@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
         public static int PlayerNumber = 0;
@@ -15,7 +15,7 @@ namespace Player
         public bool IsBusy { get; set; }
         public float MoveSpeed;
         
-        private CharacterController _controller;
+        private Rigidbody _rigidbody;
         private Module _operatingModule;
         private Drone _operatingDrone;
         private TMP_Text _idPanel;
@@ -26,7 +26,7 @@ namespace Player
         private void Awake()
         {
             PlayerID = ++PlayerNumber;
-            _controller = GetComponent<CharacterController>();
+            _rigidbody = GetComponent<Rigidbody>();
             _idPanel = GetComponentInChildren<TMP_Text>();
             _idPanel.text = "J" + PlayerID;
         }
@@ -34,7 +34,6 @@ namespace Player
         private void Start()
         {
             transform.position = ConvoyManager.Modules[0].transform.position;
-            _controller.enabled = true;
         }
 
         private void Update()
@@ -100,8 +99,8 @@ namespace Player
 
         public void Move()
         {
-            Vector3 motion = transform.right * ((Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime);
-            _controller.Move(motion);
+            Vector3 motion = transform.position + transform.right * ((Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime);
+            _rigidbody.MovePosition(motion);
         }
 
         public void AssignDrone(Drone drone)

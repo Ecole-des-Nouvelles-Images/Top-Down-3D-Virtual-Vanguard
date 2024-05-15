@@ -5,12 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Module
+  - POI
   - Crystal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
