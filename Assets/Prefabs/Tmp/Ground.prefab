@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1253307025124735943}
   - component: {fileID: 3961338989105318684}
   - component: {fileID: 7088259847860279047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,10 +158,13 @@ MonoBehaviour:
   PropsParent: {fileID: 7170244489233458644}
   CristalPrefab: {fileID: 4045245634760526327, guid: cb7970cc053b090479eb654e148b5fa7,
     type: 3}
-  CristalDensity: 25
-  RaycastHeight: 50
+  CristalDensity: 15
+  TerrainLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  PropsBounds: {x: 120, y: 120}
   ConvoyDeadzoneWidth: 15
-  PropsBounds: {x: 135, y: 135}
+  RaycastHeight: 50
   SlowDownTransitionTime: 0
   Generator: {fileID: 8110793446934602696}
   EnableScrolling: 0

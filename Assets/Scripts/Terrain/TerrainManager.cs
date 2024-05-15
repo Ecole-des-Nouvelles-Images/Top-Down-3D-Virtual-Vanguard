@@ -11,8 +11,9 @@ namespace Terrain
         public Transform PropsParent;
         public GameObject CristalPrefab;
         [Range(0, 100)] public int CristalDensity = 10;
-        
+
         [Header("Gameplay Settings")]
+        public LayerMask TerrainLayer;
         [Tooltip("Bounding box for spawning object on axis (x, z)")]
         public Vector2 PropsBounds = new Vector2(150, 160);
         [Tooltip("Width of the \"lane\" on the z-axis around the Convoy")]
@@ -56,6 +57,7 @@ namespace Terrain
 
         private void Start()
         {
+            Generator.GenerateMap();
             GenerateCrystals();
         }
 
@@ -68,22 +70,15 @@ namespace Terrain
                 int rayPosZ = Mathf.RoundToInt(Random.Range(-PropsBounds.y / 2, PropsBounds.y / 2 + 1));
                 
                 if (rayPosZ <= 0 && rayPosZ > -ConvoyDeadzoneWidth || rayPosZ >= 0 && rayPosZ < ConvoyDeadzoneWidth) {
-                    Debug.Log($"Skipping Ray at Z: {rayPosZ}; Too close");
                     continue;
                 }
                 
                 Vector3 raycastOrigin = new(rayPosX, RaycastHeight, rayPosZ);
 
-                if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out RaycastHit rayHit, RaycastHeight * 2))
+                if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out RaycastHit rayHit, RaycastHeight * 2,  TerrainLayer))
                 {
-                    Debug.DrawRay(raycastOrigin, transform.TransformDirection(Vector3.down) * rayHit.distance, Color.green, 30);
-                    Debug.Log($"Ray n°{crystals} hit at {rayHit.point}");
-                    Instantiate(CristalPrefab, rayHit.point + Vector3.up * 2, Quaternion.identity, PropsParent);
-                }
-                else
-                {
-                    Debug.DrawRay(raycastOrigin, transform.TransformDirection(Vector3.down) * RaycastHeight, Color.red, 30);
-                    Debug.Log($"Ray n°{crystals} didn't Hit (RaycastOrigin: {raycastOrigin} / RaycastEnd: {transform.TransformDirection(Vector3.down) * RaycastHeight * rayHit.distance}");
+                    GameObject prop = Instantiate(CristalPrefab, rayHit.point + Vector3.up * 2, Quaternion.identity, PropsParent);
+                    prop.name = "CrystalDeposit_" + crystals;
                 }
             }
         }

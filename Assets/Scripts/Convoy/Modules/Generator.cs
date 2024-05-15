@@ -1,4 +1,5 @@
 ﻿using System;
+using Player;
 using UnityEditor;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ namespace Convoy.Modules
             }
         }
 
-        public override void Operate()
+        public override void Operate(PlayerController currentController)
         {
             if (!_ignoreInputInteraction)
             {
@@ -75,7 +76,7 @@ namespace Convoy.Modules
             }
         }
 
-        public override void Interact()
+        public override void Interact(PlayerController currentController)
         {
             if (!Online) return;
 

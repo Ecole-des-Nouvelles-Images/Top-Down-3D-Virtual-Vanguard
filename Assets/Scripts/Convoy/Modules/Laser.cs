@@ -37,7 +37,7 @@ namespace Convoy.Modules
 
         #region Actions
 
-        public override void Operate()
+        public override void Operate(PlayerController currentController)
         {
             _firing = !_firing;
         }

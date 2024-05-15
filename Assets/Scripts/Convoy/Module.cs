@@ -91,9 +91,9 @@ namespace Convoy
             return true;
         }
 
-        public abstract void Operate();
+        public abstract void Operate(PlayerController currentController);
 
-        public virtual void Interact() {}
+        public virtual void Interact(PlayerController currentController) {}
 
         public virtual void Aim(InputValue input) {}
 

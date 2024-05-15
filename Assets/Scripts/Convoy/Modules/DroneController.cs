@@ -17,10 +17,12 @@ namespace Convoy.Modules
         [SerializeField] private List<Anchor> _anchors;
         [Space]
         [SerializeField] private float _droneMoveSpeed;
+        [SerializeField] [Tooltip("Crystals mined per seconds")] private float _droneMiningSpeed;
         [SerializeField] private float _droneRebuildTime;
         [SerializeField] private bool _enableDroneAutoRebuild;
 
         public static float DroneMoveSpeed;
+        public static float DroneMiningSpeed;
         
         private List<Drone> _drones;
 
@@ -29,6 +31,7 @@ namespace Convoy.Modules
             base.Awake();
             _drones = new List<Drone>(MaximumControllers);
             DroneMoveSpeed = _droneMoveSpeed;
+            DroneMiningSpeed = _droneMiningSpeed;
         }
 
         private void Start()
@@ -74,14 +77,18 @@ namespace Convoy.Modules
             return base.ExitModule(pilot);
         }
         
-        public override void Operate()
+        public override void Operate(PlayerController currentController)
         {
-            throw new System.NotImplementedException();
+            Drone userDrone = _drones.Find(drone => drone.Pilot == currentController);
+
+            userDrone.Operating = !userDrone.Operating;
         }
 
-        public override void Interact()
+        public override void Interact(PlayerController currentController)
         {
-            throw new System.NotImplementedException();
+            Drone userDrone = _drones.Find(drone => drone.Pilot == currentController);
+
+            userDrone.Interacting = !userDrone.Interacting;
         }
 
         #endregion
@@ -104,6 +111,11 @@ namespace Convoy.Modules
         private void DeactivateDrone(PlayerController pilot)
         {
             Drone userDrone = _drones.Find(drone => drone.IsRegistered && drone.Pilot == pilot);
+
+            if (!userDrone) return;
+            
+            userDrone.Operating = false;
+            userDrone.Interacting = false;
             userDrone.Active = false;
         }
 
@@ -142,7 +154,7 @@ namespace Convoy.Modules
                     Drone drone = Instantiate(_dronePrefab, availableAnchor.Position, Quaternion.identity, _droneParent).GetComponent<Drone>();
                     availableAnchor.Occupant = drone;
                     drone.name = "Drone_" + drone.ID;
-                    drone.Controller = this;
+                    drone.DroneController = this;
                     drone.AssignedAnchor = availableAnchor;
                     _drones.Add(drone);
                 }

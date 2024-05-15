@@ -78,14 +78,14 @@ namespace Player
         {
             if (_operatingModule == null || !IsBusy) return;
             
-            _operatingModule.Operate();
+            _operatingModule.Operate(this);
         }
 
         public void OnModuleInteract()
         {
             if (_operatingModule == null || !IsBusy) return;
             
-            _operatingModule.Interact();
+            _operatingModule.Interact(this);
         }
 
         public void OnModuleAim(InputValue input)
