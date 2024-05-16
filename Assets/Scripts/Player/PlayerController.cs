@@ -11,9 +11,11 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         public static int PlayerNumber = 0;
+
+        [Header("References")]
+        public float MoveSpeed;
         
         public bool IsBusy { get; set; }
-        public float MoveSpeed;
         
         private Rigidbody _rigidbody;
         private Module _operatingModule;
@@ -21,7 +23,8 @@ namespace Player
         private TMP_Text _idPanel;
         
         public int PlayerID { get; private set; }
-        private Vector2 _value;
+        private Vector2 _inputValue;
+        private Vector3 _referenceMoveAxis;
 
         private void Awake()
         {
@@ -41,7 +44,7 @@ namespace Player
             if (!IsBusy)
                 Move();
             else if (IsBusy && _operatingDrone && _operatingDrone.Active)
-                _operatingDrone.Move(_value);
+                _operatingDrone.Move(_inputValue);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -57,7 +60,7 @@ namespace Player
         {
             Vector2 value = input.Get<Vector2>();
 
-            _value = value;
+            _inputValue = value;
         }
 
         public void OnModuleEnter()
@@ -99,7 +102,8 @@ namespace Player
 
         public void Move()
         {
-            Vector3 motion = transform.position + transform.right * ((Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime);
+            Vector3 moveAxis = transform.right + transform.forward;
+            Vector3 motion = transform.position + moveAxis * ((Mathf.Abs(_inputValue.x) >= Math.Abs(_inputValue.y) ? _inputValue.x : _inputValue.y) * MoveSpeed * Time.deltaTime);
             _rigidbody.MovePosition(motion);
         }
 
