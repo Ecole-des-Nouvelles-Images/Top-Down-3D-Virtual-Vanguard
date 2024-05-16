@@ -7,34 +7,36 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
         public static int PlayerNumber = 0;
-        
-        public bool IsBusy { get; set; }
+
+        [Header("References")]
         public float MoveSpeed;
         
-        private CharacterController _controller;
+        public bool IsBusy { get; set; }
+        
+        private Rigidbody _rigidbody;
         private Module _operatingModule;
         private Drone _operatingDrone;
         private TMP_Text _idPanel;
         
         public int PlayerID { get; private set; }
-        private Vector2 _value;
+        private Vector2 _inputValue;
+        private Vector3 _referenceMoveAxis;
 
         private void Awake()
         {
             PlayerID = ++PlayerNumber;
-            _controller = GetComponent<CharacterController>();
+            _rigidbody = GetComponent<Rigidbody>();
             _idPanel = GetComponentInChildren<TMP_Text>();
             _idPanel.text = "J" + PlayerID;
         }
 
         private void Start()
         {
-            transform.position = ConvoyEntity.Modules[0].transform.position;
-            _controller.enabled = true;
+            transform.position = ConvoyManager.Modules[0].transform.position;
         }
 
         private void Update()
@@ -42,7 +44,7 @@ namespace Player
             if (!IsBusy)
                 Move();
             else if (IsBusy && _operatingDrone && _operatingDrone.Active)
-                _operatingDrone.Move(_value);
+                _operatingDrone.Move(_inputValue);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -58,7 +60,7 @@ namespace Player
         {
             Vector2 value = input.Get<Vector2>();
 
-            _value = value;
+            _inputValue = value;
         }
 
         public void OnModuleEnter()
@@ -79,14 +81,14 @@ namespace Player
         {
             if (_operatingModule == null || !IsBusy) return;
             
-            _operatingModule.Operate();
+            _operatingModule.Operate(this);
         }
 
         public void OnModuleInteract()
         {
             if (_operatingModule == null || !IsBusy) return;
             
-            _operatingModule.Interact();
+            _operatingModule.Interact(this);
         }
 
         public void OnModuleAim(InputValue input)
@@ -100,8 +102,9 @@ namespace Player
 
         public void Move()
         {
-            Vector3 motion = transform.right * ((Mathf.Abs(_value.x) >= Math.Abs(_value.y) ? _value.x : _value.y) * MoveSpeed * Time.deltaTime);
-            _controller.Move(motion);
+            Vector3 moveAxis = transform.right + transform.forward;
+            Vector3 motion = transform.position + moveAxis * ((Mathf.Abs(_inputValue.x) >= Math.Abs(_inputValue.y) ? _inputValue.x : _inputValue.y) * MoveSpeed * Time.deltaTime);
+            _rigidbody.MovePosition(motion);
         }
 
         public void AssignDrone(Drone drone)

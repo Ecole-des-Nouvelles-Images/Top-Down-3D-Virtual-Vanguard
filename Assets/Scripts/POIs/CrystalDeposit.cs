@@ -1,0 +1,55 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
+namespace POIs
+{
+    public class CrystalDeposit: POI
+    {
+        public Vector2Int CapacityRange;
+        [Range(0, 10)] public float MiningSpeedMultiplier = 1;
+
+        public int Capacity { get; private set; }
+        public int CurrentCapacity {
+            get => _currentCapacity;
+            set => _currentCapacity = Mathf.Clamp(value, 0, Capacity);
+        }
+
+        private Transform _camera;
+        private RectTransform _ui;
+        private Slider _uiGauge;
+        private int _currentCapacity;
+
+        private void Awake()
+        {
+            if (Camera.main != null) _camera = Camera.main.transform;
+            _ui = GetComponentInChildren<RectTransform>();
+            _uiGauge = GetComponentInChildren<Slider>();
+
+            Capacity = Random.Range(CapacityRange.x, CapacityRange.y + 1);
+            CurrentCapacity = Capacity;
+            _uiGauge.maxValue = Capacity;
+            _uiGauge.value = CurrentCapacity;
+        }
+
+        private void Update()
+        {
+            if (CurrentCapacity <= 0)
+            {
+                Debug.Log($"{name} depleted and destroyed");
+                Destroy(this.gameObject);
+            }
+        }
+
+        private void LateUpdate()
+        {
+            _ui.rotation = _camera.rotation;
+            // _ui.Rotate(0, 180, 0, Space.Self);
+        }
+
+        public void UpdateUIGauge()
+        {
+            _uiGauge.value = CurrentCapacity;
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Player;
+using UnityEngine;
 
 namespace Convoy.Modules
 {
@@ -24,7 +25,7 @@ namespace Convoy.Modules
             }
         }
 
-        public override void Operate()
+        public override void Operate(PlayerController currentController)
         {
             if (!_ignoreInputInteraction)
             {
@@ -42,7 +43,7 @@ namespace Convoy.Modules
             }
         }
 
-        public override void Interact()
+        public override void Interact(PlayerController currentController)
         {
             if (!Online || BatteryCapacity <= 0) return;
             
