@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.2, z: 0}
-  m_LocalScale: {x: 200, y: 7, z: 4}
+  m_LocalScale: {x: 1000, y: 7, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7170244489233458644}
@@ -156,15 +156,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PropsParent: {fileID: 7170244489233458644}
-  CristalPrefab: {fileID: 4045245634760526327, guid: cb7970cc053b090479eb654e148b5fa7,
+  CristalPrefab: {fileID: 6813749684159566792, guid: 1998d18b1a107734bae9d26e4c796f2e,
     type: 3}
-  CristalDensity: 15
+  CristalDensity: 20
   TerrainLayer:
     serializedVersion: 2
     m_Bits: 64
   PropsBounds: {x: 120, y: 120}
   ConvoyDeadzoneWidth: 15
-  RaycastHeight: 50
+  RaycastHeight: 30
   SlowDownTransitionTime: 0
   Generator: {fileID: 8110793446934602696}
   EnableScrolling: 0

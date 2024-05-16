@@ -77,7 +77,7 @@ namespace Terrain
 
                 if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out RaycastHit rayHit, RaycastHeight * 2,  TerrainLayer))
                 {
-                    GameObject prop = Instantiate(CristalPrefab, rayHit.point + Vector3.up * 2, Quaternion.identity, PropsParent);
+                    GameObject prop = Instantiate(CristalPrefab, rayHit.point + Vector3.down * 0.5f, Quaternion.identity, PropsParent);
                     prop.name = "CrystalDeposit_" + crystals;
                 }
             }
