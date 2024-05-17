@@ -288,6 +288,8 @@ GameObject:
   - component: {fileID: 4082870352993451084}
   - component: {fileID: 1022333013603680860}
   - component: {fileID: 7276966581239463363}
+  - component: {fileID: 6685505239918484091}
+  - component: {fileID: 3952288914367648466}
   m_Layer: 0
   m_Name: CrystalDeposit
   m_TagString: POI
@@ -305,7 +307,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.395914, y: 2.454, z: -13.684431}
-  m_LocalScale: {x: 100, y: 25.114178, z: 100}
+  m_LocalScale: {x: 210, y: 52.73977, z: 210}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7659662874707028706}
@@ -399,6 +401,45 @@ MonoBehaviour:
   Type: 0
   CapacityRange: {x: 60, y: 150}
   MiningSpeedMultiplier: 1
+--- !u!208 &6685505239918484091
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6813749684159566792}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.011000001, y: 0.062000003, z: 0.012}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.001, y: 0.059000004, z: 0.001}
+  m_TimeToStationary: 0.5
+--- !u!136 &3952288914367648466
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6813749684159566792}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.015
+  m_Height: 0.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1 &8928182533404178935
 GameObject:
   m_ObjectHideFlags: 0

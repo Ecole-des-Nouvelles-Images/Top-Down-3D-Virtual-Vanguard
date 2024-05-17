@@ -1,4 +1,7 @@
+using System;
+using Managers;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 using Terrain.Procedural;
 using Random = UnityEngine.Random;
@@ -12,14 +15,16 @@ namespace Terrain
         public GameObject CristalPrefab;
         [Range(0, 100)] public int CristalDensity = 10;
 
-        [Header("Gameplay Settings")]
+        [Header("References")] 
+        public Transform Convoy;
         public LayerMask TerrainLayer;
-        [Tooltip("Bounding box for spawning object on axis (x, z)")]
-        public Vector2 PropsBounds = new Vector2(150, 160);
-        [Tooltip("Width of the \"lane\" on the z-axis around the Convoy")]
-        public float ConvoyDeadzoneWidth = 15;
+        public Collider RightSide;
+        public Collider LeftSide;
+
+        [Header("Procedural settings")]
+        public FocusMode FocusMode;
+        public bool UseFarthermostCamera = true;
         public float RaycastHeight = 10;
-        public float SlowDownTransitionTime;
         
         [Header("Experimental")]
         public MapGenerator Generator;
@@ -28,61 +33,30 @@ namespace Terrain
         
         public const int TerrainChunkSize = 240;
 
+        private NavMeshSurface _navMesh;
+        
         #region Debug
 
-        private void OnDrawGizmosSelected()
+        private void OnValidate()
         {
-            // Get the BoundsX and BoundsY parameters
-            float boundsX = PropsBounds.x; // replace with your value
-            float boundsY = PropsBounds.y; // replace with your value
-
-            // Get the position of the object
-            Vector3 position = transform.position;
-
-            // Calculate the four corners of the box
-            Vector3 corner1 = new Vector3(position.x - boundsX/2, RaycastHeight, position.z - boundsY/2);
-            Vector3 corner2 = new Vector3(position.x + boundsX/2, RaycastHeight, position.z - boundsY/2);
-            Vector3 corner3 = new Vector3(position.x + boundsX/2, RaycastHeight, position.z + boundsY/2);
-            Vector3 corner4 = new Vector3(position.x - boundsX/2, RaycastHeight, position.z + boundsY/2);
-
-            // Draw the lines connecting the corners to form the box edge
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(corner1, corner2);
-            Gizmos.DrawLine(corner2, corner3);
-            Gizmos.DrawLine(corner3, corner4);
-            Gizmos.DrawLine(corner4, corner1);
+            CameraManager.Instance.SwitchCameraFocus(FocusMode, UseFarthermostCamera);
         }
 
         #endregion
 
+        private void Awake()
+        {
+            _navMesh = GetComponent<NavMeshSurface>();
+        }
+
         private void Start()
         {
             Generator.GenerateMap();
-            GenerateCrystals();
+            GenerateProps();
+            _navMesh.BuildNavMesh();
+            CameraManager.Instance.SwitchCameraFocus(FocusMode, true);
         }
-
-        [ContextMenu("Generate Crystals")]
-        public void GenerateCrystals()
-        {
-            for (int crystals = 0; crystals <= CristalDensity; crystals++)
-            {
-                int rayPosX = Mathf.RoundToInt(Random.Range(-PropsBounds.x / 2, PropsBounds.x / 2 + 1));
-                int rayPosZ = Mathf.RoundToInt(Random.Range(-PropsBounds.y / 2, PropsBounds.y / 2 + 1));
-                
-                if (rayPosZ <= 0 && rayPosZ > -ConvoyDeadzoneWidth || rayPosZ >= 0 && rayPosZ < ConvoyDeadzoneWidth) {
-                    continue;
-                }
-                
-                Vector3 raycastOrigin = new(rayPosX, RaycastHeight, rayPosZ);
-
-                if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out RaycastHit rayHit, RaycastHeight * 2,  TerrainLayer))
-                {
-                    GameObject prop = Instantiate(CristalPrefab, rayHit.point + Vector3.down * 0.5f, Quaternion.identity, PropsParent);
-                    prop.name = "CrystalDeposit_" + crystals;
-                }
-            }
-        }
-
+        
         private void Update()
         {
             if (EnableScrolling)
@@ -92,21 +66,59 @@ namespace Terrain
             }
         }
 
-        /* public void StopScrolling()
+        public void GenerateProps()
         {
-            StartCoroutine(SlowDownScrollingCoroutine());
-        } */
+            GenerateCrystals(FocusMode);
+        }
 
-        /* private IEnumerator SlowDownScrollingCoroutine()
+        [ContextMenu("Generate Crystals")]
+        public void GenerateCrystals(FocusMode mode)
         {
-            float t = 0f;
-
-            while (t > 0)
+            Debug.Log($"L-Bounds: [min: {LeftSide.bounds.min} / max: {LeftSide.bounds.max}]; R-Bounds: [min: {RightSide.bounds.min} / max: {RightSide.bounds.max}]");
+            
+            for (int crystals = 0; crystals <= CristalDensity; crystals++)
             {
-                t += Time.deltaTime * SlowDownTransitionTime;
-                Generator.Offset.x = Mathf.Lerp(0, ScrollSpeed, t);
-                yield return null;
+                float rayPosX = 0;
+                float rayPosZ = 0;
+
+                switch (mode)
+                {
+                    case FocusMode.Left:
+                        rayPosX = Random.Range(LeftSide.bounds.min.x, LeftSide.bounds.max.x);
+                        rayPosZ = Random.Range(LeftSide.bounds.min.z, LeftSide.bounds.max.z);
+                        break;
+                    case FocusMode.Right:
+                        rayPosX = Random.Range(RightSide.bounds.min.x, RightSide.bounds.max.x);
+                        rayPosZ = Random.Range(RightSide.bounds.min.z, RightSide.bounds.max.z);
+                        break;
+                    case FocusMode.Centered:
+                        if (Random.value <= 0.5f) {
+                            rayPosX = Random.Range(LeftSide.bounds.min.x, LeftSide.bounds.max.x);
+                            rayPosZ = Random.Range(LeftSide.bounds.min.z, LeftSide.bounds.max.z);
+                        }
+                        else {
+                            rayPosX = Random.Range(RightSide.bounds.min.x, RightSide.bounds.max.x);
+                            rayPosZ = Random.Range(RightSide.bounds.min.z, RightSide.bounds.max.z);
+                        }
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+                }
+                
+                Vector3 raycastOrigin = new(rayPosX, RaycastHeight, rayPosZ);
+
+                if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out RaycastHit rayHit, RaycastHeight * 2, TerrainLayer))
+                {
+                    Debug.DrawRay(raycastOrigin, transform.TransformDirection(Vector3.down) * rayHit.distance, Color.green, 30);
+                    GameObject prop = Instantiate(CristalPrefab, rayHit.point + Vector3.down * 1.3f, Quaternion.identity, PropsParent);
+                    prop.name = "CrystalDeposit_" + crystals;
+                }
+                else
+                {
+                    Debug.Log($"Missing rays at: ({rayPosX}, {rayPosZ})");
+                    Debug.DrawRay(raycastOrigin, transform.TransformDirection(Vector3.down) * RaycastHeight, Color.red, 30);
+                }
             }
-        } */
+        }
     }
 }

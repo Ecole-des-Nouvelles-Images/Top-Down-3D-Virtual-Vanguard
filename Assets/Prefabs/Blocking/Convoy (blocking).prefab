@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaximumControllers: 4
-  Online: 0
+  Online: 1
   BatteryCapacity: 0
   ConsumptionPerSecond: 0
   _dronePrefab: {fileID: 5436700856083752263, guid: 48d389a7ce4cfb74ba76123114520caf,
@@ -527,7 +527,7 @@ MonoBehaviour:
   - {fileID: 450911440880474975}
   - {fileID: 1447410446820486911}
   _droneMoveSpeed: 80
-  _droneMiningSpeed: 0
+  _droneMiningSpeed: 10
   _droneRebuildTime: 3
   _enableDroneAutoRebuild: 1
 --- !u!1 &2990003517620627985
@@ -708,13 +708,14 @@ GameObject:
   - component: {fileID: 3384543897703953076}
   - component: {fileID: 9056907334355566894}
   - component: {fileID: 5185078362542983828}
+  - component: {fileID: 1593832765547537681}
   m_Layer: 0
   m_Name: Convoy (blocking)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3384543897703953076
 Transform:
   m_ObjectHideFlags: 0
@@ -756,15 +757,15 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354305950936325617}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8255994788066954204, guid: 46c0a3339cd7bc34fb0ad278deb6e68b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 23696b68b31408b439f9664995db44d3, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -846,6 +847,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &1593832765547537681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354305950936325617}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4620498135329035810
 GameObject:
   m_ObjectHideFlags: 0

@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 1059323671357199318}
   - component: {fileID: 699012661087757531}
   - component: {fileID: 6399295604941460382}
+  - component: {fileID: 7700398361447315836}
   m_Layer: 0
   m_Name: "Xenolith_\u03BB-dev"
   m_TagString: Untagged
@@ -393,6 +394,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7700398361447315836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621946117292255813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870ef456dd6560a48abb43486bb5fdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
+  _maxHealth: 100
+  _moveSpeed: 10
+  Agent: {fileID: 6399295604941460382}
+  TargetCollider: {fileID: 0}
+  DestinationRandomTargetRadius: 0.5
 --- !u!1 &1068303783366115970
 GameObject:
   m_ObjectHideFlags: 0
