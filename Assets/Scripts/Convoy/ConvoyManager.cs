@@ -33,6 +33,26 @@ namespace Convoy
             Handles.Label(transform.position + Vector3.down * 3, durabilityText, labelStyle);
         }
         
+        /* private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Matrix4x4 originalMatrixOrientation = Gizmos.matrix;
+            BoxCollider boxCollider = GetComponent<BoxCollider>();
+
+            Vector3 position = transform.position;
+            Quaternion rotation = transform.rotation;
+
+            if (boxCollider != null) {
+                Vector3 center = boxCollider.center;
+                Vector3 size = boxCollider.size;
+                Gizmos.matrix = transform.localToWorldMatrix;
+                Gizmos.DrawWireCube(center, size);
+            }
+
+            Gizmos.color = Color.white;
+            Gizmos.matrix = originalMatrixOrientation;
+        } */
+        
         #endregion
 
         private void Awake()

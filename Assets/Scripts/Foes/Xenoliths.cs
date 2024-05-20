@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,13 +6,19 @@ namespace Foes
 {
     public class Xenoliths : MonoBehaviour
     {
-        [Header("Gameplay")] [SerializeField] private XenoType _type;
+        [Header("Gameplay")]
+        [SerializeField] private XenoType _type;
+        [SerializeField] private AttackBehavior _behavior;
         [SerializeField] private int _maxHealth = 100;
         [SerializeField] private float _moveSpeed = 10;
-
-        [Header("Navigation")] public NavMeshAgent Agent;
+        [SerializeField] private float _rotationSpeed = 10f;
+        
+        [Header("Navigation")]
+        public NavMeshAgent Agent;
+        public Transform Target;
         public Collider TargetCollider;
-        public float DestinationRandomTargetRadius = 0.5f;
+        public LayerMask TargetsMasks;
+        public float RaycastSweepSpeed = 2f;
 
         public int CurrentHealth
         {
@@ -21,31 +28,98 @@ namespace Foes
         
         private int _currentHealth;
 
-        /*
-        private void Start()
+        private Vector3 _targetPath;
+
+        #region Debug
+
+        [Header("Debug options")] public bool DebugRaycasts;
+
+        private void OnDrawGizmos()
         {
-            Agent.updatePosition = true;
-            Agent.updateRotation = true;
-            Agent.acceleration = _moveSpeed * Time.deltaTime;
+            float pathWidth = 0.5f;
             
-            Vector3 targetPoint = GetRandomPointOnCollider(TargetCollider, DestinationRandomTargetRadius);
-            Debug.Log($"Target: {targetPoint}");
-            Agent.SetDestination(targetPoint);
+            if (Agent.hasPath)
+            {
+                // Calculer le chemin entre la position actuelle de l'agent et sa destination
+                NavMeshPath path = Agent.path;
+
+                // Dessiner les lignes du chemin à l'aide de Gizmos.DrawLine
+                for (int i = 0; i < path.corners.Length - 1; i++)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(path.corners[i] + Vector3.up * pathWidth, path.corners[i + 1] + Vector3.up * pathWidth);
+                    Gizmos.DrawLine(path.corners[i] - Vector3.up * pathWidth, path.corners[i + 1] - Vector3.up * pathWidth);
+                }
+            }
         }
 
-        private Vector3 GetRandomPointOnCollider(Collider target, float radius)
+        #endregion
+        
+        private void Start()
         {
-            // Calculate a random direction from the center of the collider
-            Vector3 randomDirection = new(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            // Calculate a random point on the surface of the collider
-            Vector3 randomPoint = target.transform.position + randomDirection * radius;
-            // Ensure the point is within the NavMesh
-            NavMeshHit hit;
+            Agent.speed = _moveSpeed * Time.deltaTime;
+
+            StartCoroutine(TargetConvoy());
             
-            if (NavMesh.SamplePosition(randomPoint, out hit, 0.1f, NavMesh.AllAreas))
-                return hit.position;
-            else
-                return null;
-        } */
+            Agent.updatePosition = true;
+            Agent.updateRotation = true;
+        }
+
+        private IEnumerator TargetConvoy()
+        {
+            float t = 0f;
+            float startingAngle = transform.eulerAngles.y;
+            float targetAngle = startingAngle;
+            float directionAngle = transform.position.x >= 0 ? 360f : -360f;
+            
+            // Raycast forward to check if the AI can see the target
+            RaycastHit hit;
+                
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 500f, TargetsMasks))
+            {
+                if (hit.collider == TargetCollider)
+                {
+                    // Set the target path to the hit point
+                    Agent.SetDestination(hit.point);
+                    yield break;
+                }
+            }
+            else // Retry with higher raycast to compensate lower ground.
+            {
+                if (Physics.Raycast(transform.position + Vector3.up * 2f, transform.forward, out hit, 500f, TargetsMasks))
+                {
+                    if (hit.collider == TargetCollider)
+                    {
+                        // Set the target path to the hit point
+                        Agent.SetDestination(hit.point);
+                        yield break;
+                    }
+                }
+            }
+
+            while (t < 1)
+            {
+                if (Physics.Raycast(transform.position + Vector3.up * 2f, transform.forward, out hit, 500f, TargetsMasks)) {
+                    if (hit.collider == TargetCollider)
+                    {
+                        // Set the target path to the hit point
+                        Agent.SetDestination(hit.point);
+                        yield break;
+                    }
+                }
+                    
+                if (DebugRaycasts)
+                    Debug.DrawRay(transform.position, transform.forward * 250f, Color.magenta, 20f);
+                    
+                t += Time.deltaTime / RaycastSweepSpeed;
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, startingAngle + directionAngle, 0), t);
+                yield return null;
+            }
+            
+            if (Agent.hasPath)
+            {
+                Debug.LogWarning($"{name} didn't find the convoy !");
+            }
+        }
     }
 }

@@ -34,15 +34,6 @@ namespace Terrain
         public const int TerrainChunkSize = 240;
 
         private NavMeshSurface _navMesh;
-        
-        #region Debug
-
-        private void OnValidate()
-        {
-            CameraManager.Instance.SwitchCameraFocus(FocusMode, UseFarthermostCamera);
-        }
-
-        #endregion
 
         private void Awake()
         {

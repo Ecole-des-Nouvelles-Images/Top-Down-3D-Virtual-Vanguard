@@ -24,7 +24,7 @@ namespace POIs
 
         private void Start()
         {
-            _camera = CameraManager.Instance.CurrentCamera;
+            _camera = CameraManager.Instance.CurrentCamera.transform;
             if (_camera == null) {
                 throw new Exception("Crystal Deposit can't find the current camera");
             }

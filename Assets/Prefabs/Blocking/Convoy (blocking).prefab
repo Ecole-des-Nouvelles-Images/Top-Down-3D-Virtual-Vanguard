@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5777627007294020246}
   - component: {fileID: 3930113366792118566}
   - component: {fileID: 8083377645659450269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrier_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2226763783983351952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anchors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 19617961230686860}
   - component: {fileID: 7069207248055504074}
   - component: {fileID: 147507838358891631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5057074214690980868}
   - component: {fileID: 7079755742108857997}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anchor_B
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 2099613589069469127}
   - component: {fileID: 4779480573733418497}
   - component: {fileID: 6304247061232494536}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shield
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 9161968290386499019}
   - component: {fileID: 158580375473467623}
   - component: {fileID: 3875748657494177953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DroneController
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7691451256186820918}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410545282830693246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 2788013887187493518}
   - component: {fileID: 1530045583586023234}
   - component: {fileID: 2687982929823976142}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -707,9 +707,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3384543897703953076}
   - component: {fileID: 9056907334355566894}
-  - component: {fileID: 5185078362542983828}
   - component: {fileID: 1593832765547537681}
-  m_Layer: 0
+  - component: {fileID: 3569253764492473149}
+  - component: {fileID: 5185078362542983828}
+  m_Layer: 7
   m_Name: Convoy (blocking)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,6 +751,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maximumDurability: 1000
+--- !u!65 &1593832765547537681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354305950936325617}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 43, y: 7, z: 9}
+  m_Center: {x: 4.6, y: 2, z: 0}
+--- !u!208 &3569253764492473149
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354305950936325617}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 20, y: 3.5, z: 3}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 4.5, y: 2, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!82 &5185078362542983828
 AudioSource:
   m_ObjectHideFlags: 0
@@ -847,27 +885,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &1593832765547537681
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4354305950936325617}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4620498135329035810
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +898,7 @@ GameObject:
   - component: {fileID: 6286791019632951995}
   - component: {fileID: 6974415779670909178}
   - component: {fileID: 4134399922483578910}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Generator
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -1004,7 +1021,7 @@ GameObject:
   - component: {fileID: 9181299115673678590}
   - component: {fileID: 4827417553242310096}
   - component: {fileID: 3461207556411943058}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Laser_B
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -1130,7 +1147,7 @@ GameObject:
   - component: {fileID: 3722691413741338323}
   - component: {fileID: 6099747230774692439}
   - component: {fileID: 2587380337173061245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2580692408157730352}
   - component: {fileID: 4626414450166092383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anchor_A
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -1257,7 +1274,7 @@ GameObject:
   - component: {fileID: 8919078890696072112}
   - component: {fileID: 3997324353363670783}
   - component: {fileID: 6503158106890492283}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1341,7 +1358,7 @@ GameObject:
   - component: {fileID: 6152111397024705134}
   - component: {fileID: 2417931767289102870}
   - component: {fileID: 6941104559863205612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrier_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7607661665389174299}
   - component: {fileID: 450911440880474975}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anchor_C
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -1489,7 +1506,7 @@ GameObject:
   - component: {fileID: 6833633258998843163}
   - component: {fileID: 6829152029149779019}
   - component: {fileID: 9201162621616900949}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1576,7 +1593,7 @@ GameObject:
   - component: {fileID: 307213637506375183}
   - component: {fileID: 1796877664397491635}
   - component: {fileID: 3813180993295026717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Laser_A
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -1701,7 +1718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233030444503353128}
   - component: {fileID: 1447410446820486911}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anchor_D
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}

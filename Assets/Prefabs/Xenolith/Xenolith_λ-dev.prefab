@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 74052902341826744}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.6, y: 7.7, z: -0}
   m_LocalScale: {x: 99.999985, y: 99.999985, z: 99.999985}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -274,11 +274,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5476997026664557527}
+  - component: {fileID: 7700398361447315836}
+  - component: {fileID: 6399295604941460382}
   - component: {fileID: 492659460661241078}
   - component: {fileID: 1059323671357199318}
   - component: {fileID: 699012661087757531}
-  - component: {fileID: 6399295604941460382}
-  - component: {fileID: 7700398361447315836}
   m_Layer: 0
   m_Name: "Xenolith_\u03BB-dev"
   m_TagString: Untagged
@@ -294,15 +294,62 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621946117292255813}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.8896966, z: -0, w: -0.4565524}
+  m_LocalRotation: {x: -0, y: -0.8896955, z: 0, w: -0.45655438}
   m_LocalPosition: {x: -16.71, y: 5.28, z: 7.19}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1.6999999, y: 1.7, z: 1.6999999}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5158663877246023673}
   - {fileID: 4421066832289232224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -234.33, z: 0}
+--- !u!114 &7700398361447315836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621946117292255813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870ef456dd6560a48abb43486bb5fdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
+  _behavior: 0
+  _maxHealth: 100
+  _moveSpeed: 80
+  _rotationSpeed: 1
+  Agent: {fileID: 6399295604941460382}
+  Target: {fileID: 0}
+  TargetCollider: {fileID: 0}
+  TargetsMasks:
+    serializedVersion: 2
+    m_Bits: 384
+  RaycastSweepSpeed: 2
+  DebugRaycasts: 1
+--- !u!195 &6399295604941460382
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621946117292255813}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 1.4
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!54 &492659460661241078
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -372,46 +419,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &6399295604941460382
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621946117292255813}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.4
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 4
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &7700398361447315836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621946117292255813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870ef456dd6560a48abb43486bb5fdd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 0
-  _maxHealth: 100
-  _moveSpeed: 10
-  Agent: {fileID: 6399295604941460382}
-  TargetCollider: {fileID: 0}
-  DestinationRandomTargetRadius: 0.5
 --- !u!1 &1068303783366115970
 GameObject:
   m_ObjectHideFlags: 0
