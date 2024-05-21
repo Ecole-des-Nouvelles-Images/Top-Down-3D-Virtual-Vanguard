@@ -19,55 +19,89 @@ namespace Managers
 
         private void Start()
         {
-            SwitchCameraFocus(FindObjectOfType<TerrainManager>().FocusMode, true);
+            CurrentCamera = LeftCam;
         }
 
         public void SwitchCameraFocus(FocusMode mode, bool useFarthermostCamera)
         {
-            switch (mode)
+            try
             {
-                case FocusMode.Centered:
-                    CenteredCam?.SetActive(true);
-                    LeftCam?.SetActive(false);
-                    RightCam?.SetActive(false);
-                    CurrentCamera = CenteredCam;
-                    break;
-                case FocusMode.Left:
-                    CenteredCam?.SetActive(false);
-                    LeftCam?.SetActive(true);
-                    RightCam?.SetActive(false);
-                    CurrentCamera = LeftCam;
-                    break;
-                case FocusMode.Right:
-                    CenteredCam?.SetActive(false);
-                    LeftCam?.SetActive(false);
-                    RightCam?.SetActive(true);
-                    CurrentCamera = RightCam;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+                switch (mode)
+                {
+                    case FocusMode.Centered:
+                        CenteredCam?.SetActive(true);
+                        LeftCam?.SetActive(false);
+                        RightCam?.SetActive(false);
+                        CurrentCamera = CenteredCam;
+                        break;
+                    case FocusMode.Left:
+                        CenteredCam?.SetActive(false);
+                        LeftCam?.SetActive(true);
+                        RightCam?.SetActive(false);
+                        CurrentCamera = LeftCam;
+                        break;
+                    case FocusMode.Right:
+                        CenteredCam?.SetActive(false);
+                        LeftCam?.SetActive(false);
+                        RightCam?.SetActive(true);
+                        CurrentCamera = RightCam;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+                }
             }
+            catch (Exception e)
+            {
+                if (e is NullReferenceException)
+                    Debug.LogError($"Null Reference Exception raised from {e.Source}: {e.Message}" + "Featuring sacha: CACA");
 
-            if (!CurrentCamera)
-                throw new NullReferenceException("CameraManager: CurrentCamera is not set at this point to manage virtual cameras");
+                if (CurrentCamera is null)
+                {
+                    Debug.LogWarning("CurrentCamera is not set at this point");
+                    return;
+                }
+            }
+            
+            foreach (Transform child in CurrentCamera.transform) {
+                child.gameObject.SetActive(true);
+            }
 
             if (useFarthermostCamera)
-            {
-                var farthermostCamera = GetComponentsInChildren<CinemachineVirtualCamera>().OrderByDescending(vc => vc.m_Lens.FieldOfView).FirstOrDefault();
-                
-                foreach (CinemachineVirtualCamera virtualCamera in CurrentCamera.GetComponentsInChildren<CinemachineVirtualCamera>()) {
-                    if (virtualCamera != farthermostCamera) 
-                        virtualCamera.gameObject.SetActive(false);
-                }
-                
-                farthermostCamera?.gameObject.SetActive(true);
-            }
+                FindCameraByFOV(false).SetActive(false);
             else
+                FindCameraByFOV(true).SetActive(false);
+        }
+
+        private GameObject FindCameraByFOV(bool findFarthermost)
+        {
+            if (CurrentCamera is null) return null;
+
+            GameObject cameraToFind = null;
+            float fov = (findFarthermost) ? Mathf.NegativeInfinity : Mathf.Infinity;
+            
+            foreach (Transform child in CurrentCamera.transform)
             {
-                foreach (CinemachineVirtualCamera virtualCamera in CurrentCamera.GetComponentsInChildren<CinemachineVirtualCamera>()) {
-                    virtualCamera.gameObject.SetActive(true);
+                CinemachineVirtualCamera cam = child.GetComponent<CinemachineVirtualCamera>();
+
+                if (!cam) continue;
+
+                if (findFarthermost)
+                {
+                    if (!(cam.m_Lens.FieldOfView > fov)) continue;
+                    
+                    cameraToFind = cam.gameObject;
+                    fov = cam.m_Lens.FieldOfView;
+                }
+                else
+                {
+                    if (!(cam.m_Lens.FieldOfView < fov)) continue;
+                    
+                    cameraToFind = cam.gameObject;
+                    fov = cam.m_Lens.FieldOfView;
                 }
             }
+            
+            return cameraToFind;
         }
     }
 }

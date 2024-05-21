@@ -45,7 +45,7 @@ namespace Terrain
             Generator.GenerateMap();
             GenerateProps();
             _navMesh.BuildNavMesh();
-            CameraManager.Instance.SwitchCameraFocus(FocusMode, true);
+            CameraManager.Instance.SwitchCameraFocus(FocusMode, UseFarthermostCamera);
         }
         
         private void Update()
@@ -65,7 +65,7 @@ namespace Terrain
         [ContextMenu("Generate Crystals")]
         public void GenerateCrystals(FocusMode mode)
         {
-            Debug.Log($"L-Bounds: [min: {LeftSide.bounds.min} / max: {LeftSide.bounds.max}]; R-Bounds: [min: {RightSide.bounds.min} / max: {RightSide.bounds.max}]");
+            // Debug.Log($"L-Bounds: [min: {LeftSide.bounds.min} / max: {LeftSide.bounds.max}]; R-Bounds: [min: {RightSide.bounds.min} / max: {RightSide.bounds.max}]");
             
             for (int crystals = 0; crystals <= CristalDensity; crystals++)
             {
