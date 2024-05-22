@@ -1,14 +1,13 @@
-﻿using System;
-using Managers;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-using Terrain;
+using Managers;
+using Gameplay;
 
 namespace Editor
 {
-    [CustomEditor(typeof(TerrainManager))] [CanEditMultipleObjects]
-    public class TerrainManagerEditor: UnityEditor.Editor
+    [CustomEditor(typeof(GameManager))] [CanEditMultipleObjects]
+    public class GameManagerEditor: UnityEditor.Editor
     {
         private SerializedProperty _focusMode;
         private SerializedProperty _useFarthermostCamera;

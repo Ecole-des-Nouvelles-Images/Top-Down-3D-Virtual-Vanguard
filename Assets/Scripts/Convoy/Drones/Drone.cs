@@ -155,7 +155,7 @@ namespace Convoy.Drones
             if (amountToAdd > 0)
             {
                 deposit.CurrentCapacity -= amountToAdd;
-                GameManager.Crystals += amountToAdd;
+                GameManager.Instance.Crystals += amountToAdd;
                 deposit.UpdateUIGauge();
                 _accumulatedMinedAmount -= amountToAdd;
             }

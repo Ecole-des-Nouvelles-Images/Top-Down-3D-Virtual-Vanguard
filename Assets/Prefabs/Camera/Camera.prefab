@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8797979693622017149}
+  - component: {fileID: 6730272928328333736}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -35,6 +36,20 @@ Transform:
   - {fileID: 4157216466413888743}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6730272928328333736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708917100790489023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f9f154c1d0b2942b47a59acef6a662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fontColor: {r: 1, g: 0, b: 0, a: 1}
+  backgroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
 --- !u!1 &5513986237909802305
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 5513986237909802305}
   serializedVersion: 2
   m_LocalRotation: {x: 0.18798128, y: -0, z: -0, w: 0.98217267}
-  m_LocalPosition: {x: 0, y: 182, z: -441.50003}
+  m_LocalPosition: {x: -17, y: 182, z: -419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -231,10 +246,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8797979693622017149}
     m_Modifications:
+    - target: {fileID: 280169845410913446, guid: 12a1801ada42ed8449cbe10778192dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3119031497494731201, guid: 12a1801ada42ed8449cbe10778192dce,
         type: 3}
       propertyPath: m_Name
       value: Camera Side-R (Perspective)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3119031497494731201, guid: 12a1801ada42ed8449cbe10778192dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3175464430362427562, guid: 12a1801ada42ed8449cbe10778192dce,
         type: 3}
@@ -316,6 +341,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Center (Perspective)
       objectReference: {fileID: 0}
+    - target: {fileID: 327696166906110764, guid: 6d60096ff65d0ba49b92d34f11363720,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8251299614725329147, guid: 6d60096ff65d0ba49b92d34f11363720,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,6 +421,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8797979693622017149}
     m_Modifications:
+    - target: {fileID: 2645530786777208655, guid: 1d91fcce98c861e4f9a01f5550925b94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3703929874328453363, guid: 1d91fcce98c861e4f9a01f5550925b94,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,6 +480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera Side-L (Perspective)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794125927718398375, guid: 1d91fcce98c861e4f9a01f5550925b94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

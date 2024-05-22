@@ -1,14 +1,15 @@
 using System;
-using Managers;
 using UnityEngine;
 using Unity.AI.Navigation;
-
-using Terrain.Procedural;
 using Random = UnityEngine.Random;
 
-namespace Terrain
+using Internal;
+using Terrain.Procedural;
+using Gameplay;
+
+namespace Managers
 {
-    public class TerrainManager : MonoBehaviour
+    public class TerrainManager : SingletonMonoBehaviour<TerrainManager>
     {
         [Header("Props Generation")]
         public Transform PropsParent;
@@ -22,8 +23,6 @@ namespace Terrain
         public Collider LeftSide;
 
         [Header("Procedural settings")]
-        public FocusMode FocusMode;
-        public bool UseFarthermostCamera = true;
         public float RaycastHeight = 10;
         
         [Header("Experimental")]
@@ -45,7 +44,6 @@ namespace Terrain
             Generator.GenerateMap();
             GenerateProps();
             _navMesh.BuildNavMesh();
-            CameraManager.Instance.SwitchCameraFocus(FocusMode, UseFarthermostCamera);
         }
         
         private void Update()
@@ -57,9 +55,16 @@ namespace Terrain
             }
         }
 
+        public void UpdateNavMesh()
+        {
+            _navMesh.BuildNavMesh();
+        }
+
+        #region Props
+
         public void GenerateProps()
         {
-            GenerateCrystals(FocusMode);
+            GenerateCrystals(GameManager.Instance.FocusMode);
         }
 
         [ContextMenu("Generate Crystals")]
@@ -111,5 +116,7 @@ namespace Terrain
                 }
             }
         }
+
+        #endregion
     }
 }

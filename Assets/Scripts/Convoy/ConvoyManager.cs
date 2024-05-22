@@ -60,5 +60,12 @@ namespace Convoy
             Modules = new (GetComponentsInChildren<Module>(true));
             Durability = _maximumDurability;
         }
+
+        public void TakeDamage(float damages)
+        {
+            Durability -= damages;
+            // Trigger damage SFX;
+            // Update UI;
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Module
   - POI
+  - Convoy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Ground
   - Convoy
   - Drones
-  - 
+  - Xenolith
   - 
   - 
   - 

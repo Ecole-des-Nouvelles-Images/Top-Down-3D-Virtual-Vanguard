@@ -1,4 +1,4 @@
-﻿namespace Terrain
+﻿namespace Gameplay
 {
     public enum FocusMode
     {
