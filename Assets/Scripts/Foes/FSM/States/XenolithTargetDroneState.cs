@@ -7,7 +7,7 @@ namespace Foes.FSM.States
     {
         public override void EnterState(Xenolith xenolith)
         {
-            throw new NotImplementedException($"{GetType()} is unimplemented");
+            Debug.Log($"{xenolith.name} detected a drone !");
         }
 
         public override void UpdateState(Xenolith xenolith)

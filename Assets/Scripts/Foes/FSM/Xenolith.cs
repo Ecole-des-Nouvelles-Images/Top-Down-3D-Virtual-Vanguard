@@ -17,6 +17,7 @@ namespace Foes.FSM
         public float MoveSpeed = 10;
         public float AttackSpeed = 3.5f;
         public float AttackDamage = 10f;
+        public float DroneDetectionRadius = 10;
         
         [Header("Navigation")]
         public NavMeshAgent Agent;
@@ -24,6 +25,7 @@ namespace Foes.FSM
 
         [Header("Detection")]
         public float RaycastSweepSpeed = 2f;
+        public SphereCollider DroneDetectionCollider;
 
         private XenolithBaseState _currentState;
         
@@ -36,7 +38,7 @@ namespace Foes.FSM
 
         #endregion
         
-        public ConvoyManager Target { get; private set; }
+        public GameObject Target { get; set; }
         public Collider TargetCollider { get; private set; }
         public XenoType Type => XenoType;
         public int CurrentHealth
@@ -52,6 +54,7 @@ namespace Foes.FSM
         #region Debug
 
         [Header("Debug options")]
+        public bool DebugColliders;
         public bool DebugRaycasts;
 
         private void OnDrawGizmos()
@@ -70,17 +73,31 @@ namespace Foes.FSM
                 }
             }
             
+            if (DebugColliders) {
+                CapsuleCollider colliderComponent = GetComponent<CapsuleCollider>();
+                Utilities.Debug.DrawCapsule(colliderComponent, Color.red);
+            }
+
+            Handles.color = Color.yellow;
             Handles.Label(transform.position + Height * 2, $"HP: {CurrentHealth}/{MaxHealth}");
+            Handles.DrawWireArc(transform.position + Height, transform.up, transform.forward, 360f, DroneDetectionRadius);
+        }
+
+        private void OnValidate()
+        {
+            if (DroneDetectionCollider)
+                DroneDetectionCollider.radius = DroneDetectionRadius / transform.lossyScale.x;
         }
 
         #endregion
         
         private void Start()
         {
-            Target = FindObjectOfType<ConvoyManager>();
+            Target = FindObjectOfType<ConvoyManager>().gameObject;
             TargetCollider = Target.GetComponent<Collider>();
             Agent.speed = MoveSpeed * Time.deltaTime;
             CurrentHealth = MaxHealth;
+            DroneDetectionCollider.radius = DroneDetectionRadius / transform.lossyScale.x;
 
             switch (Behavior)
             {

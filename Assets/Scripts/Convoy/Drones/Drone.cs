@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -51,6 +52,9 @@ namespace Convoy.Drones
 
         #region Debug
 
+        [Header("Debug")]
+        public bool DebugCollider;
+
         private void OnDrawGizmos()
         {
             string playerID = "(Player > " + (Pilot ? Pilot.PlayerID : "none") + ")";
@@ -58,6 +62,19 @@ namespace Convoy.Drones
             
             Handles.Label(transform.position + Vector3.up * 0.4f + Vector3.left * 0.2f, $"#{ID}");
             Handles.Label(transform.position + Vector3.up * 0.2f + Vector3.left * 0.2f, activeStatus);
+            
+            if (DebugCollider)
+            {
+                // Récupère tous les colliders attachés à cet objet
+                SphereCollider colliderComponent = GetComponents<SphereCollider>().First(col => col.isTrigger);
+
+                Vector3 scale = transform.lossyScale;
+                Vector3 position = colliderComponent.transform.position;
+                
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(position + colliderComponent.center, colliderComponent.radius * scale.x);
+                Gizmos.color = Color.white;
+            }
         }
 
         #endregion

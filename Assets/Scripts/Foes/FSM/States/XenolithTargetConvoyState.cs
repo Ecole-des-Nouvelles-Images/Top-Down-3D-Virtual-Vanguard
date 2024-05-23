@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,6 +30,7 @@ namespace Foes.FSM.States
             switch (other.tag)
             {
                 case "Drone":
+                    Xenolith.Target = other.gameObject;
                     Xenolith.SwitchState(Xenolith.TargetDroneState);
                     break;
                 case "Convoy":
