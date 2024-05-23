@@ -59,8 +59,8 @@ namespace Convoy
 
         private void Awake()
         {
-            Modules = new (GetComponentsInChildren<Module>(true));
             Durability = _maximumDurability;
+            Modules = new (GetComponentsInChildren<Module>(true));
         }
 
         public void TakeDamage(float damages)
