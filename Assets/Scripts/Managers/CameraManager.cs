@@ -23,25 +23,25 @@ namespace Managers
             CurrentCamera = LeftCam;
         }
 
-        public void SwitchCameraFocus(FocusMode mode, bool useFarthermostCamera)
+        public void SwitchCameraFocus(Side mode, bool useFarthermostCamera)
         {
             try
             {
                 switch (mode)
                 {
-                    case FocusMode.Centered:
+                    case Side.Centered:
                         CenteredCam?.SetActive(true);
                         LeftCam?.SetActive(false);
                         RightCam?.SetActive(false);
                         CurrentCamera = CenteredCam;
                         break;
-                    case FocusMode.Left:
+                    case Side.Left:
                         CenteredCam?.SetActive(false);
                         LeftCam?.SetActive(true);
                         RightCam?.SetActive(false);
                         CurrentCamera = LeftCam;
                         break;
-                    case FocusMode.Right:
+                    case Side.Right:
                         CenteredCam?.SetActive(false);
                         LeftCam?.SetActive(false);
                         RightCam?.SetActive(true);

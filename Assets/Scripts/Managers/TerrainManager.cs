@@ -64,11 +64,11 @@ namespace Managers
 
         public void GenerateProps()
         {
-            GenerateCrystals(GameManager.Instance.FocusMode);
+            GenerateCrystals(GameManager.Instance.Side);
         }
 
         [ContextMenu("Generate Crystals")]
-        public void GenerateCrystals(FocusMode mode)
+        public void GenerateCrystals(Side mode)
         {
             // Debug.Log($"L-Bounds: [min: {LeftSide.bounds.min} / max: {LeftSide.bounds.max}]; R-Bounds: [min: {RightSide.bounds.min} / max: {RightSide.bounds.max}]");
             
@@ -79,15 +79,7 @@ namespace Managers
 
                 switch (mode)
                 {
-                    case FocusMode.Left:
-                        rayPosX = Random.Range(LeftSide.bounds.min.x, LeftSide.bounds.max.x);
-                        rayPosZ = Random.Range(LeftSide.bounds.min.z, LeftSide.bounds.max.z);
-                        break;
-                    case FocusMode.Right:
-                        rayPosX = Random.Range(RightSide.bounds.min.x, RightSide.bounds.max.x);
-                        rayPosZ = Random.Range(RightSide.bounds.min.z, RightSide.bounds.max.z);
-                        break;
-                    case FocusMode.Centered:
+                    case Side.Centered:
                         if (Random.value <= 0.5f) {
                             rayPosX = Random.Range(LeftSide.bounds.min.x, LeftSide.bounds.max.x);
                             rayPosZ = Random.Range(LeftSide.bounds.min.z, LeftSide.bounds.max.z);
@@ -97,6 +89,15 @@ namespace Managers
                             rayPosZ = Random.Range(RightSide.bounds.min.z, RightSide.bounds.max.z);
                         }
                         break;
+                    case Side.Left:
+                        rayPosX = Random.Range(LeftSide.bounds.min.x, LeftSide.bounds.max.x);
+                        rayPosZ = Random.Range(LeftSide.bounds.min.z, LeftSide.bounds.max.z);
+                        break;
+                    case Side.Right:
+                        rayPosX = Random.Range(RightSide.bounds.min.x, RightSide.bounds.max.x);
+                        rayPosZ = Random.Range(RightSide.bounds.min.z, RightSide.bounds.max.z);
+                        break;
+
                     default:
                         throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
                 }

@@ -274,14 +274,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5476997026664557527}
-  - component: {fileID: 7700398361447315836}
+  - component: {fileID: 6699999920135614298}
   - component: {fileID: 6399295604941460382}
   - component: {fileID: 859648862380652001}
   - component: {fileID: 6660694513085508381}
   - component: {fileID: 492659460661241078}
   - component: {fileID: 699012661087757531}
   m_Layer: 9
-  m_Name: "Xenolith_\u03BB-dev"
+  m_Name: "\u03BB-dev"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ Transform:
   - {fileID: 4421066832289232224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -234.33, z: 0}
---- !u!114 &7700398361447315836
+--- !u!114 &6699999920135614298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,23 +313,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 621946117292255813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870ef456dd6560a48abb43486bb5fdd4, type: 3}
+  m_Script: {fileID: 11500000, guid: cde0d258f11b4b06ada706232aabff9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
-  _behavior: 0
-  _maxHealth: 100
-  _moveSpeed: 80
-  _rotationSpeed: 1
-  _attackSpeed: 3.5
-  _attackDamage: 10
-  _agent: {fileID: 6399295604941460382}
-  _obstacle: {fileID: 859648862380652001}
-  _targetCollider: {fileID: 0}
-  _targetsMasks:
-    serializedVersion: 2
-    m_Bits: 384
-  _raycastSweepSpeed: 2
+  XenoType: 0
+  Behavior: 0
+  MaxHealth: 100
+  MoveSpeed: 200
+  RotationSpeed: 10
+  AttackSpeed: 3.5
+  AttackDamage: 10
+  Agent: {fileID: 6399295604941460382}
+  Obstacle: {fileID: 859648862380652001}
+  DroneSphereRadius: 30
+  RaycastSweepSpeed: 2
   DebugRaycasts: 1
 --- !u!195 &6399295604941460382
 NavMeshAgent:

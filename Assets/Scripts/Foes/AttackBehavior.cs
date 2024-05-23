@@ -3,8 +3,7 @@
     public enum AttackBehavior
     {
         ConvoyOnly,
-        TrackDrone,
-        Closest,
+        ClosestTarget,
         EatCrystal
     }
 }

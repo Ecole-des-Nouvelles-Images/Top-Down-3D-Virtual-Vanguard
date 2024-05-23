@@ -20,10 +20,19 @@ namespace Managers
         [SerializeField] private GameObject _POI;
 
         [Header("Phase parameters")]
-        public FocusMode FocusMode = FocusMode.Centered;
+        public Side Side = Side.Centered;
         public bool UseFarthermostCamera = true;
         
         #region Debug
+
+        private void OnValidate()
+        {
+            if (Side == Side.None)
+            {
+                Debug.LogWarning("GameManager: Side property can't be set to 'None'. Falling back to 'Centered'.");
+                Side = Side.Centered;
+            }
+        }
 
         void OnGUI()
         {
@@ -40,7 +49,7 @@ namespace Managers
 
         private void Start()
         {
-            CameraManager.Instance.SwitchCameraFocus(FocusMode, UseFarthermostCamera);
+            CameraManager.Instance.SwitchCameraFocus(Side, UseFarthermostCamera);
         }
 
         private void Update()

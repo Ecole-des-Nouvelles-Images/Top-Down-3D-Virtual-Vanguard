@@ -26,7 +26,7 @@ namespace Editor
 
             if (GUI.changed)
             {
-                CameraManager.Instance.SwitchCameraFocus((FocusMode)_focusMode.intValue, _useFarthermostCamera.boolValue);
+                CameraManager.Instance.SwitchCameraFocus((Side)_focusMode.intValue, _useFarthermostCamera.boolValue);
             }
 
             serializedObject.ApplyModifiedProperties();

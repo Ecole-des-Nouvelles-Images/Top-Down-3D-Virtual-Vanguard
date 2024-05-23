@@ -16,6 +16,8 @@ namespace Convoy
             set => _durability = Mathf.Clamp(value, 0, _maximumDurability);
         }
 
+        public bool Operational => Durability > 0;
+
         private float _durability;
 
         #region Debug

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Numerics;
-using Foes;
+﻿using Foes.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Player;
-using Unity.VisualScripting;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Convoy.Modules
 {
@@ -22,11 +17,16 @@ namespace Convoy.Modules
         [Header("Raycast settings")]
         [SerializeField] private LayerMask _targetLayers;
         [Tooltip("Keenness of the rays below the original one.\n/!\\ Increase the number of raycast made until the floor is reached.")]
-        [SerializeField] [Range(0.001f, 1)] private float _raySlicePrecision = 0.1f;
+        [SerializeField] [Range(0.001f, 1)] private float _raySliceKeenness = 0.1f;
 
         [Header("Rendering")]
         [SerializeField] private LineRenderer _beam;
         [SerializeField] private int _lineRendererVertices = 10;
+        [SerializeField] private Gradient _beamColor;
+        [SerializeField] private float _beamThickness = 1;
+        [SerializeField] private float _beamFrequency = 1;
+        [SerializeField] private float _beamAmplitude = 1;
+        [SerializeField] private float _beamAnimSpeed = 3;
         
         private bool _firing;
 
@@ -39,17 +39,9 @@ namespace Convoy.Modules
         private void Start()
         {
             _beam.material = new Material(Shader.Find("Sprites/Default"));
-            _beam.widthMultiplier = 0.2f;
             _beam.positionCount = _lineRendererVertices;
-
-            // A simple 2 color gradient with a fixed alpha of 1.0f.
-            float alpha = 1.0f;
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(Color.yellow, 0.0f), new GradientColorKey(Color.red, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
-            );
-            _beam.colorGradient = gradient;
+            _beam.widthMultiplier = _beamThickness;
+            _beam.colorGradient = _beamColor;
         }
 
         protected override void Update()
@@ -86,7 +78,7 @@ namespace Convoy.Modules
             float closestDistance = Mathf.Infinity;
             Collider closestCollider = null;
 
-            for (float rayHeight = _canon.position.y; rayHeight > 0; rayHeight -= _raySlicePrecision)
+            for (float rayHeight = _canon.position.y; rayHeight > 0; rayHeight -= _raySliceKeenness)
             {
                 Vector3 rayOrigin = _canon.position - new Vector3(0, rayHeight, 0);
 
@@ -102,22 +94,23 @@ namespace Convoy.Modules
                 Debug.DrawRay(rayOrigin, _canon.forward * _range, Color.magenta, Time.deltaTime * 2); // TODO: Position good in space but weird to the camera ?
             }
             
-            // UpdateLaserBeam(_canon.forward, closestDistance > _range ? _range : closestDistance); // TODO: do not work yet, weird offset
+            UpdateLaserBeam(closestDistance > _range ? _range : closestDistance); // TODO: do not work yet, weird offset
             return closestCollider ? closestCollider.gameObject.GetComponent<Xenolith>() : null;
         }
 
-        private void UpdateLaserBeam(Vector3 direction, float distance)
+        private void UpdateLaserBeam(float distance)
         {
             Vector3[] lineVertices = new Vector3[_lineRendererVertices];
             float forwardPos;
+
+            lineVertices[0] = Vector3.zero;
             
-            for (int vert = 0; vert < _lineRendererVertices; vert++)
+            for (int vert = 1; vert < _lineRendererVertices; vert++)
             {
                 forwardPos = vert * (distance / _lineRendererVertices);
-                lineVertices[vert] = new Vector3(0, Mathf.Sin(vert + Time.time), forwardPos);
+                lineVertices[vert] = new Vector3(0, Mathf.Sin(_beamFrequency * vert + _beamAnimSpeed * Time.time) * _beamAmplitude, forwardPos);
             }
             
-            Debug.Log(lineVertices);
             _beam.SetPositions(lineVertices);
         }
 
