@@ -1,12 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEditor;
+
+using Gameplay;
+using Internal;
+using POIs;
+using Convoy;
 
 namespace Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : SingletonMonoBehaviour<GameManager>
     {
-        public static int Crystals { get; set; }
+        public int Crystals { get; set; }
 
+        [Header("References")]
+        [SerializeField] private ConvoyManager _convoy;
+        [SerializeField] private GameObject _POI;
+
+        [Header("Phase parameters")]
+        public Side Side = Side.Centered;
+        public bool UseFarthermostCamera = true;
+        
         #region Debug
+
+        private void OnValidate()
+        {
+            if (Side == Side.None)
+            {
+                Debug.LogWarning("GameManager: Side property can't be set to 'None'. Falling back to 'Centered'.");
+                Side = Side.Centered;
+            }
+        }
 
         void OnGUI()
         {
@@ -20,13 +46,36 @@ namespace Managers
         }
 
         #endregion
-        
-        public void TransitPhase()
+
+        private void Start()
         {
+            CameraManager.Instance.SwitchCameraFocus(Side, UseFarthermostCamera);
         }
 
-        public void StopPhase()
+        private void Update()
         {
+            if (_convoy.Durability <= 0)
+            {
+                Debug.Log("Editor warning: Exiting playmode (Convoy destroyed)");
+                EditorApplication.ExitPlaymode();
+            }
+            
+            if (GetRemainingCrystals() == 0)
+            {
+                Debug.LogWarning("Editor warning: Exiting playmode (no more crystal)");
+                EditorApplication.ExitPlaymode();
+            }
+        }
+        
+        private int GetRemainingCrystals()
+        {
+            List<CrystalDeposit> crystals = _POI.GetComponentsInChildren<CrystalDeposit>().ToList(); // Cache reference ?
+            int totalCrystalAmountRemaining = 0;
+            
+            foreach (CrystalDeposit deposit in crystals)
+                totalCrystalAmountRemaining += deposit.CurrentCapacity;
+
+            return totalCrystalAmountRemaining;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Managers;
+using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -20,9 +22,13 @@ namespace POIs
         private Slider _uiGauge;
         private int _currentCapacity;
 
-        private void Awake()
+        private void Start()
         {
-            if (Camera.main != null) _camera = Camera.main.transform;
+            _camera = CameraManager.Instance.CurrentCamera.transform;
+            if (_camera == null) {
+                throw new Exception("Crystal Deposit can't find the current camera");
+            }
+            
             _ui = GetComponentInChildren<RectTransform>();
             _uiGauge = GetComponentInChildren<Slider>();
 
@@ -30,6 +36,8 @@ namespace POIs
             CurrentCapacity = Capacity;
             _uiGauge.maxValue = Capacity;
             _uiGauge.value = CurrentCapacity;
+            
+            _ui.rotation = _camera.rotation;
         }
 
         private void Update()
@@ -39,12 +47,6 @@ namespace POIs
                 Debug.Log($"{name} depleted and destroyed");
                 Destroy(this.gameObject);
             }
-        }
-
-        private void LateUpdate()
-        {
-            _ui.rotation = _camera.rotation;
-            // _ui.Rotate(0, 180, 0, Space.Self);
         }
 
         public void UpdateUIGauge()

@@ -45,7 +45,7 @@ namespace Convoy
         protected virtual void Awake()
         {
             Online = true;
-            // BatteryCharge = BatteryCapacity;
+            BatteryCharge = BatteryCapacity;
         }
 
         protected virtual void Update()
