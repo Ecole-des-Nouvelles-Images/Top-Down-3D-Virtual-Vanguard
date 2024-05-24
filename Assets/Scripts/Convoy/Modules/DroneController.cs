@@ -18,6 +18,7 @@ namespace Convoy.Modules
         [Space]
         [SerializeField] private float _droneMoveSpeed;
         [SerializeField] [Tooltip("Crystals mined per seconds")] private float _droneMiningSpeed;
+        [SerializeField] private int _droneArmorPlates { get; set; }
         [SerializeField] private float _droneRebuildTime;
         [SerializeField] private bool _enableDroneAutoRebuild;
 
@@ -156,6 +157,7 @@ namespace Convoy.Modules
                     drone.name = "Drone_" + drone.ID;
                     drone.DroneController = this;
                     drone.AssignedAnchor = availableAnchor;
+                    drone.ArmorPlates = _droneArmorPlates;
                     _drones.Add(drone);
                 }
 

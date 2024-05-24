@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6155891559182434898}
   m_Layer: 8
   m_Name: Drone
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,3 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4030b18984cb48e997c2a07dc9f24283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugCollider: 0
