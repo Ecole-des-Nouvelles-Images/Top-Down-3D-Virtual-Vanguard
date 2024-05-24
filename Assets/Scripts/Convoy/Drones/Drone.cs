@@ -16,6 +16,7 @@ namespace Convoy.Drones
         public static int TotalDroneBuilt;
 
         public int ID { get; private set; }
+        public int ArmorPlates { get; set; }
         
         public DroneController DroneController { get; set; }
         public Anchor AssignedAnchor { get; set; }
@@ -106,7 +107,7 @@ namespace Convoy.Drones
         {
             Pilot?.UnassignDrone();
             Pilot = null;
-            DroneController.UnregisterDrone(this);
+            DroneController?.UnregisterDrone(this);
         }
 
         private void OnTriggerStay(Collider other)
@@ -175,6 +176,15 @@ namespace Convoy.Drones
                 GameManager.Instance.Crystals += amountToAdd;
                 deposit.UpdateUIGauge();
                 _accumulatedMinedAmount -= amountToAdd;
+            }
+        }
+        public void TakeDamage()
+        {
+            ArmorPlates--;
+
+            if (ArmorPlates <= 0)
+            {
+                Destroy(gameObject);
             }
         }
 

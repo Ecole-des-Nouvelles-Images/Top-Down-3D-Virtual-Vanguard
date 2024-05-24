@@ -320,10 +320,10 @@ MonoBehaviour:
   XenoType: 0
   Behavior: 0
   MaxHealth: 100
-  MoveSpeed: 200
+  MoveSpeed: 500
   AttackSpeed: 3.5
   AttackDamage: 10
-  DroneDetectionRadius: 10
+  DetectionRadius: 10
   Agent: {fileID: 6399295604941460382}
   Obstacle: {fileID: 859648862380652001}
   RaycastSweepSpeed: 2
@@ -437,7 +437,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5.882352
+  m_Radius: 1.1
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!95 &699012661087757531
 Animator:

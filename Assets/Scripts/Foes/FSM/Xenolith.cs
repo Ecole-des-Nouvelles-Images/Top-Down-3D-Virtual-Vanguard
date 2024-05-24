@@ -17,7 +17,7 @@ namespace Foes.FSM
         public float MoveSpeed = 10;
         public float AttackSpeed = 3.5f;
         public float AttackDamage = 10f;
-        public float DroneDetectionRadius = 10;
+        public float DetectionRadius = 10;
         
         [Header("Navigation")]
         public NavMeshAgent Agent;
@@ -80,13 +80,7 @@ namespace Foes.FSM
 
             Handles.color = Color.yellow;
             Handles.Label(transform.position + Height * 2, $"HP: {CurrentHealth}/{MaxHealth}");
-            Handles.DrawWireArc(transform.position + Height, transform.up, transform.forward, 360f, DroneDetectionRadius);
-        }
-
-        private void OnValidate()
-        {
-            if (DroneDetectionCollider)
-                DroneDetectionCollider.radius = DroneDetectionRadius / transform.lossyScale.x;
+            Handles.DrawWireArc(transform.position + Height, transform.up, transform.forward, 360f, DetectionRadius);
         }
 
         #endregion
@@ -97,7 +91,6 @@ namespace Foes.FSM
             TargetCollider = Target.GetComponent<Collider>();
             Agent.speed = MoveSpeed * Time.deltaTime;
             CurrentHealth = MaxHealth;
-            DroneDetectionCollider.radius = DroneDetectionRadius / transform.lossyScale.x;
 
             switch (Behavior)
             {

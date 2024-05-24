@@ -21,15 +21,10 @@ namespace Foes.FSM.States
 
         public override void UpdateState(Xenolith xenolith)
         {
-            switch (Xenolith.Target.tag)
+            if (Xenolith.Target.CompareTag("Convoy"))
             {
-                case "Convoy":
-                    _convoy = Xenolith.Target.GetComponent<ConvoyManager>();
-                    AttackConvoy();
-                    break;
-                case "Drone":
-                    TrackingDrone();
-                    break;
+                _convoy = Xenolith.Target.GetComponent<ConvoyManager>();
+                AttackConvoy();
             }
         }
         
@@ -56,11 +51,6 @@ namespace Foes.FSM.States
             }
 
             _internalTimer += Time.deltaTime;
-        }
-        
-        private void TrackingDrone()
-        {
-            throw new System.NotImplementedException();
         }
         
         private void StopAgent()

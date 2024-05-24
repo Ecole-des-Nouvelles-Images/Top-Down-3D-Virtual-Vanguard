@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,23 +21,21 @@ namespace Foes.FSM.States
 
         public override void UpdateState(Xenolith xenolith)
         {
-            // Do the Xenolith should do something while travelling ?
+            Collider[] colliders = new Collider[1];
+
+            if (Physics.OverlapSphereNonAlloc(xenolith.transform.position, xenolith.DetectionRadius, colliders, 1 << LayerMask.NameToLayer("Drones")) == 1)
+            {
+                xenolith.Target = colliders[0].gameObject;
+                xenolith.SwitchState(xenolith.TargetDroneState);
+            }
         }
 
         public override void OnTriggerEnter(Xenolith xenolith, Collider other)
         {
-            switch (other.tag)
-            {
-                case "Drone":
-                    Xenolith.Target = other.gameObject;
-                    Xenolith.SwitchState(Xenolith.TargetDroneState);
-                    break;
-                case "Convoy":
-                    Xenolith.SwitchState(Xenolith.AttackState);
-                    break;
-                default:
-                    return;
-            }
+            if (!other.CompareTag("Convoy")) return;
+
+            xenolith.Target = other.gameObject;
+            xenolith.SwitchState(xenolith.AttackState);
         }
 
         #region Logic
@@ -72,7 +69,7 @@ namespace Foes.FSM.States
         {
             float t = 0f;
             float startingAngle = Transform.eulerAngles.y;
-            float directionAngle = Transform.position.x >= 0 ? 360f : -360f;
+            float directionAngle = Transform.position.x >= 0 ? startingAngle + 360f : startingAngle - 360f;
 
             while (t < 1) // Try a last 360° turn to find the convoy
             {
