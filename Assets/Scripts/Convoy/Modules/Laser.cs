@@ -1,4 +1,5 @@
-﻿using Foes.FSM;
+﻿using System;
+using Foes.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Player;
@@ -18,8 +19,10 @@ namespace Convoy.Modules
         [SerializeField] private LayerMask _targetLayers;
         [Tooltip("Keenness of the rays below the original one.\n/!\\ Increase the number of raycast made until the floor is reached.")]
         [SerializeField] [Range(0.001f, 1)] private float _raySliceKeenness = 0.1f;
+        [SerializeField] private float _sphereCastRadius = 5f;
 
         [Header("Rendering")]
+        public bool EnableLaserRendering;
         [SerializeField] private LineRenderer _beam;
         [SerializeField] private int _lineRendererVertices = 10;
         [SerializeField] private Gradient _beamColor;
@@ -27,6 +30,32 @@ namespace Convoy.Modules
         [SerializeField] private float _beamFrequency = 1;
         [SerializeField] private float _beamAmplitude = 1;
         [SerializeField] private float _beamAnimSpeed = 3;
+
+        #region Debug
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(_canon.position, _range);
+ 
+            RaycastHit hit;
+            if (Physics.SphereCast(_canon.position, _sphereCastRadius, _canon.forward, out hit, _range, 1 << LayerMask.NameToLayer("Xenolith")))
+            {
+                Gizmos.color = Color.green;
+                Vector3 sphereCastMidpoint = _canon.position + (_canon.forward * hit.distance);
+                Gizmos.DrawWireSphere(sphereCastMidpoint, _sphereCastRadius);
+                Gizmos.DrawSphere(hit.point, 0.1f);
+                Debug.DrawLine(_canon.position, sphereCastMidpoint, Color.green);
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+                Vector3 sphereCastMidpoint = _canon.position + (_canon.forward * (_range - _sphereCastRadius));
+                Gizmos.DrawWireSphere(sphereCastMidpoint, _sphereCastRadius);
+                Debug.DrawLine(_canon.position, sphereCastMidpoint, Color.red);
+            }
+        }
+
+        #endregion
         
         private bool _firing;
 
@@ -57,7 +86,7 @@ namespace Convoy.Modules
                 Fire();
             }
             else {
-                _beam.enabled = false;
+                if (EnableLaserRendering) _beam.enabled = false;
             }
         }
 
@@ -65,7 +94,7 @@ namespace Convoy.Modules
 
         private void Fire()
         {
-            _beam.enabled = true;
+            if (EnableLaserRendering) _beam.enabled = true;
             
             Xenolith unit = RaycastForwardTarget();
             if (unit)
@@ -82,7 +111,7 @@ namespace Convoy.Modules
             {
                 Vector3 rayOrigin = _canon.position - new Vector3(0, rayHeight, 0);
 
-                if (Physics.Raycast(rayOrigin, _canon.forward, out hit, _range, _targetLayers))
+                if (Physics.SphereCast(rayOrigin, _sphereCastRadius,_canon.forward, out hit, _range, _targetLayers))
                 {
                     if (hit.distance < closestDistance)
                     {
@@ -90,11 +119,9 @@ namespace Convoy.Modules
                         closestCollider = hit.collider;
                     }
                 }
-                
-                Debug.DrawRay(rayOrigin, _canon.forward * _range, Color.magenta, Time.deltaTime * 2); // TODO: Position good in space but weird to the camera ?
             }
             
-            UpdateLaserBeam(closestDistance > _range ? _range : closestDistance); // TODO: do not work yet, weird offset
+            if (EnableLaserRendering) UpdateLaserBeam(closestDistance > _range ? _range : closestDistance); // TODO: do not work yet, weird offset
             return closestCollider ? closestCollider.gameObject.GetComponent<Xenolith>() : null;
         }
 
@@ -127,7 +154,7 @@ namespace Convoy.Modules
         {
             Vector2 value = input.Get<Vector2>();
             
-            _turret.LookAt(_turret.position + new Vector3(value.x,0, value.y));
+            _turret.LookAt(_turret.position + new Vector3(value.x,90, value.y));
         }
 
         public override bool ExitModule(PlayerController currentController)
