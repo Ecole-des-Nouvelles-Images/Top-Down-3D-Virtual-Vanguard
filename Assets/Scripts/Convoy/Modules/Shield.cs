@@ -23,6 +23,9 @@ namespace Convoy.Modules
                 BarrierLeft.SetActive(false);
                 BarrierRight.SetActive(false);
             }
+
+            if (IsActive)
+                BatteryCharge -= ConsumptionPerSecond * Time.fixedDeltaTime;
         }
 
         public override void Operate(PlayerController currentController)

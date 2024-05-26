@@ -61,9 +61,9 @@ GameObject:
   - component: {fileID: 1408421131609371822}
   - component: {fileID: 3976855618742144143}
   - component: {fileID: 8914089449685341314}
-  - component: {fileID: 7382703649696720446}
-  - component: {fileID: 8676495224270383268}
+  - component: {fileID: 9093322533621617749}
   - component: {fileID: 3669792384634551519}
+  - component: {fileID: 5625727241023315740}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!20 &7382703649696720446
+--- !u!20 &9093322533621617749
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,7 +186,15 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &8676495224270383268
+--- !u!81 &3669792384634551519
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513986237909802305}
+  m_Enabled: 1
+--- !u!114 &5625727241023315740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,14 +238,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &3669792384634551519
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5513986237909802305}
-  m_Enabled: 1
 --- !u!1001 &2495188485067587755
 PrefabInstance:
   m_ObjectHideFlags: 0

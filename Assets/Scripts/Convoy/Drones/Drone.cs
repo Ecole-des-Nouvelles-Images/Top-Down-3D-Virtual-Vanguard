@@ -54,17 +54,18 @@ namespace Convoy.Drones
         #region Debug
 
         [Header("Debug")]
-        public bool DebugCollider;
+        public bool DebugRangeCollider;
 
         private void OnDrawGizmos()
         {
             string playerID = "(Player > " + (Pilot ? Pilot.PlayerID : "none") + ")";
             string activeStatus = (Active ? "Active " + playerID : "Inactive");
             
+            Handles.color = Color.black;
             Handles.Label(transform.position + Vector3.up * 0.4f + Vector3.left * 0.2f, $"#{ID}");
             Handles.Label(transform.position + Vector3.up * 0.2f + Vector3.left * 0.2f, activeStatus);
             
-            if (DebugCollider)
+            if (DebugRangeCollider)
             {
                 // Récupère tous les colliders attachés à cet objet
                 SphereCollider colliderComponent = GetComponents<SphereCollider>().First(col => col.isTrigger);

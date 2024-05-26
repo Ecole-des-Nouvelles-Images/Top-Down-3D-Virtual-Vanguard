@@ -43,7 +43,7 @@ namespace Player
         {
             if (!IsBusy)
                 Move();
-            else if (IsBusy && _operatingDrone && _operatingDrone.Active)
+            if (IsBusy && _operatingDrone && _operatingDrone.Active)
                 _operatingDrone.Move(_inputValue);
         }
 
@@ -103,8 +103,8 @@ namespace Player
         public void Move()
         {
             Vector3 moveAxis = transform.right + transform.forward;
-            Vector3 motion = transform.position + moveAxis * ((Mathf.Abs(_inputValue.x) >= Math.Abs(_inputValue.y) ? _inputValue.x : _inputValue.y) * MoveSpeed * Time.deltaTime);
-            _rigidbody.MovePosition(motion);
+            Vector3 motion = moveAxis * ((Mathf.Abs(_inputValue.x) >= Math.Abs(_inputValue.y) ? _inputValue.x : _inputValue.y) * MoveSpeed * Time.deltaTime);
+            _rigidbody.AddForce(motion, ForceMode.Acceleration);
         }
 
         public void AssignDrone(Drone drone)

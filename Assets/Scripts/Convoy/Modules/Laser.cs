@@ -33,10 +33,8 @@ namespace Convoy.Modules
 
         #region Debug
 
-        private void OnDrawGizmosSelected()
+        protected override void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(_canon.position, _range);
- 
             RaycastHit hit;
             if (Physics.SphereCast(_canon.position, _sphereCastRadius, _canon.forward, out hit, _range, 1 << LayerMask.NameToLayer("Xenolith")))
             {
@@ -67,6 +65,7 @@ namespace Convoy.Modules
 
         private void Start()
         {
+            BatteryGauge.maxValue = BatteryMaxCapacity;
             _beam.material = new Material(Shader.Find("Sprites/Default"));
             _beam.positionCount = _lineRendererVertices;
             _beam.widthMultiplier = _beamThickness;
@@ -84,6 +83,7 @@ namespace Convoy.Modules
 
             if (_firing) {
                 Fire();
+                BatteryGauge.value = BatteryCharge;
             }
             else {
                 if (EnableLaserRendering) _beam.enabled = false;
@@ -99,6 +99,8 @@ namespace Convoy.Modules
             Xenolith unit = RaycastForwardTarget();
             if (unit)
                 unit.TakeDamage(_damagePerSecond * Time.deltaTime);
+
+            BatteryCharge -= ConsumptionPerSecond * Time.deltaTime;
         }
 
         private Xenolith RaycastForwardTarget()
