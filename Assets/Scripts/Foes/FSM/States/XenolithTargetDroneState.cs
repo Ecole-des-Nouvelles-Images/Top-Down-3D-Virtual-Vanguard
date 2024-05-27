@@ -16,7 +16,10 @@ namespace Foes.FSM.States
         public override void UpdateState(Xenolith xenolith)
         {
             if (!_drone)
+            {
                 xenolith.SwitchState(xenolith.TargetConvoyState);
+                return;
+            }
             
             float distanceToDrone = Vector3.Distance(xenolith.transform.position, _drone.transform.position);
             
@@ -29,9 +32,13 @@ namespace Foes.FSM.States
         public override void OnTriggerEnter(Xenolith xenolith, Collider other)
         {
             if (!other.CompareTag("Drone")) return;
+
+            if (_drone)
+            {
+                // TODO: Attack animation > HERE <
+                _drone.TakeDamage();
+            }
             
-            // TODO: Attack animation > HERE <
-            _drone.TakeDamage();
             xenolith.SwitchState(xenolith.TargetConvoyState);
         }
 

@@ -37,17 +37,6 @@ namespace Convoy
             }
         }
         protected bool IsOperated => Controllers.Count > 0;
-
-        #region Debug
-
-        protected virtual void OnDrawGizmos()
-        {
-            string batteryStatus = BatteryMaxCapacity > 0 ? $"Battery: {Mathf.RoundToInt(BatteryCharge)}/{Mathf.RoundToInt(BatteryCapacity)}" : "No battery";
-            Handles.color = Color.black;
-            Handles.Label(transform.position + (Vector3.down *2) + (Vector3.left * 2), batteryStatus);
-        }
-
-        #endregion
         
         protected virtual void Awake()
         {

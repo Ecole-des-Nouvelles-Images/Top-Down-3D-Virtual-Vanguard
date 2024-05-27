@@ -320,16 +320,17 @@ MonoBehaviour:
   XenoType: 0
   Behavior: 0
   MaxHealth: 100
-  MoveSpeed: 150
+  MoveSpeed: 400
   AttackSpeed: 3.5
   AttackDamage: 10
-  DetectionRadius: 10
+  DetectionRadius: 20
   Agent: {fileID: 6399295604941460382}
   Obstacle: {fileID: 859648862380652001}
   RaycastSweepSpeed: 2
   DroneDetectionCollider: {fileID: 1969593244999704715}
+  DebugPath: 1
   DebugColliders: 1
-  DebugRaycasts: 1
+  DebugRaycasts: 0
 --- !u!195 &6399295604941460382
 NavMeshAgent:
   m_ObjectHideFlags: 0

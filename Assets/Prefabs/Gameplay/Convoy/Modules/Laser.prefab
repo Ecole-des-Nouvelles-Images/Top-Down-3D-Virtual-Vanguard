@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2765801766344431110}
   - component: {fileID: 5052711582069931203}
   - component: {fileID: 8017365579512838092}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Laser
   m_TagString: Module
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646422152996455183}
   - component: {fileID: 9192959973620027617}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,10 +319,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7583600493739310442}
     m_Modifications:
+    - target: {fileID: 74885451552256777, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 417818509832704485, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 659215305528158873, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053223101523440491, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595286010424771586, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2101016655948533743, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}
       propertyPath: m_Name
       value: ModuleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101016655948533743, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515903900321674132, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}
@@ -344,6 +379,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541313154424724984, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7993613510623110394, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}
@@ -455,6 +495,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8503965064070577277, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753821844872738832, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125933693066795050, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -512,6 +567,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1028339518800835615, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028339518800835615, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -547,8 +607,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2096260821024665989, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096260821024665989, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765162254265441504, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2765162254265441504, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
@@ -557,8 +627,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6750785331187051565, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750785331187051565, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802564953327792344, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6802564953327792344, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
@@ -617,6 +697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7400648033952165246, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7400648033952165246, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -624,6 +709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LaserTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085613980919592254, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8085613980919592254, guid: a8b23228b52070346970a2033d67a528,
         type: 3}

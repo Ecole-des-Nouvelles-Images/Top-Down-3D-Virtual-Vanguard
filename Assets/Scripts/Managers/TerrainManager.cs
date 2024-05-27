@@ -21,6 +21,7 @@ namespace Managers
         public LayerMask TerrainLayer;
         public Collider RightSide;
         public Collider LeftSide;
+        public NavMeshSurface NavMesh;
 
         [Header("Procedural settings")]
         public float RaycastHeight = 10;
@@ -36,14 +37,14 @@ namespace Managers
 
         private void Awake()
         {
-            _navMesh = GetComponent<NavMeshSurface>();
+            // _navMesh = GetComponent<NavMeshSurface>();
         }
 
         private void Start()
         {
             Generator.GenerateMap();
             GenerateProps();
-            _navMesh.BuildNavMesh();
+            NavMesh.BuildNavMesh();
         }
         
         private void Update()
@@ -57,7 +58,7 @@ namespace Managers
 
         public void UpdateNavMesh()
         {
-            _navMesh.BuildNavMesh();
+            NavMesh.BuildNavMesh();
         }
 
         #region Props
@@ -104,7 +105,7 @@ namespace Managers
                 
                 Vector3 raycastOrigin = new(rayPosX, RaycastHeight, rayPosZ);
 
-                if (Physics.Raycast(raycastOrigin, transform.TransformDirection(Vector3.down), out RaycastHit rayHit, RaycastHeight * 2, TerrainLayer))
+                if (Physics.Raycast(raycastOrigin, transform.TransformDirection(-transform.up), out RaycastHit rayHit, RaycastHeight * 2, 1 << LayerMask.NameToLayer("Ground")))
                 {
                     Debug.DrawRay(raycastOrigin, transform.TransformDirection(Vector3.down) * rayHit.distance, Color.green, 30);
                     GameObject prop = Instantiate(CristalPrefab, rayHit.point + Vector3.down * 1.3f, Quaternion.identity, PropsParent);

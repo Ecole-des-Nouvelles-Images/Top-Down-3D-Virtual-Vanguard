@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Editor
 {
-    [CustomEditor(typeof(MapGenerator))]
+    [CustomEditor(typeof(MapGenerator))] [CanEditMultipleObjects]
     public class MapGeneratorEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()

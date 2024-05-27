@@ -33,7 +33,7 @@ namespace Convoy.Modules
 
         #region Debug
 
-        protected override void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             RaycastHit hit;
             if (Physics.SphereCast(_canon.position, _sphereCastRadius, _canon.forward, out hit, _range, 1 << LayerMask.NameToLayer("Xenolith")))

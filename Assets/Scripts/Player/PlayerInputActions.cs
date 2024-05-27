@@ -130,7 +130,7 @@ namespace Script.Player
                 {
                     ""name"": """",
                     ""id"": ""00c5610c-ffe5-4620-bb85-09c673666908"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -141,7 +141,7 @@ namespace Script.Player
                 {
                     ""name"": """",
                     ""id"": ""6845e02a-3cbc-46a7-bcf4-faee99ad78d8"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -152,7 +152,7 @@ namespace Script.Player
                 {
                     ""name"": """",
                     ""id"": ""54fbb09f-6ebe-4c00-b91f-5f7ff8378d35"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

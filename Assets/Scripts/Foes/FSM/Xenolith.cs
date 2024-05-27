@@ -54,6 +54,7 @@ namespace Foes.FSM
         #region Debug
 
         [Header("Debug options")]
+        public bool DebugPath;
         public bool DebugColliders;
         public bool DebugRaycasts;
 
@@ -61,15 +62,15 @@ namespace Foes.FSM
         {
             float pathWidth = 0.5f;
             
-            if (Agent.hasPath)
+            if (Agent.hasPath && DebugPath)
             {
                 NavMeshPath path = Agent.path;
 
                 for (int i = 0; i < path.corners.Length - 1; i++)
                 {
                     Gizmos.color = Color.blue;
-                    Gizmos.DrawLine(path.corners[i] + Vector3.up * pathWidth, path.corners[i + 1] + Vector3.up * pathWidth);
-                    Gizmos.DrawLine(path.corners[i] - Vector3.up * pathWidth, path.corners[i + 1] - Vector3.up * pathWidth);
+                    Gizmos.DrawLine(path.corners[i] + Vector3.up * pathWidth, path.corners[i + 1]);
+                    // Gizmos.DrawLine(path.corners[i] - Vector3.up * pathWidth, path.corners[i + 1] - Vector3.up * pathWidth);
                 }
             }
             
