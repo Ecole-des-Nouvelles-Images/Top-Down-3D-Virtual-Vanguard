@@ -36,7 +36,7 @@ namespace Foes.FSM.States
             if (_drone)
             {
                 // TODO: Attack animation > HERE <
-                _drone.TakeDamage();
+                _drone.TakeDamage(10);
             }
             
             xenolith.SwitchState(xenolith.TargetConvoyState);

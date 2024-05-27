@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 using Convoy;
+using Foes.FSM.FredStates;
 using Foes.FSM.States;
 
 namespace Foes.FSM
@@ -16,7 +17,7 @@ namespace Foes.FSM
         public int MaxHealth = 100;
         public float MoveSpeed = 10;
         public float AttackSpeed = 3.5f;
-        public float AttackDamage = 10f;
+        public int AttackDamage = 10;
         public float DetectionRadius = 10;
         
         [Header("Navigation")]
@@ -47,6 +48,14 @@ namespace Foes.FSM
             set => _currentHealth = Mathf.Clamp(value, 0, MaxHealth);
         }
         public Vector3 Height => transform.up * Agent.height;
+        public bool AttackReady => true;
+        
+        public bool TargetIsReachable {
+            get {
+                if (!Target) return false;
+                return Vector3.Distance(Target.transform.position, transform.position) <= DetectionRadius;
+            }
+        }
         
         private int _currentHealth;
         private float _accumulatedDamages;
@@ -85,14 +94,20 @@ namespace Foes.FSM
         }
 
         #endregion
+
+        private FiniteStateMachine _finiteStateMachine;
         
         private void Start()
         {
+            _finiteStateMachine = new FiniteStateMachine(this);
+            _finiteStateMachine.ChangeState(new SelectTarget(this));
+            
             Target = FindObjectOfType<ConvoyManager>().gameObject;
             TargetCollider = Target.GetComponent<Collider>();
             Agent.speed = MoveSpeed * Time.deltaTime;
             CurrentHealth = MaxHealth;
 
+            // To remove (only for debug purpose)
             switch (Behavior)
             {
                 case AttackBehavior.ConvoyOnly:
@@ -112,6 +127,8 @@ namespace Foes.FSM
 
         private void Update()
         {
+            _finiteStateMachine.Update();
+            
             _currentState.UpdateState(this);
         }
 

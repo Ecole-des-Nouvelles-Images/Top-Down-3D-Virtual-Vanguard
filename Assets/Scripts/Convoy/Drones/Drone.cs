@@ -11,7 +11,7 @@ using POIs;
 namespace Convoy.Drones
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Drone: MonoBehaviour
+    public class Drone: MonoBehaviour, IDamageable
     {
         public static int TotalDroneBuilt;
 
@@ -41,6 +41,7 @@ namespace Convoy.Drones
         
         public PlayerController Pilot { get; set; }
         public bool IsRegistered => Pilot != null;
+        public bool IsTargetable => Active;
 
         private Rigidbody _rigidbody;
         private bool _operating;
@@ -179,9 +180,9 @@ namespace Convoy.Drones
                 _accumulatedMinedAmount -= amountToAdd;
             }
         }
-        public void TakeDamage()
+        public void TakeDamage(int damage)
         {
-            ArmorPlates--;
+            ArmorPlates -= damage;
 
             if (ArmorPlates <= 0)
             {
