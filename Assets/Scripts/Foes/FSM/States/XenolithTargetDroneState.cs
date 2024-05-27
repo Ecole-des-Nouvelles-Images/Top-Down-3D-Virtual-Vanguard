@@ -15,6 +15,9 @@ namespace Foes.FSM.States
 
         public override void UpdateState(Xenolith xenolith)
         {
+            if (!_drone)
+                xenolith.SwitchState(xenolith.TargetConvoyState);
+            
             float distanceToDrone = Vector3.Distance(xenolith.transform.position, _drone.transform.position);
             
             if (distanceToDrone > xenolith.DetectionRadius)

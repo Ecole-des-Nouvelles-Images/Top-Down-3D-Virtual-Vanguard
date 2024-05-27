@@ -2,6 +2,7 @@
 using Player;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace Convoy.Modules
 {
@@ -40,7 +41,7 @@ namespace Convoy.Modules
                 text = "Target: none";
             else
                 text = "Target: {" + (TargetModuleID == 0 && _targetModule == this ? "Undefined" : TargetModuleID.ToString()) + "} " + (_targetModule == this ? "Self" : _targetModule.name);
-            
+            Handles.color = Color.black;
             Handles.Label(transform.position + (Vector3.down *2) + (Vector3.left * 2), text);
         }
 
@@ -50,14 +51,16 @@ namespace Convoy.Modules
         {
             base.Awake();
             TargetModuleID = ConvoyManager.Modules.FindIndex(module => module.GetType() == this.GetType());
+            _targetModule.WakeInterfaceBattery(true);
         }
 
         private void FixedUpdate()
         {
-            if (Online && _targetModule != null && _targetModule.BatteryMaxCapacity > 0 && _targetModule.BatteryCharge < _targetModule.BatteryMaxCapacity)
+            if (Online && _targetModule && _targetModule.BatteryMaxCapacity > 0 && _targetModule.BatteryCharge < _targetModule.BatteryMaxCapacity)
             {
                 _targetModule.BatteryCharge += PowerOutput * Time.fixedDeltaTime;
                 _targetModule.BatteryCharge = Mathf.Clamp(_targetModule.BatteryCharge, 0, _targetModule.BatteryMaxCapacity);
+                _targetModule.UpdateInterfaceBatteryCharge();
             }
         }
 
@@ -67,7 +70,9 @@ namespace Convoy.Modules
             {
                 if (!Online) return;
 
-                TargetModuleID++;
+                _targetModule.WakeInterfaceBattery(false);
+                TargetModuleID--;
+                _targetModule.WakeInterfaceBattery(true);
                 _ignoreInputInteraction = true;
             }
             else 
@@ -80,7 +85,9 @@ namespace Convoy.Modules
         {
             if (!Online) return;
 
-            TargetModuleID--;
+            _targetModule.WakeInterfaceBattery(false);
+            TargetModuleID++;
+            _targetModule.WakeInterfaceBattery(true);
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 using Player;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace Convoy
 {
@@ -16,6 +17,11 @@ namespace Convoy
         [Header("Settings")] public bool Online;
         [SerializeField] protected int BatteryCapacity;
         [SerializeField] protected int ConsumptionPerSecond;
+
+        [Header("Interface")]
+        [SerializeField] protected Slider BatteryGauge;
+        [SerializeField] protected Image ChargeStatus;
+        [SerializeField] protected Image ModuleIcon;
 
         public string Type => GetType().ToString();
         public int BatteryMaxCapacity => BatteryCapacity;
@@ -37,6 +43,7 @@ namespace Convoy
         protected virtual void OnDrawGizmos()
         {
             string batteryStatus = BatteryMaxCapacity > 0 ? $"Battery: {Mathf.RoundToInt(BatteryCharge)}/{Mathf.RoundToInt(BatteryCapacity)}" : "No battery";
+            Handles.color = Color.black;
             Handles.Label(transform.position + (Vector3.down *2) + (Vector3.left * 2), batteryStatus);
         }
 
@@ -77,6 +84,11 @@ namespace Convoy
             newController.IsBusy = true;
             Debug.Log($"Entering module {name}");
 
+            if (BatteryMaxCapacity > 0) {
+                BatteryGauge.gameObject.SetActive(true);
+                ModuleIcon.gameObject.SetActive(false);
+            }
+            
             return true;
         }
 
@@ -88,6 +100,13 @@ namespace Convoy
             Controllers.Remove(currentController);
             currentController.IsBusy = false;
             Debug.Log($"Exiting module {name}");
+
+            if (BatteryMaxCapacity > 0)
+            {
+                BatteryGauge.gameObject.SetActive(false);
+                ModuleIcon.gameObject.SetActive(true);
+            }
+            
             return true;
         }
 
@@ -96,6 +115,26 @@ namespace Convoy
         public virtual void Interact(PlayerController currentController) {}
 
         public virtual void Aim(InputValue input) {}
+
+        #endregion
+
+        #region Interface Utilities
+
+        public void WakeInterfaceBattery(bool enable)
+        {
+            ChargeStatus.color = enable ? Color.yellow : Color.black;
+            
+            if (BatteryMaxCapacity > 0)
+            {
+                BatteryGauge.gameObject.SetActive(enable);
+                ModuleIcon.gameObject.SetActive(!enable);
+            }
+        }
+
+        public void UpdateInterfaceBatteryCharge()
+        {
+            BatteryGauge.value = BatteryCharge;
+        }
 
         #endregion
     }
