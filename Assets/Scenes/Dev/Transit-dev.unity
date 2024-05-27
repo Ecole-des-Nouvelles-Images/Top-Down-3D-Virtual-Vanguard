@@ -2226,6 +2226,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970800203}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2011135191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3926415072007520418, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+    type: 3}
+  m_PrefabInstance: {fileID: 4734036348421312813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2011135194
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011135191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: -312.19, y: 176.2, z: -312.19}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 0
+  m_LookaheadIgnoreY: 0
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_TargetMovementOnly: 1
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_CameraDistance: 10
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_DeadZoneDepth: 0
+  m_UnlimitedSoftZone: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+  m_CenterOnActivate: 1
+  m_GroupFramingMode: 2
+  m_AdjustmentMode: 0
+  m_GroupFramingSize: 0.8
+  m_MaxDollyIn: 5000
+  m_MaxDollyOut: 5000
+  m_MinimumDistance: 1
+  m_MaximumDistance: 5000
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
+  m_MinimumOrthoSize: 1
+  m_MaximumOrthoSize: 5000
+--- !u!114 &2011135195
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011135191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0.02
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2109745165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,18 +3121,43 @@ PrefabInstance:
     - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.000009303987
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 185.69261
       objectReference: {fileID: 0}
     - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -441.50003
+      value: -450.7966
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472384857110585944, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000009303987
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472384857110585944, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 185.69261
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472384857110585944, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -450.7966
       objectReference: {fileID: 0}
     - target: {fileID: 2708917100790489023, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3978095918059776034, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 543450652700518852}
     - target: {fileID: 5746543631984383792, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_IsActive
@@ -3135,7 +3226,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3926415072007520418, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2011135195}
+    - targetCorrespondingSourceObject: {fileID: 3926415072007520418, guid: 12334b00db3bb6a419d2af0f81f5ac33,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2011135194}
   m_SourcePrefab: {fileID: 100100000, guid: 12334b00db3bb6a419d2af0f81f5ac33, type: 3}
 --- !u!23 &5065847854987556468
 MeshRenderer:

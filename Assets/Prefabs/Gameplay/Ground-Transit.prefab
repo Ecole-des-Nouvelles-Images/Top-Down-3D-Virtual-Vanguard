@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2291626655443819081}
   - component: {fileID: 5976489729919380501}
   - component: {fileID: 8058723405381288028}
+  - component: {fileID: 9188077582239833195}
   m_Layer: 6
   m_Name: Ground-Transit
   m_TagString: Untagged
@@ -201,3 +202,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fontColor: {r: 0.69877917, g: 1, b: 0.6745283, a: 1}
   backgroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+--- !u!65 &9188077582239833195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436484504396716507}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 240, y: 30, z: 240}
+  m_Center: {x: 0, y: 15, z: 0}
