@@ -1,3 +1,4 @@
+using Terrain;
 using UnityEngine;
 
 namespace Convoy
@@ -7,12 +8,16 @@ namespace Convoy
         public float Speed;
 
         public Vector3 ConvoyDirection => transform.TransformDirection(-transform.forward);
+        public TransitManager Manager;
+
+        private void Start()
+        {
+            Manager = FindAnyObjectByType<TransitManager>();
+        }
 
         private void Update()
         {
             transform.Translate(ConvoyDirection* (Speed * Time.deltaTime));
         }
-        
-        
     }
 }

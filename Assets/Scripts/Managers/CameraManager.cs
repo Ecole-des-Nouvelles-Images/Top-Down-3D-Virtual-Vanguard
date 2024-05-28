@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
 
 using Internal;
-using Terrain;
 using Cinemachine;
 using Gameplay;
 
@@ -62,9 +60,13 @@ namespace Managers
                     return;
                 }
             }
-            
-            foreach (Transform child in CurrentCamera.transform) {
-                child.gameObject.SetActive(true);
+
+            if (CurrentCamera)
+            {
+                foreach (Transform child in CurrentCamera.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
             }
 
             if (useFarthermostCamera)

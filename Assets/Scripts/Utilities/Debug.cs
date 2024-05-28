@@ -31,7 +31,7 @@ namespace Utilities
                 
                 // Check if capsule direction is collinear to Vector.up
                 float c = Vector3.Dot((p1 - p2).normalized, Vector3.up);
-                if (c == 1f || c == -1f)
+                if (Mathf.Approximately(c, 1f) || Mathf.Approximately(c, -1f))
                 {
                     // Fix rotation
                     p2Rotation = Quaternion.Euler(p2Rotation.eulerAngles.x, p2Rotation.eulerAngles.y + 180f, p2Rotation.eulerAngles.z);

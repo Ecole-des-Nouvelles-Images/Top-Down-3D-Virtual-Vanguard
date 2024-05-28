@@ -10,7 +10,7 @@ namespace Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
-        public static int PlayerNumber = 0;
+        public static int PlayerNumber;
 
         [Header("References")]
         public float MoveSpeed;

@@ -33,13 +33,6 @@ namespace Managers
         
         public const int TerrainChunkSize = 240;
 
-        private NavMeshSurface _navMesh;
-
-        private void Awake()
-        {
-            // _navMesh = GetComponent<NavMeshSurface>();
-        }
-
         private void Start()
         {
             Generator.GenerateMap();
@@ -75,8 +68,8 @@ namespace Managers
             
             for (int crystals = 0; crystals <= CristalDensity; crystals++)
             {
-                float rayPosX = 0;
-                float rayPosZ = 0;
+                float rayPosX;
+                float rayPosZ;
 
                 switch (mode)
                 {

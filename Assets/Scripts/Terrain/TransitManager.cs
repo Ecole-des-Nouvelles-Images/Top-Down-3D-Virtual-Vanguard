@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Terrain
@@ -7,65 +6,65 @@ namespace Terrain
     public class TransitManager: MonoBehaviour
     {
         [Header("References")]
-        public GameObject GroundPrefab;
-        public GameObject RailPrefab;
-        public Transform RailsRoot;
-        public Transform ChunksRoot;
-        [Range(2, 5)] public int ChunksQueueSize;
-
-        public static int ChunkNumber = 0;
-        public Queue<TerrainChunk> Chunks;
+        [SerializeField] private GameObject _groundPrefab;
+        [SerializeField] private GameObject _railPrefab;
+        [SerializeField] private Transform _chunksRoot;
+        [Range(2, 5)] [SerializeField] private int _chunksQueueSize = 3;
         
-        private const int ChunkSize = 240;
-        private float GroundHeight => -5.8f;
+        [Header("Transform values")]
+        [SerializeField] private float _generalOffset = 169.7f;
+        [SerializeField] private float _groundHeight = 2.2f;
+
+        public static int ChunkNumber = -1;
+        public static Queue<TerrainChunk> Chunks;
+        
+        public float CumulatedPosition { get; set; }
 
         private Vector3 MapDirection => transform.right + transform.forward;
-        private Vector3 Position { get; set; }
-        private readonly Quaternion MapOrientation = Quaternion.Euler(0, -45, 0);
+        private Quaternion MapOrientation => Quaternion.Euler(0, -45, 0);
 
-        private float CumulatedPosition
-        {
-            get => _cumulatedPositionRaw;
-            set
-            {
-                _cumulatedPositionRaw = value;
-                Position = new Vector3(_cumulatedPositionRaw, GroundHeight, _cumulatedPositionRaw);
-            }
-        }
-        private float _cumulatedPositionRaw = 0f;
-        private float CumulatedOffset { get; set; } = 0f;
+        private bool _ignoreFirstChunkCrossed = true;
+        private bool _reverseChunkScale;
 
         private void Start()
         {
-            bool reverseScale = false;
-            CumulatedPosition = 0f;
-            Chunks = new Queue<TerrainChunk>(ChunksQueueSize);
+            CumulatedPosition = -169.7f;
+            Chunks = new Queue<TerrainChunk>(_chunksQueueSize);
 
-            for (int chunkIndex = 0; chunkIndex < ChunksQueueSize; chunkIndex++)
+            for (int chunkIndex = -1; chunkIndex < _chunksQueueSize; chunkIndex++)
             {
-                Chunks.Enqueue(CreateChunk(ChunksRoot, CumulatedOffset, reverseScale));
-                CumulatedPosition += 169.7f;
-                // CumulatedOffset = 0f;
-                reverseScale = !reverseScale;
-                ChunkNumber++;
+                Chunks.Enqueue(CreateChunk(_chunksRoot));
             }
         }
 
-        private TerrainChunk CreateChunk(Transform root, float offset, bool reverse)
+        public TerrainChunk CreateChunk(Transform root)
         {
-            GameObject instance = Instantiate(GroundPrefab, MapDirection * CumulatedPosition, MapOrientation, root);
+            GameObject instance = Instantiate(_groundPrefab, MapDirection * CumulatedPosition, MapOrientation, root);
             TerrainChunk chunk = instance.GetComponent<TerrainChunk>();
 
-            if (reverse)
-                instance.transform.localScale = new Vector3(-1, 1, 1);
+            if (_reverseChunkScale)
+                chunk.Terrain.transform.localScale = new Vector3(-1, 1, 1);
+            
+            Instantiate(_railPrefab, new Vector3(_generalOffset * ChunkNumber, 2.2f, _generalOffset * ChunkNumber), MapOrientation, instance.transform);
 
-            if (ChunkNumber % 2 == 0)
+            chunk.SetupChunk(0);
+            
+            CumulatedPosition += _generalOffset;
+            _reverseChunkScale = !_reverseChunkScale;
+            ChunkNumber++;
+            return chunk;
+        }
+
+        public void UpdateRoad()
+        {
+            if (_ignoreFirstChunkCrossed)
             {
-                Instantiate(RailPrefab, new Vector3((84.85f * ChunkNumber * 2) + 84.85f, 2.2f, (84.85f * ChunkNumber * 2) + 84.85f), MapOrientation, RailsRoot);
+                _ignoreFirstChunkCrossed = false;
+                return;
             }
             
-            chunk.SetupChunk(offset);
-            return chunk;
+            Chunks.Enqueue(CreateChunk(_chunksRoot));
+            Destroy(Chunks.Dequeue().gameObject);
         }
     }
 }

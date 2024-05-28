@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 using Terrain.Procedural;
 
@@ -12,7 +11,7 @@ namespace Terrain
 
         private void Awake()
         {
-            Terrain = GetComponent<MapGenerator>();
+            Terrain = GetComponentInChildren<MapGenerator>();
             Manager = FindObjectOfType<TransitManager>();
         }
 
@@ -21,10 +20,12 @@ namespace Terrain
             Terrain.Offset.x = noiseOffset;
             Terrain.GenerateMap();
         }
-
+        
         private void OnTriggerEnter(Collider other)
         {
-            throw new NotImplementedException();
+            if (!other.CompareTag("Convoy")) return;
+            
+            Manager.UpdateRoad();
         }
     }
 }

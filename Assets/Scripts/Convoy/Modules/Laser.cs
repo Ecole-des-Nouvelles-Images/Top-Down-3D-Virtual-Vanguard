@@ -1,5 +1,4 @@
-﻿using System;
-using Foes.FSM;
+﻿using Foes.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Player;
@@ -35,8 +34,7 @@ namespace Convoy.Modules
 
         private void OnDrawGizmos()
         {
-            RaycastHit hit;
-            if (Physics.SphereCast(_canon.position, _sphereCastRadius, _canon.forward, out hit, _range, 1 << LayerMask.NameToLayer("Xenolith")))
+            if (Physics.SphereCast(_canon.position, _sphereCastRadius, _canon.forward, out RaycastHit hit, _range, 1 << LayerMask.NameToLayer("Xenolith")))
             {
                 Gizmos.color = Color.green;
                 Vector3 sphereCastMidpoint = _canon.position + (_canon.forward * hit.distance);
@@ -105,7 +103,6 @@ namespace Convoy.Modules
 
         private Xenolith RaycastForwardTarget()
         {
-            RaycastHit hit;
             float closestDistance = Mathf.Infinity;
             Collider closestCollider = null;
 
@@ -113,7 +110,7 @@ namespace Convoy.Modules
             {
                 Vector3 rayOrigin = _canon.position - new Vector3(0, rayHeight, 0);
 
-                if (Physics.SphereCast(rayOrigin, _sphereCastRadius,_canon.forward, out hit, _range, _targetLayers))
+                if (Physics.SphereCast(rayOrigin, _sphereCastRadius,_canon.forward, out RaycastHit hit, _range, _targetLayers))
                 {
                     if (hit.distance < closestDistance)
                     {
@@ -170,7 +167,7 @@ namespace Convoy.Modules
 
         #region Debug
 
-        private void DrawLaser()
+        /* private void DrawLaser()
         {
             if (_range <= 0) {
                 Debug.LogWarning("Range must be greater than 0");
@@ -179,7 +176,7 @@ namespace Convoy.Modules
             
             Vector3 endPoint = _canon.position + _canon.forward * _range;
             Debug.DrawLine(_canon.position, endPoint, Color.red, Time.deltaTime);
-        }
+        } */
 
         #endregion
     }

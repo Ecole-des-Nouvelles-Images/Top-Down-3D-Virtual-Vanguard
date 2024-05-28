@@ -106,6 +106,7 @@ namespace Convoy.Drones
 
         private void OnDisable()
         {
+            if (AssignedAnchor) AssignedAnchor = null;
             Pilot?.UnassignDrone();
             Pilot = null;
             DroneController?.UnregisterDrone(this);
@@ -158,6 +159,8 @@ namespace Convoy.Drones
             throw new NotImplementedException();
         }
 
+        #endregion
+        
         private void Mine()
         {
             CrystalDeposit deposit = _nearestPOI as CrystalDeposit;
@@ -188,7 +191,5 @@ namespace Convoy.Drones
                 Destroy(gameObject);
             }
         }
-
-        #endregion
     }
 }

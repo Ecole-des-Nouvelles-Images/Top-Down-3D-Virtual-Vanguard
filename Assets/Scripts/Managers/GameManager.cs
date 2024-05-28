@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Managers
 
         [Header("References")]
         [SerializeField] private ConvoyManager _convoy;
+        // ReSharper disable once InconsistentNaming
         [SerializeField] private GameObject _POI;
 
         [Header("Phase parameters")]
