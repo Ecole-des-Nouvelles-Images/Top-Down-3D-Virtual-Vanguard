@@ -481,13 +481,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b8fdf2f0484d6fa8d5a002dc0b38b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GroundPrefab: {fileID: 5458030527743846742, guid: 106c4081620a1b3408511db3cd0571ac,
+  _groundPrefab: {fileID: 5458030527743846742, guid: 106c4081620a1b3408511db3cd0571ac,
     type: 3}
-  RailPrefab: {fileID: 2468112797178629060, guid: 7997b8417be41144f9c81b91d6959bd9,
+  _railPrefab: {fileID: 2468112797178629060, guid: 7997b8417be41144f9c81b91d6959bd9,
     type: 3}
-  RailsRoot: {fileID: 0}
-  ChunksRoot: {fileID: 829176841}
-  ChunksQueueSize: 3
+  _chunksRoot: {fileID: 829176841}
+  _chunksQueueSize: 3
+  _generalOffset: 169.7
+  _groundHeight: 2.2
 --- !u!1001 &659971026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3637,6 +3638,7 @@ MonoBehaviour:
   - {fileID: 1565094900}
   _droneMoveSpeed: 100
   _droneMiningSpeed: 20
+  _droneArmorPlates: 2
   _droneRebuildTime: 3
   _enableDroneAutoRebuild: 1
 --- !u!33 &8422794855086049945

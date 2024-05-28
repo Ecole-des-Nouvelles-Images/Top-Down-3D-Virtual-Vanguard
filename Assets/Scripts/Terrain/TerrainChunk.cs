@@ -21,7 +21,7 @@ namespace Terrain
             Terrain.GenerateMap();
         }
         
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             if (!other.CompareTag("Convoy")) return;
             

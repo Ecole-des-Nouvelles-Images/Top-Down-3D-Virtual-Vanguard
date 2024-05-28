@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Terrain
@@ -6,7 +7,8 @@ namespace Terrain
     public class TransitManager: MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private GameObject _groundPrefab;
+        [SerializeField] private GameObject _chunkTransitPrefab;
+        [SerializeField] private List<GameObject> _stopsPrefabs;
         [SerializeField] private GameObject _railPrefab;
         [SerializeField] private Transform _chunksRoot;
         [Range(2, 5)] [SerializeField] private int _chunksQueueSize = 3;
@@ -14,6 +16,12 @@ namespace Terrain
         [Header("Transform values")]
         [SerializeField] private float _generalOffset = 169.7f;
         [SerializeField] private float _groundHeight = 2.2f;
+        [SerializeField] private float _railHeight = -3.55f;
+
+        [Header("Transit phase")] 
+        [SerializeField] private bool _enableTransit = false;
+        [SerializeField] private float _scrollSpeed = 10f;
+        
 
         public static int ChunkNumber = -1;
         public static Queue<TerrainChunk> Chunks;
@@ -37,15 +45,26 @@ namespace Terrain
             }
         }
 
+        private void Update()
+        {
+            Vector3 direction = -(transform.right + transform.forward);
+            
+            if (_enableTransit) {
+                _chunksRoot.transform.Translate(direction * (_scrollSpeed * Time.deltaTime));
+            }
+        }
+
+        #region Logic
+
         public TerrainChunk CreateChunk(Transform root)
         {
-            GameObject instance = Instantiate(_groundPrefab, MapDirection * CumulatedPosition, MapOrientation, root);
+            GameObject instance = Instantiate(_chunkTransitPrefab, MapDirection * _generalOffset * 2, MapOrientation, root);
             TerrainChunk chunk = instance.GetComponent<TerrainChunk>();
 
             if (_reverseChunkScale)
                 chunk.Terrain.transform.localScale = new Vector3(-1, 1, 1);
             
-            Instantiate(_railPrefab, new Vector3(_generalOffset * ChunkNumber, 2.2f, _generalOffset * ChunkNumber), MapOrientation, instance.transform);
+            Instantiate(_railPrefab, new Vector3(_generalOffset * ChunkNumber, _railHeight, _generalOffset * ChunkNumber), MapOrientation, instance.transform);
 
             chunk.SetupChunk(0);
             
@@ -57,14 +76,10 @@ namespace Terrain
 
         public void UpdateRoad()
         {
-            if (_ignoreFirstChunkCrossed)
-            {
-                _ignoreFirstChunkCrossed = false;
-                return;
-            }
-            
             Chunks.Enqueue(CreateChunk(_chunksRoot));
             Destroy(Chunks.Dequeue().gameObject);
         }
+
+        #endregion
     }
 }

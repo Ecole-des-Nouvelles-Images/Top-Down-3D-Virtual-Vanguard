@@ -11,42 +11,40 @@ namespace Managers
 {
     public class TerrainManager : SingletonMonoBehaviour<TerrainManager>
     {
-        [Header("Props Generation")]
-        public Transform PropsParent;
-        public GameObject CristalPrefab;
-        [Range(0, 100)] public int CristalDensity = 10;
+        // [Header("Props Generation")]
+        // public Transform PropsParent;
+        // public GameObject CristalPrefab;
+        // [Range(0, 100)] public int CristalDensity = 10;
 
         [Header("References")] 
-        public Transform Convoy;
-        public LayerMask TerrainLayer;
-        public Collider RightSide;
-        public Collider LeftSide;
+        // public Transform Convoy;
+        // public LayerMask TerrainLayer;
         public NavMeshSurface NavMesh;
 
-        [Header("Procedural settings")]
-        public float RaycastHeight = 10;
+        // [Header("Procedural settings")]
+        // public float RaycastHeight = 10;
         
         [Header("Experimental")]
         public MapGenerator Generator;
-        public bool EnableScrolling;
-        public float ScrollSpeed;
+        // public bool EnableScrolling;
+        // public float ScrollSpeed;
         
         public const int TerrainChunkSize = 240;
 
         private void Start()
         {
             Generator.GenerateMap();
-            GenerateProps();
+            // GenerateProps();
             NavMesh.BuildNavMesh();
         }
         
         private void Update()
         {
-            if (EnableScrolling)
+            /* if (EnableScrolling)
             {
                 Generator.Offset.x += ScrollSpeed * Time.deltaTime;
                 Generator.GenerateMap();
-            }
+            } */
         }
 
         public void UpdateNavMesh()
@@ -58,11 +56,11 @@ namespace Managers
 
         public void GenerateProps()
         {
-            GenerateCrystals(GameManager.Instance.Side);
+            // GenerateCrystals(GameManager.Instance.Side);
         }
 
-        [ContextMenu("Generate Crystals")]
-        public void GenerateCrystals(Side mode)
+        // [ContextMenu("Generate Crystals")]
+        /* public void GenerateCrystals(Side mode)
         {
             // Debug.Log($"L-Bounds: [min: {LeftSide.bounds.min} / max: {LeftSide.bounds.max}]; R-Bounds: [min: {RightSide.bounds.min} / max: {RightSide.bounds.max}]");
             
@@ -110,7 +108,7 @@ namespace Managers
                     Debug.DrawRay(raycastOrigin, transform.TransformDirection(Vector3.down) * RaycastHeight, Color.red, 30);
                 }
             }
-        }
+        } */
 
         #endregion
     }

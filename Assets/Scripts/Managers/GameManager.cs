@@ -60,11 +60,11 @@ namespace Managers
                 EditorApplication.ExitPlaymode();
             }
             
-            if (GetRemainingCrystals() == 0)
+            /* if (GetRemainingCrystals() == 0)
             {
                 Debug.LogWarning("Editor warning: Exiting playmode (no more crystal)");
                 EditorApplication.ExitPlaymode();
-            }
+            } */
         }
         
         private int GetRemainingCrystals()
