@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3376895745391988940}
   - component: {fileID: 7035973179649537153}
   m_Layer: 0
-  m_Name: RailChunk
+  m_Name: Rail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

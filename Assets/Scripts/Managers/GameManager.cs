@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 using UnityEditor;
 
 using Gameplay;
 using Internal;
-using POIs;
 using Convoy;
 
 namespace Managers
@@ -16,12 +14,16 @@ namespace Managers
 
         [Header("References")]
         [SerializeField] private ConvoyManager _convoy;
-        // ReSharper disable once InconsistentNaming
-        [SerializeField] private GameObject _POI;
-
-        [Header("Phase parameters")]
+        [SerializeField]
+        
+        [Header("Phase parameters")] 
         public Side Side = Side.Centered;
         public bool UseFarthermostCamera = true;
+
+        public Action OnStopTransit;
+        public Action OnStartTransit;
+
+        public bool IsInTransit = true;
         
         #region Debug
 
@@ -51,6 +53,12 @@ namespace Managers
         {
             CameraManager.Instance.SwitchCameraFocus(Side, UseFarthermostCamera);
         }
+        
+        private void OnEnable()
+        {
+            OnStartTransit += StopConvoy;
+            OnStartTransit += StartTransit;
+        }
 
         private void Update()
         {
@@ -66,8 +74,23 @@ namespace Managers
                 EditorApplication.ExitPlaymode();
             } */
         }
+
+        #region Logic
+
+        private void StopConvoy()
+        {
+            throw new NotImplementedException();
+        }
         
-        private int GetRemainingCrystals()
+        private void StartTransit()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+        
+        
+        /* private int GetRemainingCrystals()
         {
             List<CrystalDeposit> crystals = _POI.GetComponentsInChildren<CrystalDeposit>().ToList(); // Cache reference ?
             int totalCrystalAmountRemaining = 0;
@@ -76,6 +99,6 @@ namespace Managers
                 totalCrystalAmountRemaining += deposit.CurrentCapacity;
 
             return totalCrystalAmountRemaining;
-        }
+        } */
     }
 }

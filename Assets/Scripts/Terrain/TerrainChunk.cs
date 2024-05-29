@@ -6,26 +6,19 @@ namespace Terrain
 {
     public class TerrainChunk: MonoBehaviour
     {
-        public TransitManager Manager;
+        public TerrainManager Manager;
         public MapGenerator Terrain { get; private set; }
 
         private void Awake()
         {
             Terrain = GetComponentInChildren<MapGenerator>();
-            Manager = FindObjectOfType<TransitManager>();
+            Manager = FindObjectOfType<TerrainManager>();
         }
 
         public void SetupChunk(float noiseOffset)
         {
             Terrain.Offset.x = noiseOffset;
             Terrain.GenerateMap();
-        }
-        
-        private void OnTriggerExit(Collider other)
-        {
-            if (!other.CompareTag("Convoy")) return;
-            
-            Manager.UpdateRoad();
         }
     }
 }
