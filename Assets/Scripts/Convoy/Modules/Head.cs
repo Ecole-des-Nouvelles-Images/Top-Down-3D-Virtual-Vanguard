@@ -1,25 +1,20 @@
 using Managers;
 using Player;
-using UnityEngine;
 
 namespace Convoy.Modules
 {
     public class Head : Module
     {
-        private void OnValidate()
+        protected void Start()
         {
-            if (MaximumControllers != 4)
-            {
-                MaximumControllers = 4;
-                Debug.Log("Warning: Convoy head have a constant player capacity [4];");
-            }
+            MaximumControllers = 0;
         }
 
         public override bool EnterModule(PlayerController newController)
         {
             base.EnterModule(newController);
             
-            if (IsFull && GameManager.Instance.IsInTransit)
+            if (PlayerManager.Instance.PlayerNumber == Controllers.Count && GameManager.Instance.IsInTransit)
             {
                 GameManager.Instance.OnStopTransit.Invoke();
                 Deactivate();
@@ -28,12 +23,12 @@ namespace Convoy.Modules
 
             return true;
         }
-
-        //
         
-        public override void Operate(PlayerController currentController)
+        public override void Operate(PlayerController currentController) {} // Does nothing;
+
+        public void UpdateMaximumControllers(int currentControllersPlaying)
         {
-            // Does nothing;
+            MaximumControllers = currentControllersPlaying;
         }
     }
 }

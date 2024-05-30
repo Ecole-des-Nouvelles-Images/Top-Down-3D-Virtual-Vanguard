@@ -711,7 +711,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 290713551}
-  - component: {fileID: 290713552}
   - component: {fileID: 290713553}
   m_Layer: 0
   m_Name: Environment
@@ -736,20 +735,6 @@ Transform:
   - {fileID: 72262637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &290713552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290713549}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c847c3ceed36e4ba4db9d64ae98f47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NavMesh: {fileID: 0}
-  Generator: {fileID: 0}
 --- !u!114 &290713553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,19 +747,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b8fdf2f0484d6fa8d5a002dc0b38b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transitCamera: {fileID: 513655064}
+  _chunksRoot: {fileID: 72262637}
   _chunkTransitPrefab: {fileID: 5458030527743846742, guid: 106c4081620a1b3408511db3cd0571ac,
     type: 3}
-  _stopsPrefabs:
-  - {fileID: 6610146974903786590, guid: ab24dec8a27a9fe4bb3289b63b39d9bd, type: 3}
   _railPrefab: {fileID: 2468112797178629060, guid: 7997b8417be41144f9c81b91d6959bd9,
     type: 3}
-  _chunksRoot: {fileID: 72262637}
-  _chunksQueueSize: 3
-  _generalOffset: 240
-  _groundHeight: -5.8
-  _railHeight: -3.6
-  _enableTransit: 1
+  _stopsPrefabs:
+  - {fileID: 6419652541494961199, guid: 0df71ed88da42564e90b7788c220738e, type: 3}
+  _chunksQueueSize: 2
+  EnableTransit: 1
   _scrollSpeed: 90
+  _offsetBetweenChunks: 240
+  RepeatDistance: 240
   ScrolledDistance: 0
 --- !u!114 &299546365 stripped
 MonoBehaviour:
@@ -1459,6 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029cf794fa7a46dabdbbda80ef0171e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerNumber: 0
   PlayerOriginPositions: []
 --- !u!114 &839788526
 MonoBehaviour:
@@ -3351,6 +3337,7 @@ GameObject:
   - component: {fileID: 1988950437}
   - component: {fileID: 1988950439}
   - component: {fileID: 1988950438}
+  - component: {fileID: 1988950440}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -3428,6 +3415,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1988950440
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988950436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0.05
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &2022085131
 PrefabInstance:
   m_ObjectHideFlags: 0

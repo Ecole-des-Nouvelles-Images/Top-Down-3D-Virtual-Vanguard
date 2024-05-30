@@ -5,6 +5,7 @@ using UnityEditor;
 using Gameplay;
 using Internal;
 using Convoy;
+using Terrain;
 
 namespace Managers
 {
@@ -56,7 +57,7 @@ namespace Managers
         
         private void OnEnable()
         {
-            OnStartTransit += StopConvoy;
+            OnStopTransit += StopConvoy;
             OnStartTransit += StartTransit;
         }
 
@@ -79,7 +80,9 @@ namespace Managers
 
         private void StopConvoy()
         {
-            throw new NotImplementedException();
+            TerrainManager.Instance.EnableTransit = false;
+            TerrainManager.Instance.GeneratePlayzone();
+            TerrainManager.Instance.FinishTransit();
         }
         
         private void StartTransit()
