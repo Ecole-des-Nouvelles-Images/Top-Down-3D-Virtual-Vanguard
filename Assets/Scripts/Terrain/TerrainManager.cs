@@ -139,17 +139,22 @@ namespace Terrain
             float initialShakeAmplitude = camNoise.m_AmplitudeGain;
             
             float actualDistance;
+            float normalizeDistance;
             float currentSpeed;
             float stopThreshold = 1;
             
             while (_currentStopZone.transform.position.x > convoy.position.x + stopThreshold)
             {
                 actualDistance = _currentStopZone.transform.position.x;
-                float speedMultiplier = EaseOutCubic((initialDistance - actualDistance) / initialDistance);
-                currentSpeed = Mathf.Clamp(_scrollSpeed * speedMultiplier, 2, _scrollSpeed);
+                normalizeDistance = actualDistance / initialDistance;
+                
+                float brakeMultiplier = 1 - normalizeDistance;
+                currentSpeed = Mathf.Clamp(_scrollSpeed * brakeMultiplier, 8, _scrollSpeed); // TODO: extract "min" as a field or 
                 
                 float shakeMultiplier = 1 - (initialDistance - actualDistance) / initialDistance;
                 camNoise.m_AmplitudeGain = Mathf.Lerp(initialShakeAmplitude, 0, shakeMultiplier);
+                
+                // Debug.Log($"Remaining Distance : {actualDistance}");
                 
                 foreach (TerrainChunk chunk in Chunks)
                 {
@@ -160,11 +165,6 @@ namespace Terrain
             }
 
             GameManager.Instance.IsInTransit = false;
-        }
-        
-        private float EaseOutCubic(float t)
-        {
-            return 1f - Mathf.Pow(1f - t, 3);
         }
         
         
