@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using Convoy;
-using Convoy.Drones;
-using UnityEngine;
-
-namespace Foes.FSM.FredStates
+﻿namespace Foes.FSM.States
 {
     public class SelectTarget : BaseState
     {
         public SelectTarget(Xenolith xenolith) : base(xenolith) { }
 
         public override void EnterState() {
-            Xenolith.agent.SetDestination(Xenolith.transform.position);
+            Xenolith.navMeshAgent.SetDestination(Xenolith.transform.position);
         }
         
         public override void UpdateState() {

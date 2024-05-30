@@ -1,7 +1,6 @@
 ﻿using System;
-using Utilities;
 
-namespace Foes.FSM.FredStates
+namespace Foes.FSM.States
 {
     public class FiniteStateMachine {
         
@@ -22,10 +21,10 @@ namespace Foes.FSM.FredStates
                     break;
                 case AttackTarget:
                     if (!_xenolith.Target) ChangeState(new SelectTarget(_xenolith));
-                    if (!_xenolith.TargetIsReachable) ChangeState(new ReachNearestTarget(_xenolith));
+                    if (!_xenolith.TargetOuterReach) ChangeState(new ReachNearestTarget(_xenolith));
                     break;
                 case ReachNearestTarget:
-                    if (_xenolith.Target && _xenolith.TargetIsReachable) ChangeState(new AttackTarget(_xenolith));
+                    if (_xenolith.Target && _xenolith.TargetInnerReach) ChangeState(new AttackTarget(_xenolith));
                     if (!_xenolith.Target) ChangeState(new SelectTarget(_xenolith));
                     break;
                 default:

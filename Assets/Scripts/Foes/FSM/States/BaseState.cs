@@ -1,4 +1,4 @@
-﻿namespace Foes.FSM.FredStates
+﻿namespace Foes.FSM.States
 {
     public abstract class BaseState
     {

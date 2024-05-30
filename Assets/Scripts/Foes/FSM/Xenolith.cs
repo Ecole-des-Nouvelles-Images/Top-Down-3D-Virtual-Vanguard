@@ -4,22 +4,23 @@ using UnityEngine;
 using UnityEngine.AI;
 using Convoy;
 using Convoy.Drones;
-using Foes.FSM.FredStates;
-using UnityEngine.Serialization;
+using Foes.FSM.States;
 
 namespace Foes.FSM {
     public class Xenolith: MonoBehaviour {
         
         [Header("Gameplay")]
-        [FormerlySerializedAs("MaxHealth")] [SerializeField] private int maxHealth = 100;
-        [FormerlySerializedAs("MoveSpeed")] [SerializeField] private float moveSpeed = 10;
-        [FormerlySerializedAs("AttackSpeed")] [SerializeField] private float attackSpeed = 3.5f;
+        [SerializeField] private int maxHealth = 100;
+        [SerializeField] private float moveSpeed = 10;
+        [SerializeField] private float attackSpeed = 3.5f;
         [SerializeField] public int attackDamage = 10;
-        [FormerlySerializedAs("ReachDistance")] [SerializeField] private float reachDistance = 4;
+        [SerializeField] private float innerReachDistance = 4;
+        [SerializeField] private float outerReachDistance = 10;
         [field: SerializeField] public GameObject Target { get; set; }
         
-        [FormerlySerializedAs("Agent")] [Header("Navigation")]
-        public NavMeshAgent agent;
+        [Header("Components")]
+        public NavMeshAgent navMeshAgent;
+        public Animator animator;
 
         private int _currentHealth;
         private float _accumulatedDamages;
@@ -32,14 +33,28 @@ namespace Foes.FSM {
         
         public bool AttackReady => true;
 
-        public bool TargetIsReachable
+        public bool TargetInnerReach
         {
             get {
                 if (!Target) return false;
-                return Vector3.Distance(Target.transform.position, transform.position) <= reachDistance;
+                Debug.Log(Vector3.Distance(Target.transform.position, transform.position));
+                return Vector3.Distance(Target.transform.position, transform.position) <= innerReachDistance;
             }
         }
         
+        public bool TargetOuterReach
+        {
+            get {
+                if (!Target) return false;
+                return Vector3.Distance(Target.transform.position, transform.position) <= outerReachDistance;
+            }
+        }
+
+        private void Awake() {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
+        }
+
         private void Start()
         {
             _finiteStateMachine = new FiniteStateMachine(this);

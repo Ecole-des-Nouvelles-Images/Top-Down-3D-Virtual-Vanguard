@@ -162,6 +162,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u03BB-dev (2)"
       objectReference: {fileID: 0}
+    - target: {fileID: 699012661087757531, guid: 2754cd26bb1feef4e9a73637811d075f,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 6265b37f580a4c342a0e6af951195156, type: 3}
+    - target: {fileID: 699012661087757531, guid: 2754cd26bb1feef4e9a73637811d075f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e5d880da30deabd4b944240ee48fddc1, type: 2}
+    - target: {fileID: 699012661087757531, guid: 2754cd26bb1feef4e9a73637811d075f,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:RightHand'\n\tTransform
+        'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftHand'\n\tTransform
+        'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+        'mixamorig:LeftForeArm'\n\tTransform 'mixamorig:RightFoot'\n\tand more ...\n\tFrom
+        animation clip 'Attack'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5476997026664557527, guid: 2754cd26bb1feef4e9a73637811d075f,
         type: 3}
       propertyPath: m_LocalPosition.x
