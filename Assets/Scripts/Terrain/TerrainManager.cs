@@ -23,7 +23,7 @@ namespace Terrain
         [Range(2, 5)] [SerializeField] private int _chunksQueueSize = 3;
         
         [Header("Transit phase")]
-        public bool EnableTransit = false;
+        public bool EnableTransit;
         [SerializeField] private float _scrollSpeed = 10f;
         [SerializeField] private float _offsetBetweenChunks = 240f;
         public float RepeatDistance = 240f;
@@ -32,6 +32,10 @@ namespace Terrain
         private Queue<TerrainChunk> Chunks { get; set; }
         private TerrainChunk _lastEnqueued;
         private bool _reverseChunkScale;
+
+        private Transform _convoy;
+        CinemachineBasicMultiChannelPerlin _camNoise;
+        
         
         // Stops Zones
         private GameObject _currentStopZone;
@@ -46,6 +50,9 @@ namespace Terrain
         private void Start()
         {
             Chunks = new Queue<TerrainChunk>(_chunksQueueSize);
+            _camNoise = _transitCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            _convoy = FindAnyObjectByType<ConvoyManager>().transform;
+            
             float position = -_offsetBetweenChunks;
             
             for (int chunkIndex = -1; chunkIndex < _chunksQueueSize; chunkIndex++)
@@ -60,10 +67,8 @@ namespace Terrain
         {
             if (!EnableTransit) return;
             
-            MoveChunks(_scrollSpeed * Time.fixedDeltaTime);
-            ScrolledDistance += _scrollSpeed * Time.fixedDeltaTime;
-
-            RepeatDistance = 240;
+            MoveChunks(_scrollSpeed, Time.fixedDeltaTime);
+            
             if (ScrolledDistance >= RepeatDistance)
             {
                 UpdateRoad();
@@ -73,13 +78,15 @@ namespace Terrain
 
         #region Chunk Management
         
-        private void MoveChunks(float distance)
+        private void MoveChunks(float speed, float timeDelta)
         {
             Vector3 direction = -_chunksRoot.right;
             
             foreach (TerrainChunk chunk in Chunks) {
-                chunk.transform.Translate(direction * distance,Space.World);
+                chunk.transform.Translate(direction * (speed * timeDelta),Space.World);
             }
+
+            ScrolledDistance += speed * timeDelta;
         }
         
         private void UpdateRoad()
@@ -133,19 +140,15 @@ namespace Terrain
 
         private IEnumerator ReachStopZone()
         {
-            Transform convoy = FindAnyObjectByType<ConvoyManager>().transform;
-            CinemachineBasicMultiChannelPerlin camNoise = _transitCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            
-            Vector3 direction = -_chunksRoot.right;
             float initialDistance = _currentStopZone.transform.position.x;
-            float initialShakeAmplitude = camNoise.m_AmplitudeGain;
+            float initialShakeAmplitude = _camNoise.m_AmplitudeGain;
             
             float actualDistance;
             float normalizeDistance;
             float currentSpeed;
             float stopThreshold = 0;
             
-            while (_currentStopZone.transform.position.x > convoy.position.x + stopThreshold)
+            while (_currentStopZone.transform.position.x > _convoy.position.x + stopThreshold)
             {
                 actualDistance = _currentStopZone.transform.position.x;
                 normalizeDistance = actualDistance / initialDistance;
@@ -153,14 +156,10 @@ namespace Terrain
                 float brakeMultiplier = normalizeDistance;
                 float shakeMultiplier = normalizeDistance;
                 
-                currentSpeed = Mathf.Clamp(_scrollSpeed * brakeMultiplier, 3, _scrollSpeed); // TODO: extract "min" as a field or 
-                camNoise.m_AmplitudeGain = Mathf.Lerp(initialShakeAmplitude, 0, 1 - shakeMultiplier);
-                Debug.Log($"Remaining Distance : {actualDistance}; Speed: {currentSpeed}");
+                currentSpeed = Mathf.Clamp(_scrollSpeed * brakeMultiplier, 3, _scrollSpeed); // TODO: extract "min" as a field or rework smooth formula
+                _camNoise.m_AmplitudeGain = Mathf.Lerp(initialShakeAmplitude, 0, 1 - shakeMultiplier);
                 
-                foreach (TerrainChunk chunk in Chunks)
-                {
-                   chunk.transform.Translate(direction * (currentSpeed * Time.deltaTime), Space.World); 
-                }
+                MoveChunks(currentSpeed, Time.deltaTime);
 
                 yield return null;
             }
@@ -170,7 +169,6 @@ namespace Terrain
         
         public void RestartTransit()
         {
-            Debug.Log("StartTransit Called");
             foreach (TerrainChunk chunk in Chunks.ToList())
             {
                 if (chunk == _lastEnqueued) continue;
@@ -178,15 +176,34 @@ namespace Terrain
                 Destroy(Chunks.Dequeue().gameObject);
             }
 
-            ScrolledDistance = 0f;
+            StartCoroutine(AccelerateConvoy());
+        }
+
+        private IEnumerator AccelerateConvoy()
+        {
             TerrainChunk startingChunk = CreateChunk(_chunksRoot, _lastEnqueued.transform.localPosition.x + _offsetBetweenChunks);
+            float currentSpeed;
+            
             Chunks.Enqueue(startingChunk);
             _lastEnqueued = startingChunk;
-            Debug.Log("Should have created a new chunk");
+            
+            ScrolledDistance = 0f;
+
+            while (ScrolledDistance < 240)
+            {
+                float mulitplier = (ScrolledDistance / 240) + 0.01f ; // TODO: Starting speed controllable with 'ScrolledDistance' starting offset
+                currentSpeed = Mathf.Clamp(_scrollSpeed * mulitplier, 0, _scrollSpeed);
+                _camNoise.m_AmplitudeGain = 0.08f * mulitplier;
+                
+                MoveChunks(currentSpeed, Time.deltaTime);
+
+                yield return null;
+            }
+            
             EnableTransit = true;
             GameManager.Instance.IsInTransit = true;
         }
-        
+
         #endregion
     }
 }
