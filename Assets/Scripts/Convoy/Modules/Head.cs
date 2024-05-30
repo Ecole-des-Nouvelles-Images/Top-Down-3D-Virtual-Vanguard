@@ -14,9 +14,13 @@ namespace Convoy.Modules
         {
             base.EnterModule(newController);
             
-            if (PlayerManager.Instance.PlayerNumber == Controllers.Count && GameManager.Instance.IsInTransit)
+            if (PlayerManager.Instance.PlayerNumber == Controllers.Count)
             {
-                GameManager.Instance.OnStopTransit.Invoke();
+                if (GameManager.Instance.IsInTransit)
+                    GameManager.Instance.OnStopTransit.Invoke();
+                else if (!GameManager.Instance.IsInTransit)
+                    GameManager.Instance.OnStartTransit.Invoke();
+
                 Deactivate();
                 Online = true;
             }

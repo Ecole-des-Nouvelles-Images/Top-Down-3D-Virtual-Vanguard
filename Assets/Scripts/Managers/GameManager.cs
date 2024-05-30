@@ -87,7 +87,7 @@ namespace Managers
         
         private void StartTransit()
         {
-            throw new NotImplementedException();
+            TerrainManager.Instance.RestartTransit();
         }
 
         #endregion

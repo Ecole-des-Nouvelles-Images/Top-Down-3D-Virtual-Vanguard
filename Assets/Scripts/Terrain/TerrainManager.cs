@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using Convoy;
 using UnityEngine;
@@ -122,6 +123,7 @@ namespace Terrain
             stopZone.SetupChunk(0);
             
             Chunks.Enqueue(stopZone);
+            _lastEnqueued = stopZone;
         }
 
         public void FinishTransit()
@@ -141,20 +143,19 @@ namespace Terrain
             float actualDistance;
             float normalizeDistance;
             float currentSpeed;
-            float stopThreshold = 1;
+            float stopThreshold = 0;
             
             while (_currentStopZone.transform.position.x > convoy.position.x + stopThreshold)
             {
                 actualDistance = _currentStopZone.transform.position.x;
                 normalizeDistance = actualDistance / initialDistance;
                 
-                float brakeMultiplier = 1 - normalizeDistance;
-                currentSpeed = Mathf.Clamp(_scrollSpeed * brakeMultiplier, 8, _scrollSpeed); // TODO: extract "min" as a field or 
+                float brakeMultiplier = normalizeDistance;
+                float shakeMultiplier = normalizeDistance;
                 
-                float shakeMultiplier = 1 - (initialDistance - actualDistance) / initialDistance;
-                camNoise.m_AmplitudeGain = Mathf.Lerp(initialShakeAmplitude, 0, shakeMultiplier);
-                
-                // Debug.Log($"Remaining Distance : {actualDistance}");
+                currentSpeed = Mathf.Clamp(_scrollSpeed * brakeMultiplier, 3, _scrollSpeed); // TODO: extract "min" as a field or 
+                camNoise.m_AmplitudeGain = Mathf.Lerp(initialShakeAmplitude, 0, 1 - shakeMultiplier);
+                Debug.Log($"Remaining Distance : {actualDistance}; Speed: {currentSpeed}");
                 
                 foreach (TerrainChunk chunk in Chunks)
                 {
@@ -167,6 +168,24 @@ namespace Terrain
             GameManager.Instance.IsInTransit = false;
         }
         
+        public void RestartTransit()
+        {
+            Debug.Log("StartTransit Called");
+            foreach (TerrainChunk chunk in Chunks.ToList())
+            {
+                if (chunk == _lastEnqueued) continue;
+
+                Destroy(Chunks.Dequeue().gameObject);
+            }
+
+            ScrolledDistance = 0f;
+            TerrainChunk startingChunk = CreateChunk(_chunksRoot, _lastEnqueued.transform.localPosition.x + _offsetBetweenChunks);
+            Chunks.Enqueue(startingChunk);
+            _lastEnqueued = startingChunk;
+            Debug.Log("Should have created a new chunk");
+            EnableTransit = true;
+            GameManager.Instance.IsInTransit = true;
+        }
         
         #endregion
     }
