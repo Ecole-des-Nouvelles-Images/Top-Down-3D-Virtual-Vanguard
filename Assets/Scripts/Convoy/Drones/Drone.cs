@@ -41,7 +41,9 @@ namespace Convoy.Drones
         
         public PlayerController Pilot { get; set; }
         public bool IsRegistered => Pilot != null;
-        public bool IsTargetable => Active;
+        public bool IsTargetable => true;
+        public GameObject GameObject => gameObject;
+        public Transform Transform => transform;
 
         private Rigidbody _rigidbody;
         private bool _operating;
@@ -63,15 +65,15 @@ namespace Convoy.Drones
             string activeStatus = (Active ? "Active " + playerID : "Inactive");
             
             Handles.color = Color.black;
-            Handles.Label(transform.position + Vector3.up * 0.4f + Vector3.left * 0.2f, $"#{ID}");
-            Handles.Label(transform.position + Vector3.up * 0.2f + Vector3.left * 0.2f, activeStatus);
+            Handles.Label(Transform.position + Vector3.up * 0.4f + Vector3.left * 0.2f, $"#{ID}");
+            Handles.Label(Transform.position + Vector3.up * 0.2f + Vector3.left * 0.2f, activeStatus);
             
             if (DebugRangeCollider)
             {
                 // Récupère tous les colliders attachés à cet objet
                 SphereCollider colliderComponent = GetComponents<SphereCollider>().First(col => col.isTrigger);
 
-                Vector3 scale = transform.lossyScale;
+                Vector3 scale = Transform.lossyScale;
                 Vector3 position = colliderComponent.transform.position;
                 
                 Gizmos.color = Color.yellow;
@@ -139,7 +141,7 @@ namespace Convoy.Drones
         public void Move(Vector2 input)
         {
             Vector3 motion = new Vector3(input.x, 0, input.y) * (_moveSpeed * Time.deltaTime);
-            _rigidbody.MovePosition(transform.position + motion);
+            _rigidbody.MovePosition(Transform.position + motion);
         }
         
         private void Operate()
@@ -180,13 +182,14 @@ namespace Convoy.Drones
                 _accumulatedMinedAmount -= amountToAdd;
             }
         }
+
         public void TakeDamage(int damage)
         {
             ArmorPlates -= damage;
 
             if (ArmorPlates <= 0)
             {
-                Destroy(gameObject);
+                Destroy(GameObject);
             }
         }
 

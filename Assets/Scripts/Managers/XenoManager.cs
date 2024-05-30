@@ -71,8 +71,8 @@ namespace Managers
             foreach (GameObject prefab in _xenolithsPrefabs)
             {
                 Xenolith xenolithOld = prefab.GetComponent<Xenolith>();
-                _xenolithsPrefabsTypes.Add(xenolithOld.Type, prefab);
-                debug += $"({xenolithOld.Type.ToString()}, {prefab.name})";
+                // _xenolithsPrefabsTypes.Add(xenolithOld.Type, prefab);
+                // debug += $"({xenolithOld.Type.ToString()}, {prefab.name})";
             }
             
             Debug.Log(debug);

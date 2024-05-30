@@ -10,7 +10,11 @@ namespace Convoy
         public static List<Module> Modules;
 
         [Header("Settings")] [SerializeField] private int _maximumDurability;
-
+        
+        public bool IsTargetable => true;
+        public GameObject GameObject => gameObject;
+        public Transform Transform => transform;
+        
         public float Durability
         {
             get => _durability;
