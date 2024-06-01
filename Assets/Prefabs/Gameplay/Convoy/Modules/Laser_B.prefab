@@ -66,7 +66,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a34038ef6c6217a42abf0cd3911bbbf3, type: 2}
-  - {fileID: 8556262120643298411, guid: 2f5da9fa9215fc24c8ebada2ad6731f0, type: 3}
+  - {fileID: 2100000, guid: ff48b00e2968ae143b2f6fab30169061, type: 2}
   - {fileID: 2100000, guid: a940ee12d7f21254ea8d21484d66a634, type: 2}
   - {fileID: 2100000, guid: fb3941ac006cb7940b7fec0752e06997, type: 2}
   m_StaticBatchInfo:
@@ -131,8 +131,8 @@ MonoBehaviour:
   BatteryGauge: {fileID: 835456517488248610}
   ChargeStatus: {fileID: 6565461151081584380}
   ModuleIcon: {fileID: 4811477178821968329}
-  _turret: {fileID: 0}
-  _canon: {fileID: 0}
+  _turret: {fileID: 4723357050982415268}
+  _canon: {fileID: 6780782598432114811}
   _torque: 10
   _range: 120
   _damagePerSecond: 20
@@ -186,6 +186,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3943318717133529133}
     m_Modifications:
+    - target: {fileID: 230155429417623937, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 576045793648810937, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -277,6 +282,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6713601489801243130}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4723357050982415268 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2064685794467402334, guid: a8b23228b52070346970a2033d67a528,
+    type: 3}
+  m_PrefabInstance: {fileID: 6713601489801243130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6780782598432114811 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 230155429417623937, guid: a8b23228b52070346970a2033d67a528,
+    type: 3}
+  m_PrefabInstance: {fileID: 6713601489801243130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9045031475272377556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,6 +306,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ModuleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cc1d6b762bbd7f543a8c95dd01051d19,
+        type: 3}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7998104338734330773, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}

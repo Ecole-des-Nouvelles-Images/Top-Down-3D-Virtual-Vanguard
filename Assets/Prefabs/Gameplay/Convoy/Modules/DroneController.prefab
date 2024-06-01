@@ -174,11 +174,17 @@ MonoBehaviour:
   BatteryGauge: {fileID: 5195562758510308640}
   ChargeStatus: {fileID: 1774224370637815038}
   ModuleIcon: {fileID: 92243029728455627}
-  _dronePrefab: {fileID: 0}
+  _dronePrefab: {fileID: 5436700856083752263, guid: 48d389a7ce4cfb74ba76123114520caf,
+    type: 3}
   _droneParent: {fileID: 0}
-  _anchors: []
+  _anchors:
+  - {fileID: 4164373165403347252}
+  - {fileID: 7729461832712474581}
+  - {fileID: 2778089444683167096}
+  - {fileID: 3793881037319925014}
   _droneMoveSpeed: 100
   _droneMiningSpeed: 20
+  _droneArmorPlates: 2
   _droneRebuildTime: 3
   _enableDroneAutoRebuild: 1
 --- !u!1 &636960071667999258
@@ -360,6 +366,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ModuleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 475473bff6743264980f90a57d9398c8,
+        type: 3}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7998104338734330773, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}

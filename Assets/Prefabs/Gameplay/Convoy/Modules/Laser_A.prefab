@@ -130,8 +130,8 @@ MonoBehaviour:
   BatteryGauge: {fileID: 8001550167455231639}
   ChargeStatus: {fileID: 4579633178688798537}
   ModuleIcon: {fileID: 2762634279486482556}
-  _turret: {fileID: 0}
-  _canon: {fileID: 0}
+  _turret: {fileID: 974010137199846671}
+  _canon: {fileID: 1302368093954889424}
   _torque: 10
   _range: 120
   _damagePerSecond: 20
@@ -270,6 +270,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b23228b52070346970a2033d67a528, type: 3}
+--- !u!4 &974010137199846671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2064685794467402334, guid: a8b23228b52070346970a2033d67a528,
+    type: 3}
+  m_PrefabInstance: {fileID: 1234933824919140177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1302368093954889424 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 230155429417623937, guid: a8b23228b52070346970a2033d67a528,
+    type: 3}
+  m_PrefabInstance: {fileID: 1234933824919140177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8118823870866100073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7028015166235408440, guid: a8b23228b52070346970a2033d67a528,
@@ -288,6 +300,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ModuleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cc1d6b762bbd7f543a8c95dd01051d19,
+        type: 3}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7998104338734330773, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}

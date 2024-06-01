@@ -64,10 +64,14 @@ namespace Convoy.Modules
         private void Start()
         {
             BatteryGauge.maxValue = BatteryMaxCapacity;
-            _beam.material = new Material(Shader.Find("Sprites/Default"));
-            _beam.positionCount = _lineRendererVertices;
-            _beam.widthMultiplier = _beamThickness;
-            _beam.colorGradient = _beamColor;
+            
+            if (EnableLaserRendering)
+            {
+                _beam.material = new Material(Shader.Find("Sprites/Default"));
+                _beam.positionCount = _lineRendererVertices;
+                _beam.widthMultiplier = _beamThickness;
+                _beam.colorGradient = _beamColor;
+            }
         }
 
         protected override void Update()

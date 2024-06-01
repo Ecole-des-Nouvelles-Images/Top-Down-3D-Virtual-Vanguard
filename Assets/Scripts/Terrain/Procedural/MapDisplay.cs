@@ -14,7 +14,8 @@ namespace Terrain.Procedural
         public MeshRenderer MeshRenderer;
         public MeshCollider MeshCollider;
 
-        [Header("Rendering")] public Material Material;
+        [Header("Rendering")]
+        public Material Material;
 
         public void DrawTexture(Texture2D texture)
         {

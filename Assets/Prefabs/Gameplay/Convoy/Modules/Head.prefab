@@ -65,7 +65,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 88c6c9e525ee5a440918c5132cfb6016, type: 2}
-  - {fileID: 8556262120643298411, guid: 2f5da9fa9215fc24c8ebada2ad6731f0, type: 3}
+  - {fileID: 2100000, guid: ff48b00e2968ae143b2f6fab30169061, type: 2}
   - {fileID: 2100000, guid: 66d7f45dc3224ec458e6a6221a5af9aa, type: 2}
   - {fileID: 2100000, guid: 1615069faf0bd2345b5d6663b7aaa2eb, type: 2}
   m_StaticBatchInfo:
@@ -142,6 +142,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ModuleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cb0e0c79bec6ec144b920718ba45dc58,
+        type: 3}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558668891546674461, guid: 369d1b513b5f21442932e105a1092828,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7998104338734330773, guid: 369d1b513b5f21442932e105a1092828,
         type: 3}

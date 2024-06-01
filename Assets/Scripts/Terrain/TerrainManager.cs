@@ -36,7 +36,6 @@ namespace Terrain
         private Transform _convoy;
         CinemachineBasicMultiChannelPerlin _camNoise;
         
-        
         // Stops Zones
         private GameObject _currentStopZone;
         private MapGenerator _generator;
