@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
 using Gameplay;
 using Internal;
 using Convoy;
+using Foes;
+using POIs;
 using Terrain;
 
 namespace Managers
@@ -15,7 +19,8 @@ namespace Managers
 
         [Header("References")]
         [SerializeField] private ConvoyManager _convoy;
-        [SerializeField]
+        [SerializeField] private GameObject _poi;
+        [SerializeField] private XenolithSpawner _xenolithSpawner;
         
         [Header("Phase parameters")] 
         public Side Side = Side.Centered;
@@ -23,8 +28,11 @@ namespace Managers
 
         public Action OnStopTransit;
         public Action OnStartTransit;
+        public Action<TerrainChunk> OnStopZoneReached;
 
         public bool IsInTransit = true;
+
+        private TerrainChunk _currentStopZone;
         
         #region Debug
 
@@ -59,6 +67,14 @@ namespace Managers
         {
             OnStopTransit += StopConvoy;
             OnStartTransit += StartTransit;
+            OnStopZoneReached += StartXenolithWave;
+        }
+
+        private void OnDisable()
+        {
+            OnStopTransit -= StopConvoy;
+            OnStartTransit -= StartTransit;
+            OnStopZoneReached -= StartXenolithWave;
         }
 
         private void Update()
@@ -68,15 +84,9 @@ namespace Managers
                 Debug.Log("Editor warning: Exiting playmode (Convoy destroyed)");
                 EditorApplication.ExitPlaymode();
             }
-            
-            /* if (GetRemainingCrystals() == 0)
-            {
-                Debug.LogWarning("Editor warning: Exiting playmode (no more crystal)");
-                EditorApplication.ExitPlaymode();
-            } */
         }
 
-        #region Logic
+        #region Events
 
         private void StopConvoy()
         {
@@ -87,21 +97,36 @@ namespace Managers
         
         private void StartTransit()
         {
+            _currentStopZone.XenoManager.WaveInProgress = false;
+            _currentStopZone.XenoManager.StopOffensive();
             TerrainManager.Instance.RestartTransit();
         }
-
-        #endregion
         
-        
-        /* private int GetRemainingCrystals()
+        private void StartXenolithWave(TerrainChunk stopZone)
         {
-            List<CrystalDeposit> crystals = _POI.GetComponentsInChildren<CrystalDeposit>().ToList(); // Cache reference ?
+            IsInTransit = false;
+            _currentStopZone = stopZone;
+            _currentStopZone.NavMesh.BuildNavMesh();
+            _currentStopZone.XenoManager.StartXenolithOffensive();
+        }
+        
+        #endregion
+
+        #region Utils
+
+        private int GetRemainingCrystals()
+        {
+            List<CrystalDeposit> crystals = _poi.GetComponentsInChildren<CrystalDeposit>().ToList();
             int totalCrystalAmountRemaining = 0;
             
             foreach (CrystalDeposit deposit in crystals)
                 totalCrystalAmountRemaining += deposit.CurrentCapacity;
 
             return totalCrystalAmountRemaining;
-        } */
+        }
+
+        #endregion
+        
+
     }
 }

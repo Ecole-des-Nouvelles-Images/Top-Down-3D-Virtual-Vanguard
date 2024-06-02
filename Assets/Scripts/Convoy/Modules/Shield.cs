@@ -25,7 +25,11 @@ namespace Convoy.Modules
             }
 
             if (IsActive)
+            {
                 BatteryCharge -= ConsumptionPerSecond * Time.fixedDeltaTime;
+                UpdateInterfaceBatteryCharge();
+            }
+                
         }
 
         public override void Operate(PlayerController currentController)

@@ -103,11 +103,8 @@ namespace Terrain
 
             Vector3 position = _chunksRoot.transform.right * positionScalar;
             instance.transform.position = position;
-
-            if (_reverseChunkScale)
-                chunk.Terrain.transform.localScale = new Vector3(-1, 1, 1);
             
-            chunk.SetupChunk(0);
+            chunk.SetupChunk(_reverseChunkScale);
             _reverseChunkScale = !_reverseChunkScale;
 
             return chunk;
@@ -126,7 +123,7 @@ namespace Terrain
             _currentStopZone.transform.position = position;
 
             TerrainChunk stopZone = _currentStopZone.GetComponent<TerrainChunk>();
-            stopZone.SetupChunk(0);
+            stopZone.SetupChunk(false);
             
             Chunks.Enqueue(stopZone);
             _lastEnqueued = stopZone;
@@ -163,7 +160,8 @@ namespace Terrain
                 yield return null;
             }
 
-            GameManager.Instance.IsInTransit = false;
+            TerrainChunk stopZoneChunk = _currentStopZone.GetComponent<TerrainChunk>();
+            GameManager.Instance.OnStopZoneReached.Invoke(stopZoneChunk);
         }
         
         public void RestartTransit()

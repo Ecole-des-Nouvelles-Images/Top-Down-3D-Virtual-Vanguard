@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4886297357953776844}
+  - component: {fileID: 7465406755846022010}
   - component: {fileID: 7366617354957290374}
   - component: {fileID: 8171847681455409942}
-  - component: {fileID: 4495402554899010639}
-  - component: {fileID: 7465406755846022010}
-  m_Layer: 0
+  - component: {fileID: 9061656129461424174}
+  - component: {fileID: 8675305516957234643}
+  m_Layer: 10
   m_Name: Generator
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,6 +38,26 @@ Transform:
   - {fileID: 2259860721315768866}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7465406755846022010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6515146715429669710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4bf2d94fa6421bbf02a44296c3274f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumControllers: 1
+  Online: 0
+  BatteryCapacity: 0
+  ConsumptionPerSecond: 0
+  BatteryGauge: {fileID: 4672486192640733043}
+  ChargeStatus: {fileID: 1179122904087985837}
+  ModuleIcon: {fileID: 686217479713565080}
+  PowerOutput: 10
 --- !u!33 &7366617354957290374
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,8 +110,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4495402554899010639
-MeshCollider:
+--- !u!65 &9061656129461424174
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,14 +125,13 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2698757342573874753, guid: 2f5da9fa9215fc24c8ebada2ad6731f0, type: 3}
---- !u!114 &7465406755846022010
+  serializedVersion: 3
+  m_Size: {x: 7.22, y: 4.18, z: 3.48}
+  m_Center: {x: -0.096, y: -0.48, z: 0}
+--- !u!114 &8675305516957234643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,17 +140,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6515146715429669710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af4bf2d94fa6421bbf02a44296c3274f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumControllers: 1
-  Online: 0
-  BatteryCapacity: 0
-  ConsumptionPerSecond: 0
-  BatteryGauge: {fileID: 4672486192640733043}
-  ChargeStatus: {fileID: 1179122904087985837}
-  ModuleIcon: {fileID: 686217479713565080}
-  PowerOutput: 10
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &3946923613021457541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -332,13 +351,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6422677138852499949, guid: f1eaf843adcbf8e41bafcc2326ccac86,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422677138852499949, guid: f1eaf843adcbf8e41bafcc2326ccac86,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422677138852499949, guid: f1eaf843adcbf8e41bafcc2326ccac86,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422677138852499949, guid: f1eaf843adcbf8e41bafcc2326ccac86,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6422677138852499949, guid: f1eaf843adcbf8e41bafcc2326ccac86,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.78
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 6422677138852499949, guid: f1eaf843adcbf8e41bafcc2326ccac86,
         type: 3}

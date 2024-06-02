@@ -53,13 +53,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7961471603407652490}
+  - component: {fileID: 4824534753871601817}
   - component: {fileID: 6225955691737232746}
   - component: {fileID: 1802660590365925053}
-  - component: {fileID: 7322805513139898348}
-  - component: {fileID: 4824534753871601817}
-  m_Layer: 0
+  - component: {fileID: 5311671869910101261}
+  - component: {fileID: 2042583417965443825}
+  m_Layer: 10
   m_Name: DroneController
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +82,38 @@ Transform:
   - {fileID: 3119865330816836027}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4824534753871601817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81529288046372678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edf36b5ca378926489dee71f9ff6347c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumControllers: 4
+  Online: 0
+  BatteryCapacity: 0
+  ConsumptionPerSecond: 0
+  BatteryGauge: {fileID: 5195562758510308640}
+  ChargeStatus: {fileID: 1774224370637815038}
+  ModuleIcon: {fileID: 92243029728455627}
+  _dronePrefab: {fileID: 5436700856083752263, guid: 48d389a7ce4cfb74ba76123114520caf,
+    type: 3}
+  _droneParent: {fileID: 0}
+  _anchors:
+  - {fileID: 4164373165403347252}
+  - {fileID: 7729461832712474581}
+  - {fileID: 2778089444683167096}
+  - {fileID: 3793881037319925014}
+  _droneMoveSpeed: 100
+  _droneMiningSpeed: 20
+  _droneArmorPlates: 2
+  _droneRebuildTime: 3
+  _enableDroneAutoRebuild: 1
 --- !u!33 &6225955691737232746
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -133,8 +166,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7322805513139898348
-MeshCollider:
+--- !u!65 &5311671869910101261
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,14 +181,13 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5692617704503961747, guid: 2f5da9fa9215fc24c8ebada2ad6731f0, type: 3}
---- !u!114 &4824534753871601817
+  serializedVersion: 3
+  m_Size: {x: 15.14, y: 3.98, z: 3.43}
+  m_Center: {x: 0, y: -1.33, z: 0}
+--- !u!114 &2042583417965443825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,29 +196,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 81529288046372678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf36b5ca378926489dee71f9ff6347c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumControllers: 4
-  Online: 0
-  BatteryCapacity: 0
-  ConsumptionPerSecond: 0
-  BatteryGauge: {fileID: 5195562758510308640}
-  ChargeStatus: {fileID: 1774224370637815038}
-  ModuleIcon: {fileID: 92243029728455627}
-  _dronePrefab: {fileID: 5436700856083752263, guid: 48d389a7ce4cfb74ba76123114520caf,
-    type: 3}
-  _droneParent: {fileID: 0}
-  _anchors:
-  - {fileID: 4164373165403347252}
-  - {fileID: 7729461832712474581}
-  - {fileID: 2778089444683167096}
-  - {fileID: 3793881037319925014}
-  _droneMoveSpeed: 100
-  _droneMiningSpeed: 20
-  _droneArmorPlates: 2
-  _droneRebuildTime: 3
-  _enableDroneAutoRebuild: 1
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &636960071667999258
 GameObject:
   m_ObjectHideFlags: 0

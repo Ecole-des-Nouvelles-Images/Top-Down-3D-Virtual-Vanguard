@@ -175,13 +175,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7119194592953291468}
+  - component: {fileID: 4827241859007556697}
   - component: {fileID: 6634972469161561051}
   - component: {fileID: 2286728747531893799}
-  - component: {fileID: 6585660101166870428}
-  - component: {fileID: 4827241859007556697}
-  m_Layer: 0
+  - component: {fileID: 6650279750547730054}
+  - component: {fileID: 8255695537755122357}
+  m_Layer: 10
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,6 +206,27 @@ Transform:
   - {fileID: 5999306930233675935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4827241859007556697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952691477128446374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06794b2bdb7c4f56a71161cbeb4ab01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumControllers: 1
+  Online: 0
+  BatteryCapacity: 200
+  ConsumptionPerSecond: 25
+  BatteryGauge: {fileID: 8265623795568451370}
+  ChargeStatus: {fileID: 2463594802259414772}
+  ModuleIcon: {fileID: 4316853394043476417}
+  BarrierRight: {fileID: 6598278280067723526}
+  BarrierLeft: {fileID: 7690220802919861272}
 --- !u!33 &6634972469161561051
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -257,8 +279,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6585660101166870428
-MeshCollider:
+--- !u!65 &6650279750547730054
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -272,14 +294,13 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1272481795433867914, guid: 2f5da9fa9215fc24c8ebada2ad6731f0, type: 3}
---- !u!114 &4827241859007556697
+  serializedVersion: 3
+  m_Size: {x: 6.98, y: 4.09, z: 3.41}
+  m_Center: {x: -0.026, y: -0.88, z: 0}
+--- !u!114 &8255695537755122357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,18 +309,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7952691477128446374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06794b2bdb7c4f56a71161cbeb4ab01e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumControllers: 1
-  Online: 0
-  BatteryCapacity: 200
-  ConsumptionPerSecond: 25
-  BatteryGauge: {fileID: 8265623795568451370}
-  ChargeStatus: {fileID: 2463594802259414772}
-  ModuleIcon: {fileID: 4316853394043476417}
-  BarrierRight: {fileID: 6598278280067723526}
-  BarrierLeft: {fileID: 7690220802919861272}
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &336413717785083100
 PrefabInstance:
   m_ObjectHideFlags: 0

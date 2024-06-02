@@ -8,13 +8,14 @@ namespace Managers
 {
     public class PlayerManager: SingletonMonoBehaviour<PlayerManager>
     {
-        public int PlayerNumber = 0;
+        public int PlayerNumber;
         public List<Transform> PlayerOriginPositions;
 
         private Head _convoyHead;
 
         private void Start()
         {
+            PlayerNumber = 0;
             _convoyHead = FindAnyObjectByType<Head>();
         }
 

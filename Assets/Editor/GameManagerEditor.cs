@@ -9,12 +9,12 @@ namespace Editor
     [CustomEditor(typeof(GameManager))] [CanEditMultipleObjects]
     public class GameManagerEditor: UnityEditor.Editor
     {
-        private SerializedProperty _focusMode;
+        private SerializedProperty _side;
         private SerializedProperty _useFarthermostCamera;
         
         private void OnEnable()
         {
-            _focusMode = serializedObject.FindProperty("FocusMode");
+            _side = serializedObject.FindProperty("Side");
             _useFarthermostCamera = serializedObject.FindProperty("UseFarthermostCamera");
         }
 
@@ -24,9 +24,9 @@ namespace Editor
             
             DrawDefaultInspector();
 
-            if (GUI.changed)
+            if (GUI.changed && CameraManager.Instance)
             {
-                CameraManager.Instance.SwitchCameraFocus((Side)_focusMode.intValue, _useFarthermostCamera.boolValue);
+                CameraManager.Instance.SwitchCameraFocus((Side)_side.intValue, _useFarthermostCamera.boolValue);
             }
 
             serializedObject.ApplyModifiedProperties();

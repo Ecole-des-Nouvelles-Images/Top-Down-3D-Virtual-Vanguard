@@ -496,16 +496,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneController
       objectReference: {fileID: 0}
-    - target: {fileID: 81529288046372678, guid: 227558e7cc38dbb48b746d5b633d328a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 81529288046372678, guid: 227558e7cc38dbb48b746d5b633d328a,
-        type: 3}
-      propertyPath: m_TagString
-      value: Module
-      objectReference: {fileID: 0}
     - target: {fileID: 7961471603407652490, guid: 227558e7cc38dbb48b746d5b633d328a,
         type: 3}
       propertyPath: m_LocalPosition.x

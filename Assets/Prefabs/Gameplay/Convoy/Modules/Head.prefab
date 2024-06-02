@@ -9,13 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4316947616375414682}
+  - component: {fileID: 3279956991734440125}
   - component: {fileID: 1736706071288708909}
   - component: {fileID: 1620906211498277510}
-  - component: {fileID: 5684056651828840846}
-  - component: {fileID: 3279956991734440125}
-  m_Layer: 0
+  - component: {fileID: 2811098646284542975}
+  - component: {fileID: 416375661097754315}
+  - component: {fileID: 4767683033434109566}
+  m_Layer: 10
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,6 +38,25 @@ Transform:
   - {fileID: 3387196321542145333}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3279956991734440125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340943554764879163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75615afaad15834298de9466d34f394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumControllers: 4
+  Online: 0
+  BatteryCapacity: 0
+  ConsumptionPerSecond: 0
+  BatteryGauge: {fileID: 4026517050267063638}
+  ChargeStatus: {fileID: 7450106670900610184}
+  ModuleIcon: {fileID: 9132422267639288765}
 --- !u!33 &1736706071288708909
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,8 +110,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5684056651828840846
-MeshCollider:
+--- !u!65 &2811098646284542975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340943554764879163}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7, y: 4.08, z: 3.57}
+  m_Center: {x: -1.43, y: -0.63, z: 0}
+--- !u!65 &416375661097754315
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,11 +149,10 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8839368762345780380, guid: 2f5da9fa9215fc24c8ebada2ad6731f0, type: 3}
---- !u!114 &3279956991734440125
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 4.5, z: 4}
+  m_Center: {x: 2.22, y: -0.63, z: 0}
+--- !u!114 &4767683033434109566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,16 +161,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5340943554764879163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e75615afaad15834298de9466d34f394, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumControllers: 4
-  Online: 0
-  BatteryCapacity: 0
-  ConsumptionPerSecond: 0
-  BatteryGauge: {fileID: 4026517050267063638}
-  ChargeStatus: {fileID: 7450106670900610184}
-  ModuleIcon: {fileID: 9132422267639288765}
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &4755595179216516768
 PrefabInstance:
   m_ObjectHideFlags: 0

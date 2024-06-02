@@ -42,6 +42,7 @@ namespace Convoy
         {
             Online = true;
             BatteryCharge = BatteryCapacity;
+            UpdateInterfaceBatteryCharge();
         }
 
         protected virtual void Update()
@@ -122,6 +123,7 @@ namespace Convoy
 
         public void UpdateInterfaceBatteryCharge()
         {
+            BatteryGauge.maxValue = BatteryCapacity;
             BatteryGauge.value = BatteryCharge;
         }
 

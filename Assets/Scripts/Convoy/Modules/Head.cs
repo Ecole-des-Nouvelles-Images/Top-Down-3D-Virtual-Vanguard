@@ -1,5 +1,6 @@
 using Managers;
 using Player;
+using UnityEngine;
 
 namespace Convoy.Modules
 {
@@ -14,7 +15,7 @@ namespace Convoy.Modules
         {
             base.EnterModule(newController);
             
-            if (PlayerManager.Instance.PlayerNumber == Controllers.Count)
+            if (PlayerManager.Instance.PlayerNumber == MaximumControllers)
             {
                 if (GameManager.Instance.IsInTransit)
                     GameManager.Instance.OnStopTransit.Invoke();
