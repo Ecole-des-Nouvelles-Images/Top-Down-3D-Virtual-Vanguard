@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfdf5bdcf3a48408ff6d2e73f28f1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayableSide: 2
   XenoManager: {fileID: 3307073573302825641}
 --- !u!1 &8210334872910576538
 GameObject:

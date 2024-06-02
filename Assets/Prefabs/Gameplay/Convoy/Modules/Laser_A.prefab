@@ -53,7 +53,7 @@ MonoBehaviour:
   MaximumControllers: 1
   Online: 0
   BatteryCapacity: 100
-  ConsumptionPerSecond: 15
+  ConsumptionPerSecond: 7
   BatteryGauge: {fileID: 8001550167455231639}
   ChargeStatus: {fileID: 4579633178688798537}
   ModuleIcon: {fileID: 2762634279486482556}

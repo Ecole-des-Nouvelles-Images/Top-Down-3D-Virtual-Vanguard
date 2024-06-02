@@ -287,65 +287,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 714302308081785194, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.000009303987
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 179.89261
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -450.7966
-      objectReference: {fileID: 0}
-    - target: {fileID: 2397019222625950733, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2708917100790489023, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_Name
       value: Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984222190944854396, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5733622284105686866, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525465391524508387, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.000009303987
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525465391524508387, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 179.89261
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525465391524508387, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -450.7966
-      objectReference: {fileID: 0}
-    - target: {fileID: 6829664274951138544, guid: 12334b00db3bb6a419d2af0f81f5ac33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7250568099722159503, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
@@ -555,36 +500,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Convoy
       objectReference: {fileID: 0}
-    - target: {fileID: 1653306112232154487, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1773769182092411398, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1881264255281609139, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112172393901420697, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202054210650164696, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279075501014067878, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7893578709260520084, guid: 950cafe83cdf3564c8afbcbb09ec76af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -750,10 +665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _convoy: {fileID: 1332970300}
-  _poi: {fileID: 0}
-  _xenolithSpawner: {fileID: 0}
-  Side: 2
-  UseFarthermostCamera: 1
+  _pointsOfInterest: {fileID: 0}
+  StartFollowCam: 1
   IsInTransit: 1
 --- !u!4 &1911475622
 Transform:
