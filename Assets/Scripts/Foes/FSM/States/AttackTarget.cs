@@ -6,15 +6,15 @@ namespace Foes.FSM.States {
         public AttackTarget(Xenolith xenolith) : base(xenolith) { }
 
         public override void EnterState() {
-            Xenolith.navMeshAgent.SetDestination(Xenolith.transform.position);
+            Xenolith.Agent.SetDestination(Xenolith.transform.position);
         }
         
         public override void UpdateState() {
             // Rotate toward the target
-            Xenolith.transform.LookAt(Xenolith.navMeshAgent.transform.position);
+            Xenolith.transform.LookAt(Xenolith.Agent.transform.position);
             if (Xenolith.AttackReady) {
-                Xenolith.Target.GetComponent<IDamageable>().TakeDamage(Xenolith.attackDamage);
-                Xenolith.animator.SetTrigger("Attack");
+                Xenolith.Target.GetComponent<IDamageable>().TakeDamage(Xenolith.AttackDamage);
+                Xenolith.Animator.SetTrigger("Attack");
             }
 
         }

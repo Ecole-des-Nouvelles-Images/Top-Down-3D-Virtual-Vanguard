@@ -5,7 +5,7 @@
         public SelectTarget(Xenolith xenolith) : base(xenolith) { }
 
         public override void EnterState() {
-            Xenolith.navMeshAgent.SetDestination(Xenolith.transform.position);
+            Xenolith.Agent.SetDestination(Xenolith.transform.position);
         }
         
         public override void UpdateState() {
