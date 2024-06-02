@@ -20,14 +20,14 @@ namespace Managers
         [SerializeField] private List<XenolithSpawner> _spawners;
         [SerializeField] private float _spawnRate;
 
-        private readonly Dictionary<XenoType, GameObject> _xenolithsPrefabsTypes = new();
+        // private readonly Dictionary<XenoType, GameObject> _xenolithsPrefabsTypes = new();
         private List<XenolithSpawner> _filteredSpawners = new();
 
         public bool WaveInProgress;
 
         private void Start()
         {
-            PrepareXenolithTypes();
+            // PrepareXenolithTypes();
         }
 
         #region Logic
@@ -55,8 +55,9 @@ namespace Managers
                 {
                     if (timer > _spawnRate)
                     {
-                        XenoType type = typePresence[Random.Range(0, typePresence.Count)];
-                        GameObject prefab = _xenolithsPrefabsTypes[type];
+                        // XenoType type = typePresence[Random.Range(0, typePresence.Count)];
+                        // GameObject prefab = _xenolithsPrefabsTypes[type];
+                        GameObject prefab = _xenolithsPrefabs[Random.Range(0, _xenolithsPrefabs.Count)];
                         XenolithSpawner spawner = _spawners[Random.Range(0, _spawners.Count)];
                         Vector3 position = spawner.Position;
                         Quaternion rotation = Quaternion.Euler(0, spawner.SideTag == Side.Left ? -225 : -45, 0);
@@ -92,7 +93,7 @@ namespace Managers
             foreach (GameObject prefab in _xenolithsPrefabs)
             {
                 Xenolith xenolithOld = prefab.GetComponent<Xenolith>();
-                _xenolithsPrefabsTypes.Add(xenolithOld.Type, prefab);
+                // _xenolithsPrefabsTypes.Add(xenolithOld.Type, prefab);
             }
         }
 

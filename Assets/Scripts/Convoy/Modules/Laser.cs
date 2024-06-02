@@ -63,8 +63,6 @@ namespace Convoy.Modules
 
         private void Start()
         {
-            BatteryGauge.maxValue = BatteryMaxCapacity;
-            
             if (EnableLaserRendering)
             {
                 _beam.material = new Material(Shader.Find("Sprites/Default"));

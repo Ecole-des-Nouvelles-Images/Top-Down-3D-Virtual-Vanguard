@@ -112,7 +112,7 @@ namespace Convoy
 
         public void WakeInterfaceBattery(bool enable)
         {
-            ChargeStatus.color = enable ? Color.yellow : Color.black;
+            // ChargeStatus.color = enable ? Color.yellow : Color.black;
             
             if (BatteryMaxCapacity > 0)
             {

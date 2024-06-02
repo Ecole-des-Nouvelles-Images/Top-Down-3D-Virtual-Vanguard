@@ -1,133 +1,96 @@
-﻿using System;
-using UnityEditor;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-
 using Convoy;
+using Convoy.Drones;
 using Foes.FSM.States;
 
-namespace Foes.FSM
-{
-    public class Xenolith: MonoBehaviour
-    {
+namespace Foes.FSM {
+    public class Xenolith: MonoBehaviour {
+        
         [Header("Gameplay")]
-        public XenoType XenoType;
-        public AttackBehavior Behavior;
-        public int MaxHealth = 100;
-        public float MoveSpeed = 10;
-        public float AttackSpeed = 3.5f;
-        public float AttackDamage = 10f;
-        public float DetectionRadius = 10;
+        [SerializeField] private int maxHealth = 100;
+        [SerializeField] private float moveSpeed = 10;
+        [SerializeField] private float attackSpeed = 3.5f;
+        [SerializeField] public int attackDamage = 10;
+        [SerializeField] private float innerReachDistance = 4;
+        [SerializeField] private float outerReachDistance = 10;
+        [field: SerializeField] public GameObject Target { get; set; }
         
-        [Header("Navigation")]
-        public NavMeshAgent Agent;
-        public NavMeshObstacle Obstacle;
+        [Header("Components")]
+        public NavMeshAgent navMeshAgent;
+        public Animator animator;
 
-        [Header("Detection")]
-        public float RaycastSweepSpeed = 2f;
-        public SphereCollider DroneDetectionCollider;
-
-        private XenolithBaseState _currentState;
-        
-        #region States
-
-        public readonly XenolithTargetConvoyState TargetConvoyState = new ();
-        public readonly XenolithTargetDroneState TargetDroneState = new ();
-        public readonly XenolithEatCrystalState EatCrystalState = new ();
-        public readonly XenolithAttackState AttackState = new ();
-
-        #endregion
-        
-        public GameObject Target { get; set; }
-        public Collider TargetCollider { get; private set; }
-        public XenoType Type => XenoType;
-        public int CurrentHealth
-        {
-            get => _currentHealth;
-            set => _currentHealth = Mathf.Clamp(value, 0, MaxHealth);
-        }
-        public Vector3 Height => transform.up * Agent.height;
-        
         private int _currentHealth;
         private float _accumulatedDamages;
+        private FiniteStateMachine _finiteStateMachine;
         
-        #region Debug
+        public int CurrentHealth {
+            get => _currentHealth;
+            set => _currentHealth = Mathf.Clamp(value, 0, maxHealth);
+        }
+        
+        public bool AttackReady => true;
 
-        [Header("Debug options")]
-        public bool DebugPath;
-        public bool DebugColliders;
-        public bool DebugRaycasts;
-
-        private void OnDrawGizmos()
+        public bool TargetInnerReach
         {
-            float pathWidth = 0.5f;
-            
-            if (Agent.hasPath && DebugPath)
-            {
-                NavMeshPath path = Agent.path;
-
-                for (int i = 0; i < path.corners.Length - 1; i++)
-                {
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawLine(path.corners[i] + Vector3.up * pathWidth, path.corners[i + 1]);
-                    // Gizmos.DrawLine(path.corners[i] - Vector3.up * pathWidth, path.corners[i + 1] - Vector3.up * pathWidth);
-                }
+            get {
+                if (!Target) return false;
+                Debug.Log(Vector3.Distance(Target.transform.position, transform.position));
+                return Vector3.Distance(Target.transform.position, transform.position) <= innerReachDistance;
             }
-            
-            if (DebugColliders) {
-                CapsuleCollider colliderComponent = GetComponent<CapsuleCollider>();
-                Utilities.Debug.DrawCapsule(colliderComponent, Color.red);
+        }
+        
+        public bool TargetOuterReach
+        {
+            get {
+                if (!Target) return false;
+                return Vector3.Distance(Target.transform.position, transform.position) <= outerReachDistance;
             }
-
-            Handles.color = Color.yellow;
-            Handles.Label(transform.position + Height * 2, $"HP: {CurrentHealth}/{MaxHealth}");
-            Handles.DrawWireArc(transform.position + Height, transform.up, transform.forward, 360f, DetectionRadius);
         }
 
-        #endregion
-        
+        private void Awake() {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
+        }
+
         private void Start()
         {
-            Target = FindObjectOfType<ConvoyManager>().gameObject;
-            TargetCollider = Target.GetComponent<Collider>();
-            Agent.speed = MoveSpeed * Time.deltaTime;
-            CurrentHealth = MaxHealth;
-
-            switch (Behavior)
-            {
-                case AttackBehavior.ConvoyOnly:
-                    _currentState = TargetConvoyState;
-                    break;
-                case AttackBehavior.ClosestTarget:
-                    _currentState = TargetConvoyState;
-                    break;
-                case AttackBehavior.EatCrystal:
-                    throw new NotImplementedException("Xenolith: \"EatCrystal\" behavior not available");
-                default:
-                    throw new ArgumentOutOfRangeException($"Xenolith: Unexpected {Behavior.ToString()} behavior");
-            }
+            _finiteStateMachine = new FiniteStateMachine(this);
+            _finiteStateMachine.ChangeState(new SelectTarget(this));
             
-            _currentState.EnterState(this);
+            Target = FindObjectOfType<ConvoyManager>().gameObject;
+            CurrentHealth = maxHealth;
         }
 
         private void Update()
         {
-            _currentState.UpdateState(this);
+            _finiteStateMachine.Update();
         }
 
-        public void SwitchState(XenolithBaseState state)
-        {
-            _currentState = state;
-            _currentState.EnterState(this);
-        }
+        public IDamageable FetchNearestDamageable() {
+            List<IDamageable> targetableDamageable = new List<IDamageable>();
+            
+            // Fetch all damageables
+            foreach (IDamageable damageable in FindObjectsOfType<MonoBehaviour>().OfType<IDamageable>()) {
+                if (!damageable.IsTargetable) continue;
+                targetableDamageable.Add(damageable);
+            }
+            
+            // Select the neareast damageable
+            IDamageable nearestDamageable = null;
+            float nearestDistance = Mathf.Infinity;
+            foreach (IDamageable damageable in targetableDamageable) {
+                float distance = Vector3.Distance(transform.position, damageable.Transform.position);
+                if (distance >= nearestDistance) continue;
+                nearestDistance = distance;
+                nearestDamageable = damageable;
+            }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            _currentState.OnTriggerEnter(this, other);
+            return nearestDamageable;
         }
- 
-        #region Reactions
-
+        
         public void TakeDamage(float damages)
         {
             _accumulatedDamages += damages;
@@ -143,6 +106,5 @@ namespace Foes.FSM
                 Destroy(gameObject);
         }
 
-        #endregion
     }
 }
