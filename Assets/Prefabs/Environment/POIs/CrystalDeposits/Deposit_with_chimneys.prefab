@@ -192,6 +192,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8406711234622784362}
     m_Modifications:
+    - target: {fileID: 21186448331459388, guid: a07ebd3a33f8f8c46a449a3e83d6924f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4477601817737411735, guid: a07ebd3a33f8f8c46a449a3e83d6924f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,10 +247,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5152208875715488317, guid: a07ebd3a33f8f8c46a449a3e83d6924f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5155560405168154100, guid: a07ebd3a33f8f8c46a449a3e83d6924f,
         type: 3}
       propertyPath: m_Name
       value: Coral_chimney_M
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140831852197295173, guid: a07ebd3a33f8f8c46a449a3e83d6924f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

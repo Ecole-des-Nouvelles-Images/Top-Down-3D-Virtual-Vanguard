@@ -59,52 +59,16 @@ MonoBehaviour:
   ChargeStatus: {fileID: 6565461151081584380}
   ModuleIcon: {fileID: 4811477178821968329}
   _turret: {fileID: 4723357050982415268}
-  _canon: {fileID: 6780782598432114811}
+  Canon: {fileID: 6780782598432114811}
   _torque: 10
-  _range: 120
-  _damagePerSecond: 20
+  Range: 200
+  _damagePerSecond: 50
   _targetLayers:
     serializedVersion: 2
     m_Bits: 512
   _raySliceKeenness: 1
-  _sphereCastRadius: 2.5
-  EnableLaserRendering: 0
-  _beam: {fileID: 0}
-  _lineRendererVertices: 10
-  _beamColor:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  _beamThickness: 1
-  _beamFrequency: 1
-  _beamAmplitude: 1
-  _beamAnimSpeed: 3
+  SphereCastRadius: 5
+  BeamRenderer: {fileID: 742631054365251441}
 --- !u!33 &6372759608912225606
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -247,11 +211,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1d16a7a6db920f2448403733a4f3d37a, type: 2}
+    - target: {fileID: 5738303090875782713, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6026250615785262522, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1d16a7a6db920f2448403733a4f3d37a, type: 2}
+    - target: {fileID: 6297681539958292107, guid: a8b23228b52070346970a2033d67a528,
+        type: 3}
+      propertyPath: Module
+      value: 
+      objectReference: {fileID: 1540481341061083116}
     - target: {fileID: 7028015166235408440, guid: a8b23228b52070346970a2033d67a528,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -317,6 +291,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b23228b52070346970a2033d67a528, type: 3}
+--- !u!114 &742631054365251441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6297681539958292107, guid: a8b23228b52070346970a2033d67a528,
+    type: 3}
+  m_PrefabInstance: {fileID: 6713601489801243130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657ad999c10be6d40b01228ed8e3005a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4369343153810313666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7028015166235408440, guid: a8b23228b52070346970a2033d67a528,

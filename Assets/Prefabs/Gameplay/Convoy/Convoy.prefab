@@ -106,7 +106,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -439,10 +439,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2120011183792617561, guid: 8f18795f7cd4df34d876e98bb53e5cfa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4606943678986378732, guid: 8f18795f7cd4df34d876e98bb53e5cfa,
         type: 3}
       propertyPath: m_Name
       value: SmokeVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606943678986378732, guid: 8f18795f7cd4df34d876e98bb53e5cfa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8585965762135604560, guid: 8f18795f7cd4df34d876e98bb53e5cfa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
