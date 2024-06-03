@@ -414,9 +414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Probability: 0.25
   MinimumRepeatDelay: 2
-  UseRandomIntervals: 0
-  ProbabilityInterval: {x: 0.2, y: 0.5}
-  MinimumRepeatDelayInterval: {x: 1, y: 2}
+  UseRandomIntervals: 1
+  ProbabilityInterval: {x: 0.2, y: 0.3}
+  MinimumRepeatDelayInterval: {x: 2, y: 3}
 --- !u!95 &5909441095203157691
 Animator:
   serializedVersion: 5

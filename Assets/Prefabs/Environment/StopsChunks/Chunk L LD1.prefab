@@ -13903,7 +13903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayableSide: 2
-  XenoManager: {fileID: 3691724171260612247}
+  WaveManager: {fileID: 3691724171260612247}
 --- !u!1 &2346997422317177096
 GameObject:
   m_ObjectHideFlags: 0

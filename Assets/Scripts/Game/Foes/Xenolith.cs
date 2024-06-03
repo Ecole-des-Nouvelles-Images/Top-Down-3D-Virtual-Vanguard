@@ -62,6 +62,13 @@ namespace Game.Foes.FSM {
             
             Target = FindObjectOfType<ConvoyManager>().gameObject;
             CurrentHealth = _maxHealth;
+            
+            GameManager.Instance.OnStartTransit += OnStartTransit;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnStartTransit -= OnStartTransit;
         }
 
         private void Update()
@@ -110,6 +117,12 @@ namespace Game.Foes.FSM {
         public void ResetAttackTimer()
         {
             _internalTimer = 0f;
+        }
+        
+        private void OnStartTransit()
+        {
+            Agent.enabled = false;
+            _finiteStateMachine.IsActive = false;
         }
     }
 }

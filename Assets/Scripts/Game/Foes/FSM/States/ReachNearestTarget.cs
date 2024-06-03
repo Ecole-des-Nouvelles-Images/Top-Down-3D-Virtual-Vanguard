@@ -4,10 +4,12 @@ namespace Game.Foes.FSM.States
 {
     public class ReachNearestTarget : BaseState
     {
+        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        
         public ReachNearestTarget(Xenolith xenolith) : base(xenolith) { }
 
         public override void EnterState() {
-            Xenolith.Animator.SetBool("IsMoving", true);
+            Xenolith.Animator.SetBool(IsMoving, true);
         }
 
         public override void UpdateState() {
@@ -19,7 +21,7 @@ namespace Game.Foes.FSM.States
 
         public override void ExitState() {
             Xenolith.Agent.SetDestination(Xenolith.transform.position);
-            Xenolith.Animator.SetBool("IsMoving", false);
+            Xenolith.Animator.SetBool(IsMoving, false);
         }
     }
 }

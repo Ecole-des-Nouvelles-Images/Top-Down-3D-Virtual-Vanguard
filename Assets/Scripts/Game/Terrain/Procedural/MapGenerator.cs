@@ -1,4 +1,5 @@
 using System;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 namespace Game.Terrain.Procedural
@@ -36,6 +37,17 @@ namespace Game.Terrain.Procedural
         
         public const int ChunkSize = 241;
 
+        private void Start() {
+            GameManager.Instance.OnStartTransit += OnStartTransit;
+        }
+
+        private void OnStartTransit()
+        {
+            NavMeshSurface navMeshSurface = GetComponent<NavMeshSurface>();
+            if (!navMeshSurface) return;
+            navMeshSurface.enabled = false;
+        }
+
         private void OnValidate()
         {
             if (Lacunarity < 1) Lacunarity = 1;
@@ -58,6 +70,11 @@ namespace Game.Terrain.Procedural
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnStartTransit -= OnStartTransit;
         }
     }
 }

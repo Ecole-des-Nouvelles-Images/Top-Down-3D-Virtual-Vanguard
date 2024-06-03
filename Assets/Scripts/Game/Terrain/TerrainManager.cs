@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cinemachine;
-using Game.Convoy;
-using Game.Terrain.Procedural;
-using Internal;
-using Unity.AI.Navigation;
 using UnityEngine;
+using Unity.AI.Navigation;
+
+using Cinemachine;
+using Internal;
+using Game.Terrain.Procedural;
+using Game.Convoy;
 
 namespace Game.Terrain
 {
@@ -16,7 +17,6 @@ namespace Game.Terrain
         [SerializeField] private CinemachineVirtualCamera _transitCamera;
         [SerializeField] private Transform _chunksRoot;
         [SerializeField] private GameObject _chunkTransitPrefab;
-        [SerializeField] private GameObject _railPrefab;
         [SerializeField] private List<GameObject> _stopsPrefabs;
         [Range(2, 5)] [SerializeField] private int _chunksQueueSize = 3;
         
@@ -29,7 +29,6 @@ namespace Game.Terrain
         
         private Queue<TerrainChunk> Chunks { get; set; }
         private TerrainChunk _lastEnqueued;
-        private bool _reverseChunkScale;
 
         private Transform _convoy;
         CinemachineBasicMultiChannelPerlin _camNoise;
@@ -97,8 +96,7 @@ namespace Game.Terrain
             Vector3 position = _chunksRoot.transform.right * positionScalar;
             instance.transform.position = position;
             
-            chunk.SetupChunk(_reverseChunkScale);
-            _reverseChunkScale = !_reverseChunkScale;
+            // chunk.SetupChunk(); // TODO: Disable to avoid overheads when using flat terrain over the MapGenerator;
 
             return chunk;
         }
@@ -116,7 +114,7 @@ namespace Game.Terrain
             _currentStopZone.transform.position = position;
 
             TerrainChunk stopZone = _currentStopZone.GetComponent<TerrainChunk>();
-            stopZone.SetupChunk(false);
+            // stopZone.SetupChunk(); // TODO: Disable to avoid overheads when using flat terrain over the MapGenerator;
             
             Chunks.Enqueue(stopZone);
             _lastEnqueued = stopZone;

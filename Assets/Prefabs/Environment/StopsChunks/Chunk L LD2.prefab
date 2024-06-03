@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayableSide: 2
-  XenoManager: {fileID: 3307073573302825641}
+  WaveManager: {fileID: 3307073573302825641}
 --- !u!1 &8210334872910576538
 GameObject:
   m_ObjectHideFlags: 0

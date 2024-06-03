@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Foes
 {
-    public class XenoManager : SingletonMonoBehaviour<XenoManager>
+    public class WaveManager : SingletonMonoBehaviour<WaveManager>
     {
         [Header("References")]
         [SerializeField] private List<GameObject> _xenolithsPrefabs;

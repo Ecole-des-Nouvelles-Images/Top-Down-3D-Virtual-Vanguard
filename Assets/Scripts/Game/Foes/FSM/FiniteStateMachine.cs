@@ -5,6 +5,8 @@ namespace Game.Foes.FSM
 {
     public class FiniteStateMachine {
         
+        public bool IsActive = true;
+        
         private BaseState _currentState;
         private Xenolith _xenolith;
 
@@ -13,6 +15,7 @@ namespace Game.Foes.FSM
         }
 
         public void Update() {
+            if (!IsActive) return;
             if (_currentState == null) return;
             
             // Check transition from current state

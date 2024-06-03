@@ -61,7 +61,7 @@ MonoBehaviour:
   _canon: {fileID: 1302368093954889424}
   _torque: 10
   _range: 120
-  _damagePerSecond: 20
+  _damagePerSecond: 50
   _targetLayers:
     serializedVersion: 2
     m_Bits: 512

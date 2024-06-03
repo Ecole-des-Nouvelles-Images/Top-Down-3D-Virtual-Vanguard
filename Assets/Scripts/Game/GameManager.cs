@@ -83,8 +83,8 @@ namespace Game
         
         private void StartTransit()
         {
-            _currentStopZone.XenoManager.WaveInProgress = false;
-            _currentStopZone.XenoManager.StopOffensive();
+            _currentStopZone.WaveManager.WaveInProgress = false;
+            // _currentStopZone.WaveManager.StopOffensive();
             TerrainManager.Instance.RestartTransit();
         }
         
@@ -93,7 +93,7 @@ namespace Game
             IsInTransit = false;
             _currentStopZone = stopZone;
             _currentStopZone.NavMesh.BuildNavMesh();
-            _currentStopZone.XenoManager.StartXenolithOffensive();
+            _currentStopZone.WaveManager.StartXenolithOffensive();
         }
         
         #endregion
