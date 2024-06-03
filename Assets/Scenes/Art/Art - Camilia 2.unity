@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.1813054, g: 0.22691603, b: 0.30736247, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -183,8 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588f44dfb579d464d842eb583138fb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Conductivity: 0.15
-  m_Force: {fileID: 0}
 --- !u!4 &47751192
 Transform:
   m_ObjectHideFlags: 0
@@ -1901,17 +1899,17 @@ PrefabInstance:
     - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17
+      value: -0.000009303987
       objectReference: {fileID: 0}
     - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 182
+      value: 179.89261
       objectReference: {fileID: 0}
     - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -419
+      value: -450.7966
       objectReference: {fileID: 0}
     - target: {fileID: 1408421131609371822, guid: 12334b00db3bb6a419d2af0f81f5ac33,
         type: 3}
@@ -2437,9 +2435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _convoy: {fileID: 723085281}
-  _POI: {fileID: 849465730}
-  Side: 3
-  UseFarthermostCamera: 1
+  _pointsOfInterest: {fileID: 0}
+  StartFollowCam: 1
+  IsInTransit: 1
 --- !u!4 &828447585
 Transform:
   m_ObjectHideFlags: 0
@@ -2455,12 +2453,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &849465730 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7676295621414068445, guid: d384e627c170cb646abc57adf57b761d,
-    type: 3}
-  m_PrefabInstance: {fileID: 935364578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &876250439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3326,7 @@ MonoBehaviour:
   - {fileID: 363856418}
   _droneMoveSpeed: 100
   _droneMiningSpeed: 20
+  _droneArmorPlates: 2
   _droneRebuildTime: 3
   _enableDroneAutoRebuild: 1
 --- !u!64 &1225678651
