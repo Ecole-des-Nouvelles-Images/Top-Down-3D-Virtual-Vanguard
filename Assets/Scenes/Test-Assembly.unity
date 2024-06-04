@@ -8031,52 +8031,16 @@ MonoBehaviour:
   ChargeStatus: {fileID: 6595035425330284942}
   ModuleIcon: {fileID: 4782467555570785979}
   _turret: {fileID: 4690443835200840918}
-  _canon: {fileID: 6809825539655194377}
+  Canon: {fileID: 0}
   _torque: 10
-  _range: 120
+  Range: 0
   _damagePerSecond: 20
   _targetLayers:
     serializedVersion: 2
     m_Bits: 512
   _raySliceKeenness: 1
-  _sphereCastRadius: 2.5
-  EnableLaserRendering: 0
-  _beam: {fileID: 0}
-  _lineRendererVertices: 10
-  _beamColor:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  _beamThickness: 1
-  _beamFrequency: 1
-  _beamAmplitude: 1
-  _beamAnimSpeed: 3
+  SphereCastRadius: 5
+  BeamRenderer: {fileID: 0}
 --- !u!1 &1608705952528042612
 GameObject:
   m_ObjectHideFlags: 0
@@ -11329,52 +11293,16 @@ MonoBehaviour:
   ChargeStatus: {fileID: 3305736803768498099}
   ModuleIcon: {fileID: 3762950152541905030}
   _turret: {fileID: 2299675884458995189}
-  _canon: {fileID: 35051223306673706}
+  Canon: {fileID: 0}
   _torque: 10
-  _range: 120
+  Range: 0
   _damagePerSecond: 20
   _targetLayers:
     serializedVersion: 2
     m_Bits: 512
   _raySliceKeenness: 1
-  _sphereCastRadius: 2.5
-  EnableLaserRendering: 0
-  _beam: {fileID: 0}
-  _lineRendererVertices: 10
-  _beamColor:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  _beamThickness: 1
-  _beamFrequency: 1
-  _beamAmplitude: 1
-  _beamAnimSpeed: 3
+  SphereCastRadius: 5
+  BeamRenderer: {fileID: 0}
 --- !u!224 &5433629185706982456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13839,7 +13767,7 @@ Transform:
   m_GameObject: {fileID: 1083772572536495923}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: -8.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
