@@ -542,26 +542,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Convoy
       objectReference: {fileID: 0}
-    - target: {fileID: 1302241064227542123, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1584020743315391556, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5429800766846458717, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5543833836100607304, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7893578709260520084, guid: 950cafe83cdf3564c8afbcbb09ec76af,
         type: 3}
       propertyPath: m_LocalPosition.x
