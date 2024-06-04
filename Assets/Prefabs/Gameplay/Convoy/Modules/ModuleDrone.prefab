@@ -66,7 +66,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cbb6143c7d0e10947be84ef2d27d8fc3,
         type: 3}
       propertyPath: m_Name
-      value: Drones (1)
+      value: ModuleDrone
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cbb6143c7d0e10947be84ef2d27d8fc3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cbb6143c7d0e10947be84ef2d27d8fc3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Drone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
