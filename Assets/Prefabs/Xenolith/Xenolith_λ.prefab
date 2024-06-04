@@ -323,9 +323,11 @@ MonoBehaviour:
   _innerReachDistance: 8
   _outerReachDistance: 12
   <Target>k__BackingField: {fileID: 0}
+  MeshRenderer: {fileID: 853176309307502735}
   Agent: {fileID: 6399295604941460382}
   Animator: {fileID: 699012661087757531}
-  Distance: 0
+  DisolveShader: {fileID: 2100000, guid: edc3886526dbd1f4c90b0ba9a7999f33, type: 2}
+  DeathAnimationDuration: 1
 --- !u!195 &6399295604941460382
 NavMeshAgent:
   m_ObjectHideFlags: 0

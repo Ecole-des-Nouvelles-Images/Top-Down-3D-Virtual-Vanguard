@@ -66,7 +66,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _raySliceKeenness: 1
-  SphereCastRadius: 5
+  SphereCastRadius: 2
   BeamRenderer: {fileID: 5063882419704482266}
 --- !u!33 &4395449688499415804
 MeshFilter:

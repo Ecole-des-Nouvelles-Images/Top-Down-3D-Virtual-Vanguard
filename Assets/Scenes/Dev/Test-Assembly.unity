@@ -718,7 +718,7 @@ MonoBehaviour:
     type: 3}
   _stopsPrefabs:
   - {fileID: 1824422711945063542, guid: 27ed6a4ca48510f418dc8fe4a7887f42, type: 3}
-  - {fileID: 113245151897928320, guid: c5c55d27a33a01147af5e782a2ac3b1c, type: 3}
+  - {fileID: 113245151897928320, guid: fc43d2251109be844a03fc82946ab2ee, type: 3}
   - {fileID: 3765489059929856587, guid: cac829f3259a8514da9522c0dc086d4f, type: 3}
   - {fileID: 6776927186734921231, guid: f94801cec0237a4448ba2f43e8b412f7, type: 3}
   _chunksQueueSize: 2
