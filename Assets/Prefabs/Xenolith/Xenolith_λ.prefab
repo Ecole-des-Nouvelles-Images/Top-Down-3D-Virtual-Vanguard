@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 859648862380652001}
   - component: {fileID: 492659460661241078}
   - component: {fileID: 6660694513085508381}
-  - component: {fileID: 6464037324965681650}
   - component: {fileID: 699012661087757531}
   m_Layer: 9
   m_Name: "Xenolith_\u03BB"
@@ -318,14 +317,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _moveSpeed: 4
-  _attackSpeed: 3.5
-  AttackDamage: 10
-  _innerReachDistance: 4
-  _outerReachDistance: 10
+  _moveSpeed: 3.5
+  _attackSpeed: 5
+  AttackDamage: 20
+  _innerReachDistance: 8
+  _outerReachDistance: 12
   <Target>k__BackingField: {fileID: 0}
   Agent: {fileID: 6399295604941460382}
   Animator: {fileID: 699012661087757531}
+  Distance: 0
 --- !u!195 &6399295604941460382
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -414,29 +414,6 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: -0.1}
---- !u!136 &6464037324965681650
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621946117292255813}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.4
-  m_Height: 4.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.25, z: 0.3}
 --- !u!95 &699012661087757531
 Animator:
   serializedVersion: 5
@@ -446,7 +423,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621946117292255813}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e76937e7d1f8e48479f4dab0eeab6257, type: 2}
+  m_Avatar: {fileID: 9000000, guid: f80ba5e0507aa924f8fa34770460951a, type: 2}
   m_Controller: {fileID: 9100000, guid: e5d880da30deabd4b944240ee48fddc1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Game.POIs
@@ -15,42 +14,36 @@ namespace Game.POIs
             get => _currentCapacity;
             set => _currentCapacity = Mathf.Clamp(value, 0, Capacity);
         }
-
-        private Transform _camera;
-        private RectTransform _ui;
-        private Slider _uiGauge;
         private int _currentCapacity;
+        private List<GameObject> _childsObjects = new ();
+        private int _initialFragment;
+        private int _fragmentNumber;
 
         private void Start()
         {
-            _camera = CameraManager.Instance.CurrentCamera.transform;
-            if (_camera == null) {
-                throw new Exception("Crystal Deposit can't find the current camera");
-            }
-            
-            _ui = GetComponentInChildren<RectTransform>();
-            _uiGauge = GetComponentInChildren<Slider>();
-
             Capacity = Random.Range(CapacityRange.x, CapacityRange.y + 1);
             CurrentCapacity = Capacity;
-            _uiGauge.maxValue = Capacity;
-            _uiGauge.value = CurrentCapacity;
-            
-            _ui.rotation = _camera.rotation;
+
+            foreach (Transform child in transform)
+                _childsObjects.Add(child.gameObject);
+
+            _initialFragment = _childsObjects.Count;
+            _fragmentNumber = _childsObjects.Count;
         }
 
         private void Update()
         {
-            if (CurrentCapacity <= 0)
-            {
-                Debug.Log($"{name} depleted and destroyed");
+            if (CurrentCapacity <= 0) {
                 Destroy(this.gameObject);
             }
-        }
 
-        public void UpdateUIGauge()
-        {
-            _uiGauge.value = CurrentCapacity;
+            if (CurrentCapacity / (Capacity / _initialFragment) <= _fragmentNumber - 1)
+            {
+                int index = Random.Range(0, _childsObjects.Count);
+                Destroy(_childsObjects[index]);
+                _childsObjects.RemoveAt(index);
+                _fragmentNumber -= 1;
+            }
         }
     }
 }

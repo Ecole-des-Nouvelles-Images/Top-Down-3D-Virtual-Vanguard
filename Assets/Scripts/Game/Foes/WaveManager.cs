@@ -14,15 +14,18 @@ namespace Game.Foes
 
         [Header("Spawners")]
         [SerializeField] private List<XenolithSpawner> _spawners;
-        [SerializeField] private float _spawnRate;
+        [SerializeField] private Vector2 _spawnRateRange = new (3f, 6f);
 
         // private readonly Dictionary<XenoType, GameObject> _xenolithsPrefabsTypes = new();
         private List<XenolithSpawner> _filteredSpawners = new();
 
         public bool WaveInProgress;
 
+        private float _spawnRate;
+
         private void Start()
         {
+            _spawnRate = Random.Range(_spawnRateRange.x, _spawnRateRange.y);
             // PrepareXenolithTypes();
         }
 
@@ -60,6 +63,7 @@ namespace Game.Foes
 
                         Instantiate(prefab, position, rotation, _xenolithHolder);
                         timer = 0;
+                        _spawnRate = Random.Range(_spawnRateRange.x, _spawnRateRange.y);
                     }
 
                     timer += Time.deltaTime;

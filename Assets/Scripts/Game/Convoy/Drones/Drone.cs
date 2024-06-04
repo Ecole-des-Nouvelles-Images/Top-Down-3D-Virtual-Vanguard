@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Game.Convoy.Drones
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Drone: MonoBehaviour, IDamageable
+    public class Drone: MonoBehaviour
     {
         public static int TotalDroneBuilt;
 
@@ -101,7 +101,6 @@ namespace Game.Convoy.Drones
             else if (Interacting)
             {
                 Interact();
-                Debug.Log($"Drone #{ID}: no interaction with {_nearestPOI.name}");
             }
         }
 
@@ -157,7 +156,6 @@ namespace Game.Convoy.Drones
         
         private void Interact()
         {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -179,7 +177,6 @@ namespace Game.Convoy.Drones
             {
                 deposit.CurrentCapacity -= amountToAdd;
                 GameManager.Instance.Crystals += amountToAdd;
-                deposit.UpdateUIGauge();
                 _accumulatedMinedAmount -= amountToAdd;
             }
         }

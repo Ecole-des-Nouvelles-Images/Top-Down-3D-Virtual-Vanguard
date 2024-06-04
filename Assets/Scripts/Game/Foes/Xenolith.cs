@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Game.Convoy;
 using Game.Convoy.Drones;
 using Game.Foes.FSM.States;
 using UnityEngine;
@@ -60,13 +59,13 @@ namespace Game.Foes.FSM {
             _finiteStateMachine = new FiniteStateMachine(this);
             _finiteStateMachine.ChangeState(new SelectTarget(this));
             
-            Target = FindObjectOfType<ConvoyManager>().gameObject;
+            //TODO ATTENTION TEST Gilbert Target = FindObjectOfType<ConvoyManager>().gameObject;
             CurrentHealth = _maxHealth;
             
             GameManager.Instance.OnStartTransit += OnStartTransit;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             GameManager.Instance.OnStartTransit -= OnStartTransit;
         }
@@ -97,6 +96,19 @@ namespace Game.Foes.FSM {
             }
 
             return nearestDamageable;
+        }
+
+        public IDamageable FetchRandomDamageable()
+        {
+            List<IDamageable> targetableDamageable = new List<IDamageable>();
+            
+            // Fetch all damageables
+            foreach (IDamageable damageable in FindObjectsOfType<MonoBehaviour>().OfType<IDamageable>()) {
+                if (!damageable.IsTargetable) continue;
+                targetableDamageable.Add(damageable);
+            }
+
+            return targetableDamageable[Random.Range(0, targetableDamageable.Count)];
         }
         
         public void TakeDamage(float damages)

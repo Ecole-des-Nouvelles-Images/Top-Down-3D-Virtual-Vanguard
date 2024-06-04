@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Convoy.Drones;
 using Game.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Game.Convoy
 {
-    public abstract class Module : MonoBehaviour
+    public abstract class Module : MonoBehaviour, IDamageable
     {
         [Header("Player Management")] [SerializeField]
         protected int MaximumControllers = 1;
@@ -26,6 +27,8 @@ namespace Game.Convoy
         public int BatteryMaxCapacity => BatteryCapacity;
         public float BatteryCharge { get; set; }
 
+        protected ConvoyManager Convoy;
+
         protected readonly List<PlayerController> Controllers = new();
         protected bool IsFull
         {
@@ -39,6 +42,7 @@ namespace Game.Convoy
         
         protected virtual void Awake()
         {
+            Convoy = FindAnyObjectByType<ConvoyManager>();
             Online = true;
             BatteryCharge = BatteryCapacity;
             UpdateInterfaceBatteryCharge();
@@ -132,6 +136,20 @@ namespace Game.Convoy
             BatteryGauge.value = BatteryCharge;
         }
 
+        #endregion
+        
+        #region IDamageable
+
+        public GameObject GameObject => gameObject;
+        public Transform Transform => transform;
+        public bool IsTargetable => Online;
+
+        public void TakeDamage(int damage)
+        {
+            Convoy.Durability -= damage;
+            
+        }
+        
         #endregion
     }
 }

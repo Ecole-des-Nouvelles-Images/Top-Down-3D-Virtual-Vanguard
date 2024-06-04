@@ -17,6 +17,7 @@ namespace Game.Foes.FSM
         public void Update() {
             if (!IsActive) return;
             if (_currentState == null) return;
+
             
             // Check transition from current state
             switch (_currentState) {

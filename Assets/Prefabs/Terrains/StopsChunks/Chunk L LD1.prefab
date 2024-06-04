@@ -912,7 +912,7 @@ MonoBehaviour:
   - {fileID: 2883806990113932883}
   - {fileID: 6475234366357574464}
   - {fileID: 6460293011829023430}
-  _spawnRate: 3.5
+  _spawnRateRange: {x: 3, y: 6}
   WaveInProgress: 0
 --- !u!1 &2166690708347623460
 GameObject:
@@ -5733,7 +5733,7 @@ PrefabInstance:
     - target: {fileID: 8208008873701164561, guid: 93639e5d0a5f1984d8da7396859a86cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.26455
+      value: 60.2
       objectReference: {fileID: 0}
     - target: {fileID: 8208008873701164561, guid: 93639e5d0a5f1984d8da7396859a86cc,
         type: 3}
@@ -5743,7 +5743,7 @@ PrefabInstance:
     - target: {fileID: 8208008873701164561, guid: 93639e5d0a5f1984d8da7396859a86cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.882101
+      value: 15.5
       objectReference: {fileID: 0}
     - target: {fileID: 8208008873701164561, guid: 93639e5d0a5f1984d8da7396859a86cc,
         type: 3}
@@ -7146,7 +7146,7 @@ PrefabInstance:
     - target: {fileID: 4755300380910004623, guid: dd607be1912b11a41b775c9f05c5377d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.143623
+      value: 51.3
       objectReference: {fileID: 0}
     - target: {fileID: 4755300380910004623, guid: dd607be1912b11a41b775c9f05c5377d,
         type: 3}
