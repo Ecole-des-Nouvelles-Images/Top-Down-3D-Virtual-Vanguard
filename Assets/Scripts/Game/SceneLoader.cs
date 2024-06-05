@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Internal;
 using UnityEngine;
@@ -8,22 +7,26 @@ namespace Game
 {
     public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     {
-        private Animator _animator;
-        private float _animationDuration = 2f;
+        public Animator Animator;
+        public float AnimationDuration = 2f;
 
         private int CurrentSceneIndex => SceneManager.GetActiveScene().buildIndex;
         
         private static readonly int SwipeIn = Animator.StringToHash("SwipeIn");
         private static readonly int SwipeOut = Animator.StringToHash("SwipeOut");
 
-        private void Awake()
+        private void Start()
         {
-            _animator = GetComponentInChildren<Animator>();
+            Debug.Log($"Current scene index = {CurrentSceneIndex}");
             
             if (CurrentSceneIndex != 0)
-                _animator.SetTrigger(SwipeOut);
+            {
+                Animator.gameObject.SetActive(true);
+                Animator.SetTrigger(SwipeOut);
+            }
+                
         }
-        
+
         public void LoadScene(int buildIndex)
         {
             StartCoroutine(TransitionToScene(buildIndex));
@@ -31,9 +34,9 @@ namespace Game
 
         private IEnumerator TransitionToScene(int buildIndex)
         {
-            _animator.SetTrigger(SwipeIn);
+            Animator.SetTrigger(SwipeIn);
             
-            yield return new WaitForSeconds(_animationDuration);
+            yield return new WaitForSeconds(AnimationDuration);
             
             SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
         }
