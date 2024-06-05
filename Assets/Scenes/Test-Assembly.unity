@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2132287622}
-  m_IndirectSpecularColor: {r: 0.10994181, g: 0.2968118, b: 0.28523117, a: 1}
+  m_IndirectSpecularColor: {r: 0.1497648, g: 0.2959968, b: 0.36273316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   - {fileID: 1360931961}
   - {fileID: 655432451}
   - {fileID: 779700163}
-  _spawnRate: 5
+  _spawnRateRange: {x: 3, y: 6}
   WaveInProgress: 0
 --- !u!4 &468455272 stripped
 Transform:

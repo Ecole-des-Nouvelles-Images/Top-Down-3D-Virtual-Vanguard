@@ -2784,76 +2784,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.atime0
-      value: 45875
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.ctime1
-      value: 11951
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.ctime2
-      value: 43908
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.ctime3
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key1.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key1.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key1.r
-      value: 0.9827336
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key2.b
-      value: 0.2584905
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key2.g
-      value: 0.30381876
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key2.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key3.b
-      value: 0.254717
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key3.g
-      value: 0.254717
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.key3.r
-      value: 0.254717
-      objectReference: {fileID: 0}
-    - target: {fileID: 510783053927425267, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: BeamColor.m_NumColorKeys
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 890389263331858412, guid: 950cafe83cdf3564c8afbcbb09ec76af,
         type: 3}
       propertyPath: _droneParent
@@ -2863,61 +2793,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Convoy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437243055090985862, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437243055090985862, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2180984669220347225, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2180984669220347225, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3007678911526286780, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3007678911526286780, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3604874844900946673, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: EnableBeam
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602594666615281164, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602594666615281164, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7319491978737735099, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7319491978737735099, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7893578709260520084, guid: 950cafe83cdf3564c8afbcbb09ec76af,
         type: 3}
@@ -2967,16 +2842,6 @@ PrefabInstance:
     - target: {fileID: 7893578709260520084, guid: 950cafe83cdf3564c8afbcbb09ec76af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957721431984719235, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957721431984719235, guid: 950cafe83cdf3564c8afbcbb09ec76af,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
