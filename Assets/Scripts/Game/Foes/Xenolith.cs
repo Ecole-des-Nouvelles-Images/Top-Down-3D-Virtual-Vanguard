@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using Game.Convoy;
 using Game.Convoy.Drones;
 using Game.Foes.FSM.States;
 using UnityEngine;
@@ -17,10 +17,16 @@ namespace Game.Foes.FSM {
         [SerializeField] private float _innerReachDistance = 4;
         [SerializeField] private float _outerReachDistance = 10;
         [field: SerializeField] public GameObject Target { get; set; }
-        
+
         [Header("Components")]
+        public SkinnedMeshRenderer MeshRenderer;
         public NavMeshAgent Agent;
         public Animator Animator;
+
+        [Header("Rendering")]
+        public Material DisolveShader;
+        public float DeathAnimationDuration;
+        private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
 
         private int _currentHealth;
         private float _accumulatedDamages;
@@ -60,13 +66,13 @@ namespace Game.Foes.FSM {
             _finiteStateMachine = new FiniteStateMachine(this);
             _finiteStateMachine.ChangeState(new SelectTarget(this));
             
-            Target = FindObjectOfType<ConvoyManager>().gameObject;
+            //TODO ATTENTION TEST Gilbert Target = FindObjectOfType<ConvoyManager>().gameObject;
             CurrentHealth = _maxHealth;
             
             GameManager.Instance.OnStartTransit += OnStartTransit;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             GameManager.Instance.OnStartTransit -= OnStartTransit;
         }
@@ -98,6 +104,19 @@ namespace Game.Foes.FSM {
 
             return nearestDamageable;
         }
+
+        public IDamageable FetchRandomDamageable()
+        {
+            List<IDamageable> targetableDamageable = new List<IDamageable>();
+            
+            // Fetch all damageables
+            foreach (IDamageable damageable in FindObjectsOfType<MonoBehaviour>().OfType<IDamageable>()) {
+                if (!damageable.IsTargetable) continue;
+                targetableDamageable.Add(damageable);
+            }
+
+            return targetableDamageable[Random.Range(0, targetableDamageable.Count)];
+        }
         
         public void TakeDamage(float damages)
         {
@@ -109,9 +128,12 @@ namespace Game.Foes.FSM {
                 CurrentHealth -= unitDamage;
                 _accumulatedDamages -= unitDamage;
             }
-            
+
             if (CurrentHealth <= 0)
-                Destroy(gameObject);
+            {
+                ReplaceMaterials();
+                StartCoroutine(DeathAnimation());
+            }
         }
 
         public void ResetAttackTimer()
@@ -123,6 +145,41 @@ namespace Game.Foes.FSM {
         {
             Agent.enabled = false;
             _finiteStateMachine.IsActive = false;
+        }
+        
+        // Death and Material replacement
+
+        private void ReplaceMaterials()
+        {
+            List<Material> materials = new();
+            MeshRenderer.GetMaterials(materials); // Copy originals
+
+            for (int i = 0; i < materials.Count; i++)
+            {
+                materials[i] = DisolveShader;
+            }
+
+            MeshRenderer.SetMaterials(materials);
+        }
+
+        private IEnumerator DeathAnimation()
+        {
+            float t = 0f;
+            List<Material> materials = new();
+            MeshRenderer.GetMaterials(materials); // Copy originals
+
+            while (t < 1)
+            {
+                t += Time.deltaTime / DeathAnimationDuration;
+
+                foreach (Material material in MeshRenderer.materials) {
+                    material.SetFloat(Dissolve, Mathf.Lerp(0, 1, t));
+                }
+
+                yield return null;
+            }
+            
+            Destroy(gameObject);
         }
     }
 }

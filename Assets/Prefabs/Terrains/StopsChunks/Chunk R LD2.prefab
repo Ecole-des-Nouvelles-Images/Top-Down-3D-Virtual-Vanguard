@@ -62,7 +62,7 @@ MonoBehaviour:
   - {fileID: 8654298177749287981}
   - {fileID: 1827915710219838595}
   - {fileID: 8508399240485565786}
-  _spawnRate: 3.5
+  _spawnRateRange: {x: 3, y: 6}
   WaveInProgress: 0
 --- !u!1 &2924560749192844196
 GameObject:

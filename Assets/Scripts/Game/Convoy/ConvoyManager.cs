@@ -1,19 +1,14 @@
 ﻿using System.Collections.Generic;
-using Game.Convoy.Drones;
 using UnityEditor;
 using UnityEngine;
 
 namespace Game.Convoy
 {
-    public class ConvoyManager : MonoBehaviour, IDamageable
+    public class ConvoyManager : MonoBehaviour
     {
         public static List<Module> Modules;
 
         [Header("Settings")] [SerializeField] private int _maximumDurability;
-        
-        public bool IsTargetable => true;
-        public GameObject GameObject => gameObject;
-        public Transform Transform => transform;
         
         public float Durability
         {
@@ -50,11 +45,9 @@ namespace Game.Convoy
             Modules = new List<Module>(GetComponentsInChildren<Module>(true));
         }
 
-        public void TakeDamage(int damage)
+        public void UpdateUI()
         {
-            Durability -= damage;
-            // Trigger damage SFX;
-            // Update UI;
+            // Update UI
         }
     }
 }
