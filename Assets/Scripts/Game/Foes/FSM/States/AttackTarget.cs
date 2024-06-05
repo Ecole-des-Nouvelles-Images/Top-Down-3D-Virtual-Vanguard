@@ -15,7 +15,7 @@ namespace Game.Foes.FSM.States
         
         public override void UpdateState() {
             // Rotate toward the target
-            Xenolith.transform.LookAt(Xenolith.Agent.transform.position);
+            // Xenolith.transform.LookAt(Xenolith.Target.transform.position);
             
             if (Xenolith.AttackReady) {
                 Xenolith.Target.GetComponent<IDamageable>().TakeDamage(Xenolith.AttackDamage);
