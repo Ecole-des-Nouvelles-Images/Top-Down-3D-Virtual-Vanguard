@@ -46,7 +46,7 @@ namespace Game
 
         private void Start()
         {
-            CameraManager.Instance.SwitchCameraFocus(StartFollowCam, Side.Centered);
+            CameraManager.Instance.SwitchCameraFocus(StartFollowCam, Side.Left);
         }
         
         private void OnEnable()

@@ -8,6 +8,7 @@ using Cinemachine;
 using Internal;
 using Game.Terrain.Procedural;
 using Game.Convoy;
+using Game.Convoy.Modules;
 
 namespace Game.Terrain
 {
@@ -154,6 +155,8 @@ namespace Game.Terrain
             TerrainChunk stopZoneChunk = _currentStopZone.GetComponent<TerrainChunk>();
             CameraManager.Instance.SwitchCameraFocus(false, stopZoneChunk.PlayableSide);
             GameManager.Instance.OnStopZoneReached.Invoke(stopZoneChunk);
+            yield return new WaitForSeconds(0.5f);
+            Head.InteractionReady = true;
         }
         
         public void RestartTransit()
@@ -173,7 +176,7 @@ namespace Game.Terrain
             TerrainChunk startingChunk = CreateChunk(_chunksRoot, _lastEnqueued.transform.localPosition.x + _offsetBetweenChunks);
             float currentSpeed;
             
-            CameraManager.Instance.SwitchCameraFocus(true, Side.Centered);
+            CameraManager.Instance.SwitchCameraFocus(true, Side.None);
             
             Chunks.Enqueue(startingChunk);
             _lastEnqueued = startingChunk;
@@ -193,6 +196,8 @@ namespace Game.Terrain
             
             EnableTransit = true;
             GameManager.Instance.IsInTransit = true;
+            yield return new WaitForSeconds(1f);
+            Head.InteractionReady = true;
         }
 
         #endregion
