@@ -6,6 +6,7 @@ namespace Game.UI
     public class StartPanel: MonoBehaviour
     {
         public GameObject MainMenu;
+        public AudioClip MenuAudioClip;
         
         private void Update()
         {
@@ -18,7 +19,10 @@ namespace Game.UI
             }
 
             if (gamepad.startButton.isPressed)
+            {
                 ShowMainMenu();
+                MenuAudioManager.Instance.PlayMusic(MenuAudioClip);
+            }
         }
 
         private void ShowMainMenu()

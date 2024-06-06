@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 0}
+  MenuAudioClip: {fileID: 8300000, guid: 7ec3d860dcb502e4787a5c11113d9e97, type: 3}
 --- !u!114 &1013890106448980061
 MonoBehaviour:
   m_ObjectHideFlags: 0
