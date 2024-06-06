@@ -7,7 +7,7 @@ namespace Game.UI
     {
         public TMP_Text Text;
         
-        void Start()
+        void Awake()
         {
             Text.text = "v" + Application.version;
         }
