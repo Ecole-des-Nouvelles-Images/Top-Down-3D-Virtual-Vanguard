@@ -99,10 +99,11 @@ namespace Game.Foes
 
         private void FiltersSpawners(Side mode)
         {
-            if (mode != Side.Centered)
+           /* if (mode != Side.Centered)
                 _filteredSpawners = _spawners.FindAll(spawn => spawn.SideTag == mode);
             else
                 _filteredSpawners = _spawners.FindAll(spawn => spawn.SideTag is Side.Right or Side.Left);
+            */
         }
 
         #endregion

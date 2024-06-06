@@ -72,7 +72,7 @@ namespace Game.Terrain.Procedural
             }
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             GameManager.Instance.OnStartTransit -= OnStartTransit;
         }
