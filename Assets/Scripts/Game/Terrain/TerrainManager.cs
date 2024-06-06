@@ -86,7 +86,6 @@ namespace Game.Terrain
             _lastEnqueued = CreateChunk(_chunksRoot, _lastEnqueued.transform.localPosition.x + _offsetBetweenChunks);
             Chunks.Enqueue(_lastEnqueued);
             Destroy(Chunks.Dequeue().gameObject);
-            //EditorApplication.isPaused = true;
         }
 
         private TerrainChunk CreateChunk(Transform root, float positionScalar)

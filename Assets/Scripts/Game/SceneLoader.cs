@@ -1,6 +1,5 @@
 using System.Collections;
 using Internal;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,7 +41,9 @@ namespace Game
 
         public void ExitApplication()
         {
-            EditorApplication.ExitPlaymode();
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.ExitPlaymode();
+            #endif
             Application.Quit();
         }
     }

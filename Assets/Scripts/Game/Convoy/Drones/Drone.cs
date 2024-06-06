@@ -3,7 +3,6 @@ using System.Linq;
 using Game.Convoy.Modules;
 using Game.Player;
 using Game.POIs;
-using UnityEditor;
 using UnityEngine;
 
 namespace Game.Convoy.Drones
@@ -12,8 +11,6 @@ namespace Game.Convoy.Drones
     public class Drone: MonoBehaviour
     {
         public static int TotalDroneBuilt;
-
-        
         
         public int ID { get; private set; }
         public int ArmorPlates { get; set; }
@@ -62,29 +59,6 @@ namespace Game.Convoy.Drones
 
         [Header("Debug")]
         public bool DebugRangeCollider;
-
-        private void OnDrawGizmos()
-        {
-            string playerID = "(Player > " + (Pilot ? Pilot.PlayerID : "none") + ")";
-            string activeStatus = (Active ? "Active " + playerID : "Inactive");
-            
-            Handles.color = Color.black;
-            Handles.Label(Transform.position + Vector3.up * 0.4f + Vector3.left * 0.2f, $"#{ID}");
-            Handles.Label(Transform.position + Vector3.up * 0.2f + Vector3.left * 0.2f, activeStatus);
-            
-            if (DebugRangeCollider)
-            {
-                // Récupère tous les colliders attachés à cet objet
-                SphereCollider colliderComponent = GetComponents<SphereCollider>().First(col => col.isTrigger);
-
-                Vector3 scale = Transform.lossyScale;
-                Vector3 position = colliderComponent.transform.position;
-                
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(position + colliderComponent.center, colliderComponent.radius * scale.x);
-                Gizmos.color = Color.white;
-            }
-        }
 
         #endregion
 
@@ -186,6 +160,7 @@ namespace Game.Convoy.Drones
             {
                 deposit.CurrentCapacity -= amountToAdd;
                 GameManager.Instance.Crystals += amountToAdd;
+                GameManager.Instance.UpdateCrystals();
                 _accumulatedMinedAmount -= amountToAdd;
             }
         }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utilities
+namespace Editor.Utilities
 {
     public static class Debug
     {

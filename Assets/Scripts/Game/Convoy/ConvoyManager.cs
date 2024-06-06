@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Convoy
 {
@@ -8,8 +8,13 @@ namespace Game.Convoy
     {
         public static List<Module> Modules;
 
-        [Header("Settings")] [SerializeField] private int _maximumDurability;
+        [Header("Settings")]
+        [SerializeField] private int _maximumDurability;
+
+        [Header("UI")]
+        public Slider Gauge;
         
+        public float MaxDurability { get; set; }
         public float Durability
         {
             get => _durability;
@@ -19,35 +24,19 @@ namespace Game.Convoy
         public bool Operational => Durability > 0;
 
         private float _durability;
-
-        #region Debug
-
-        private void OnDrawGizmos()
-        {
-            GUIStyle labelStyle = new()
-            {
-                fontSize = 15,
-                normal =
-                {
-                    textColor = Color.white
-                }
-            };
-
-            string durabilityText = $"Durability: {Durability:F0}/{_maximumDurability:F0}";
-            Handles.Label(transform.position + Vector3.down * 3, durabilityText, labelStyle);
-        }
-
-        #endregion
-
+        
         private void Awake()
         {
-            Durability = _maximumDurability;
+            MaxDurability = _maximumDurability;
+            Durability = MaxDurability;
             Modules = new List<Module>(GetComponentsInChildren<Module>(true));
+            UpdateUI();
         }
 
         public void UpdateUI()
         {
-            // Update UI
+            Gauge.maxValue = MaxDurability;
+            Gauge.value = Durability;
         }
     }
 }

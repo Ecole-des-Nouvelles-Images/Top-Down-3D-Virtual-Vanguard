@@ -5,7 +5,7 @@ using Game.Convoy;
 using Game.POIs;
 using Game.Terrain;
 using Internal;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
 
 namespace Game
@@ -20,6 +20,9 @@ namespace Game
         
         [Header("Phase parameters")] 
         public bool StartFollowCam = true;
+        
+        [Header("UI")]
+        public TMP_Text CrystalCounter;
 
         public Action OnStopTransit;
         public Action OnStartTransit;
@@ -29,24 +32,12 @@ namespace Game
 
         private TerrainChunk _currentStopZone;
         
-        #region Debug
-
-        void OnGUI()
-        {
-            GUIStyle style = new GUIStyle();
-            style.fontSize = 36;
-            style.normal.textColor = Color.white;
-            style.alignment = TextAnchor.MiddleCenter;
-
-            Rect rect = new Rect(10, 10, 200, 100);
-            GUI.Box(rect, "Crystals: " + Crystals, style);
-        }
-
-        #endregion
+        private bool _once = true;
 
         private void Start()
         {
             CameraManager.Instance.SwitchCameraFocus(StartFollowCam, Side.Left);
+            UpdateCrystals();
         }
         
         private void OnEnable()
@@ -65,9 +56,9 @@ namespace Game
 
         private void Update()
         {
-            if (!_convoy.Operational)
+            if (!_convoy.Operational && _once)
             {
-                Debug.Log("Editor warning: Exiting playmode (Convoy destroyed)");
+                _once = false;
                 SceneLoader.Instance.LoadScene(2);
             }
         }
@@ -109,6 +100,11 @@ namespace Game
                 totalCrystalAmountRemaining += deposit.CurrentCapacity;
 
             return totalCrystalAmountRemaining;
+        }
+
+        public void UpdateCrystals()
+        {
+            CrystalCounter.text = Crystals.ToString();
         }
 
         #endregion
