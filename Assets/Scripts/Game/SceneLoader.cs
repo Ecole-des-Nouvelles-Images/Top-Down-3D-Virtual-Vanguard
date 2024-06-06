@@ -1,5 +1,6 @@
 using System.Collections;
 using Internal;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,8 +18,6 @@ namespace Game
 
         private void Start()
         {
-            Debug.Log($"Current scene index = {CurrentSceneIndex}");
-            
             if (CurrentSceneIndex != 0)
             {
                 Animator.gameObject.SetActive(true);
@@ -39,6 +38,12 @@ namespace Game
             yield return new WaitForSeconds(AnimationDuration);
             
             SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
+        }
+
+        public void ExitApplication()
+        {
+            EditorApplication.ExitPlaymode();
+            Application.Quit();
         }
     }
 }
