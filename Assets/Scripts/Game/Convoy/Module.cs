@@ -146,8 +146,7 @@ namespace Game.Convoy
 
         public void TakeDamage(int damage)
         {
-            Convoy.Durability -= damage;
-            Convoy.UpdateUI();
+            Convoy.TakeDamage(damage);
         }
         
         #endregion

@@ -1,13 +1,12 @@
 ﻿using System;
+using Internal;
 using UnityEngine;
 
 namespace Game
 {
     [ExecuteAlways]
-    public class AudioManager: MonoBehaviour
+    public class AudioManager: SingletonMonoBehaviour<AudioManager>
     {
-        #region Test
-
         [Header("References")]
         public AudioSource Convoy;
 
@@ -15,24 +14,6 @@ namespace Game
         public AudioClip AlarmModerate;
         public AudioClip AlarmHeavy;
         public AudioClip AlarmCritical;
-
-        [ContextMenu("Play/Durability Low/Moderate")]
-        public void DurabilityLowModerate()
-        {
-            ToggleClip(AlarmModerate);
-        }
-        
-        [ContextMenu("Play/Durability Low/Heavy")]
-        public void DurabilityLowHeavy()
-        {
-            ToggleClip(AlarmHeavy);
-        }
-        
-        [ContextMenu("Play/Durability Low/Critical")]
-        public void DurabilityLowCritical()
-        {
-            ToggleClip(AlarmCritical);
-        }
 
         public void ToggleClip(AudioClip clip)
         {
@@ -56,7 +37,30 @@ namespace Game
             Convoy.Stop();
             Convoy.clip = null;
         }
-
+        
+        #region Low Durability Alarm SFX
+        
+        [ContextMenu("Play/Durability Low/Moderate")]
+        public void StartDurabilityLowModerateAlarm()
+        {
+            if (Convoy.clip != AlarmModerate)
+                ToggleClip(AlarmModerate);
+        }
+        
+        [ContextMenu("Play/Durability Low/Heavy")]
+        public void StartDurabilityLowHeavyAlarm()
+        {
+            if (Convoy.clip != AlarmHeavy)
+                ToggleClip(AlarmHeavy);
+        }
+        
+        [ContextMenu("Play/Durability Low/Critical")]
+        public void StartDurabilityLowCriticalAlarm()
+        {
+            if (Convoy.clip != AlarmCritical)
+                ToggleClip(AlarmCritical);
+        }
+        
         #endregion
     }
 }

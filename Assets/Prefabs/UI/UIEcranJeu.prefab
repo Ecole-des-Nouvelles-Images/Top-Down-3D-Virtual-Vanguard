@@ -608,7 +608,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 7
+  m_AdditionalShaderChannelsFlag: 31
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.74509805}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 0.74509805}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1010,8 +1010,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Piloter un module
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d990937055895a146826a8361d5125dc, type: 2}
-  m_sharedMaterial: {fileID: -7753173813306838691, guid: d990937055895a146826a8361d5125dc,
+  m_fontAsset: {fileID: 11400000, guid: 4e8418ef8bfd4a4428e6287998bdd2e7, type: 2}
+  m_sharedMaterial: {fileID: 7374486843730714192, guid: 4e8418ef8bfd4a4428e6287998bdd2e7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1036,8 +1036,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1145,8 +1145,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tirer / Miner
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d990937055895a146826a8361d5125dc, type: 2}
-  m_sharedMaterial: {fileID: -7753173813306838691, guid: d990937055895a146826a8361d5125dc,
+  m_fontAsset: {fileID: 11400000, guid: 4e8418ef8bfd4a4428e6287998bdd2e7, type: 2}
+  m_sharedMaterial: {fileID: 7374486843730714192, guid: 4e8418ef8bfd4a4428e6287998bdd2e7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1171,8 +1171,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1280,8 +1280,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sortir d'un module
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d990937055895a146826a8361d5125dc, type: 2}
-  m_sharedMaterial: {fileID: -7753173813306838691, guid: d990937055895a146826a8361d5125dc,
+  m_fontAsset: {fileID: 11400000, guid: 4e8418ef8bfd4a4428e6287998bdd2e7, type: 2}
+  m_sharedMaterial: {fileID: 7374486843730714192, guid: 4e8418ef8bfd4a4428e6287998bdd2e7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1306,8 +1306,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 5186332221866458222}
   - component: {fileID: 2537409170280237999}
   m_Layer: 5
-  m_Name: InfoBox
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

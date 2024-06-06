@@ -258,7 +258,7 @@ PrefabInstance:
     - target: {fileID: 2992108588689792136, guid: b726c90f489276e4297f3082cc69e708,
         type: 3}
       propertyPath: m_Name
-      value: UIEcranJeu
+      value: UI_Overlay
       objectReference: {fileID: 0}
     - target: {fileID: 3986031143824150976, guid: b726c90f489276e4297f3082cc69e708,
         type: 3}
@@ -380,6 +380,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b726c90f489276e4297f3082cc69e708, type: 3}
+--- !u!114 &496059749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8095704256596287930, guid: b726c90f489276e4297f3082cc69e708,
+    type: 3}
+  m_PrefabInstance: {fileID: 273310015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &669746444
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +776,11 @@ PrefabInstance:
       propertyPath: Gauge
       value: 
       objectReference: {fileID: 1648215003}
+    - target: {fileID: 6261553980419650995, guid: 950cafe83cdf3564c8afbcbb09ec76af,
+        type: 3}
+      propertyPath: GaugeFill
+      value: 
+      objectReference: {fileID: 496059749}
     - target: {fileID: 7893578709260520084, guid: 950cafe83cdf3564c8afbcbb09ec76af,
         type: 3}
       propertyPath: m_LocalPosition.x

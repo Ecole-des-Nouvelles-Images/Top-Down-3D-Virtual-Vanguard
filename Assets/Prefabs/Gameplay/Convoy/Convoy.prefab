@@ -57,6 +57,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maximumDurability: 1000
+  Gauge: {fileID: 0}
+  GaugeFill: {fileID: 0}
+  NominalColor: {r: 0, g: 0.9717827, b: 1, a: 1}
+  WarningColor: {r: 1, g: 0.98807824, b: 0, a: 1}
+  DangerColor: {r: 1, g: 0.4580421, b: 0, a: 1}
+  CriticalColor: {r: 1, g: 0, b: 0.056383133, a: 1}
 --- !u!208 &751881665254287423
 NavMeshObstacle:
   m_ObjectHideFlags: 0

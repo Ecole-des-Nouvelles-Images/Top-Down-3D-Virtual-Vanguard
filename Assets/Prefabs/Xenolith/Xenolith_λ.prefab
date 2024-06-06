@@ -318,8 +318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _moveSpeed: 3.5
-  _attackSpeed: 5
-  AttackDamage: 20
+  _attackSpeed: 4
+  AttackDamage: 10
   _innerReachDistance: 8
   _outerReachDistance: 12
   <Target>k__BackingField: {fileID: 0}
