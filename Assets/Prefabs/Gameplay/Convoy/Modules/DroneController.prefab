@@ -109,8 +109,8 @@ MonoBehaviour:
   - {fileID: 7729461832712474581}
   - {fileID: 2778089444683167096}
   - {fileID: 3793881037319925014}
-  _droneMoveSpeed: 100
-  _droneMiningSpeed: 20
+  _droneMoveSpeed: 70
+  _droneMiningSpeed: 10
   _droneArmorPlates: 2
   _droneRebuildTime: 3
   _enableDroneAutoRebuild: 1

@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfdf5bdcf3a48408ff6d2e73f28f1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayableSide: 0
+  PlayableSide: 2
   WaveManager: {fileID: 4749636297276004626}
 --- !u!1 &2038100306206317767
 GameObject:

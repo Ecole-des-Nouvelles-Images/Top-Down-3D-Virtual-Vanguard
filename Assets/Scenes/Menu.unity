@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 107502805}
   - component: {fileID: 107502804}
   - component: {fileID: 107502803}
+  - component: {fileID: 107502806}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -605,6 +606,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107502801}
   m_CullTransparentMesh: 1
+--- !u!114 &107502806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107502801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec4c740defeba141895f89b598ca4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _endScale: 1.2
+  _endRotation: {x: 0, y: 0, z: 3}
+  _aniamtionTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7292278
+      value: 0.93881214
+      inSlope: -5.520937
+      outSlope: -5.520937
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11515005
+    - serializedVersion: 3
+      time: 0.9979248
+      value: 1.012619
+      inSlope: -4.531948
+      outSlope: -4.531948
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17903464
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &155257352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,6 +2862,7 @@ GameObject:
   - component: {fileID: 1473686314}
   - component: {fileID: 1473686313}
   - component: {fileID: 1473686312}
+  - component: {fileID: 1473686315}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -2934,6 +2984,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473686310}
   m_CullTransparentMesh: 1
+--- !u!114 &1473686315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473686310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec4c740defeba141895f89b598ca4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _endScale: 1.2
+  _endRotation: {x: 0, y: 0, z: 3}
+  _aniamtionTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7292278
+      value: 0.93881214
+      inSlope: -5.520937
+      outSlope: -5.520937
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11515005
+    - serializedVersion: 3
+      time: 0.9979248
+      value: 1.012619
+      inSlope: -4.531948
+      outSlope: -4.531948
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17903464
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1588070426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3117,6 +3215,7 @@ GameObject:
   - component: {fileID: 1690514132}
   - component: {fileID: 1690514131}
   - component: {fileID: 1690514130}
+  - component: {fileID: 1690514133}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -3226,6 +3325,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690514128}
   m_CullTransparentMesh: 1
+--- !u!114 &1690514133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690514128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec4c740defeba141895f89b598ca4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _endScale: 1.2
+  _endRotation: {x: 0, y: 0, z: 3}
+  _aniamtionTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7292278
+      value: 0.93881214
+      inSlope: -5.520937
+      outSlope: -5.520937
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11515005
+    - serializedVersion: 3
+      time: 0.9979248
+      value: 1.012619
+      inSlope: -4.531948
+      outSlope: -4.531948
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17903464
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1719393195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3756,8 +3903,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5410869950809349006, guid: f6039e5cc7e339e4197322f3fe56e77b, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6039e5cc7e339e4197322f3fe56e77b, type: 3}
@@ -4787,7 +4933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftCam: {fileID: 0}
   RightCam: {fileID: 0}
-  CenteredCam: {fileID: 0}
   FollowCam: {fileID: 3534574430949375462}
   TransitShakeAmplitude: 0.05
 --- !u!33 &4044153821892125781

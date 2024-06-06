@@ -34,7 +34,7 @@ namespace Script.Game.Player
                     ""type"": ""Value"",
                     ""id"": ""ab7d6853-9365-4512-a836-1be24cbee988"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },

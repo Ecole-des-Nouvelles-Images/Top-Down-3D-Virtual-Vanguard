@@ -2,7 +2,6 @@
 
 namespace Game
 {
-    [Flags]
     public enum Side
     {
         None = 0,

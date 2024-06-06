@@ -13,6 +13,8 @@ namespace Game.Convoy.Drones
     {
         public static int TotalDroneBuilt;
 
+        
+        
         public int ID { get; private set; }
         public int ArmorPlates { get; set; }
         
@@ -26,6 +28,7 @@ namespace Game.Convoy.Drones
                 _operating = value;
                 if (_interacting && _operating)
                     _interacting = false;
+                if( _operating==false)SetMiningVFX(value);
             }
         }
         public bool Interacting {
@@ -42,6 +45,9 @@ namespace Game.Convoy.Drones
         public bool IsTargetable => true;
         public GameObject GameObject => gameObject;
         public Transform Transform => transform;
+
+        [Space(5), Header("VFX")]
+        [SerializeField] private ParticleSystem _psMinig;
 
         private Rigidbody _rigidbody;
         private bool _operating;
@@ -140,6 +146,8 @@ namespace Game.Convoy.Drones
         {
             Vector3 motion = new Vector3(input.x, 0, input.y) * (_moveSpeed * Time.deltaTime);
             _rigidbody.MovePosition(Transform.position + motion);
+            //if (_rigidbody.velocity.magnitude > 0.1f) {
+            transform.forward = new Vector3(input.x, 0, input.y);
         }
         
         private void Operate()
@@ -166,9 +174,10 @@ namespace Game.Convoy.Drones
 
             if (!deposit)
             {
+                SetMiningVFX(false);
                 return;
             }
-
+            SetMiningVFX(true);
             float minedAmount = _miningSpeed * Time.deltaTime * deposit.MiningSpeedMultiplier;
             _accumulatedMinedAmount += minedAmount;
 
@@ -189,6 +198,11 @@ namespace Game.Convoy.Drones
             {
                 Destroy(GameObject);
             }
+        }
+
+        private void SetMiningVFX(bool value) {
+            ParticleSystem.EmissionModule em = _psMinig.emission;
+            em.enabled = value;
         }
     }
 }

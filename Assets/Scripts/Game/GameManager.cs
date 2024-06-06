@@ -68,7 +68,7 @@ namespace Game
             if (!_convoy.Operational)
             {
                 Debug.Log("Editor warning: Exiting playmode (Convoy destroyed)");
-                EditorApplication.ExitPlaymode();
+                SceneLoader.Instance.LoadScene(2);
             }
         }
 
