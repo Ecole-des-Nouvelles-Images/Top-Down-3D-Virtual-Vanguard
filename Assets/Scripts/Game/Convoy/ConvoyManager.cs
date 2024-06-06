@@ -48,6 +48,7 @@ namespace Game.Convoy
 
         public void UpdateUI()
         {
+            if (!Gauge) return;
             Gauge.maxValue = MaxDurability;
             Gauge.value = Durability;
         }
