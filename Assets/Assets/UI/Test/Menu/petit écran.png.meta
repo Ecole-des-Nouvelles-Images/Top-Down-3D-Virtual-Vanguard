@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e44b3ac06185064f82fe5d540ff5966
+guid: 9ddcd93c25b51a34c93eda52bef32289
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -95,18 +95,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "petit \xE9cran_0"
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 119
+        width: 545
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 69, y: 46, z: 70, w: 58}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0637aa245ff6a0c4c87cfbcb1ab40ca4
+      internalID: -1020860328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7c96dd53035871f4a990c142a9222608
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "petit \xE9cran_0": -1020860328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
