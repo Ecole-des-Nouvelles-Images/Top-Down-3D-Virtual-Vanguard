@@ -10,7 +10,6 @@ namespace Game
         [Header("Camera systems")]
         public GameObject LeftCam;
         public GameObject RightCam;
-        public GameObject CenteredCam;
         public GameObject FollowCam;
 
         [Header("Settings")]
@@ -26,44 +25,27 @@ namespace Game
 
         public void SwitchCameraFocus(bool switchToFollowCamera, Side mode)
         {
-            try
-            {
-                switch (mode)
-                {
-                    case Side.Centered:
-                        CenteredCam?.SetActive(true);
-                        LeftCam?.SetActive(false);
-                        RightCam?.SetActive(false);
-                        CurrentCamera = CenteredCam;
-                        break;
-                    case Side.Left:
-                        CenteredCam?.SetActive(false);
-                        LeftCam?.SetActive(true);
-                        RightCam?.SetActive(false);
-                        CurrentCamera = LeftCam;
-                        break;
-                    case Side.Right:
-                        CenteredCam?.SetActive(false);
-                        LeftCam?.SetActive(false);
-                        RightCam?.SetActive(true);
-                        CurrentCamera = RightCam;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
-                }
-            }
-            catch (Exception e)
-            {
-                if (e is NullReferenceException)
-                    Debug.LogError($"Null Reference Exception raised from {e.Source}: {e.Message}");
-
-                if (CurrentCamera is null)
-                    Debug.LogWarning("CurrentCamera is not set at this point");
-
-                throw;
-            }
-
+            
             FollowCam.SetActive(switchToFollowCamera);
+
+            switch (mode)
+            {
+                case Side.Left:
+                    LeftCam?.SetActive(true);
+                    RightCam?.SetActive(false);
+                    CurrentCamera = LeftCam;
+                    break;
+                case Side.Right:
+                    LeftCam?.SetActive(false);
+                    RightCam?.SetActive(true);
+                    CurrentCamera = RightCam;
+                    break;
+                case Side.None:
+                    // Change nothing...;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+            }
 
             /* if (useFarthermostCamera)
                 FindCameraByFOV(false).SetActive(false);
