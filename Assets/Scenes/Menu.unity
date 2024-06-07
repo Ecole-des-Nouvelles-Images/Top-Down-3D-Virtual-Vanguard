@@ -1532,9 +1532,19 @@ PrefabInstance:
       objectReference: {fileID: 758623341}
     - target: {fileID: 2723763404967098408, guid: c85be84ca0946e94ebdd0832ce1c603d,
         type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723763404967098408, guid: c85be84ca0946e94ebdd0832ce1c603d,
+        type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1133445673}
+    - target: {fileID: 3976784270370594904, guid: c85be84ca0946e94ebdd0832ce1c603d,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3976784270370594904, guid: c85be84ca0946e94ebdd0832ce1c603d,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

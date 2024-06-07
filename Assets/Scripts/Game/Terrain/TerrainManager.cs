@@ -15,6 +15,8 @@ namespace Game.Terrain
     public class TerrainManager: SingletonMonoBehaviour<TerrainManager>
     {
         [Header("References")]
+        public GameObject BrakeVFX;
+        public GameObject ConvoyTrails;
         [SerializeField] private CinemachineVirtualCamera _transitCamera;
         [SerializeField] private Transform _chunksRoot;
         [SerializeField] private GameObject _chunkTransitPrefab;
@@ -135,6 +137,8 @@ namespace Game.Terrain
             float currentSpeed;
             float stopThreshold = 0;
             
+            BrakeVFX.SetActive(true);
+            
             while (_currentStopZone.transform.position.x > _convoy.position.x + stopThreshold)
             {
                 actualDistance = _currentStopZone.transform.position.x;
@@ -156,6 +160,10 @@ namespace Game.Terrain
             GameManager.Instance.OnStopZoneReached.Invoke(stopZoneChunk);
             yield return new WaitForSeconds(0.5f);
             Head.InteractionReady = true;
+            BrakeVFX.SetActive(false);
+            ConvoyTrails.SetActive(false);
+            AudioManager.Instance.SwitchToStopZone(5f);
+
         }
         
         public void RestartTransit()
@@ -176,6 +184,8 @@ namespace Game.Terrain
             float currentSpeed;
             
             CameraManager.Instance.SwitchCameraFocus(true, Side.None);
+            ConvoyTrails.SetActive(true);
+            AudioManager.Instance.SwitchToTransit(3f);
             
             Chunks.Enqueue(startingChunk);
             _lastEnqueued = startingChunk;

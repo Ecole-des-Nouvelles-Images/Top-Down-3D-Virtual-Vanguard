@@ -166,21 +166,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -254,21 +239,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -344,21 +314,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -432,21 +387,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -522,21 +462,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -610,21 +535,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -700,21 +610,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -788,21 +683,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2409453836279227930, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5505911021259531358, guid: ed63ed42a5b5c344fb44ab3e54c8b786,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
