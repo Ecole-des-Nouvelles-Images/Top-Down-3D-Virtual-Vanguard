@@ -34,9 +34,10 @@ namespace Game
         {
             Animator.SetTrigger(SwipeIn);
             
-            yield return new WaitForSeconds(AnimationDuration);
+            yield return new WaitForSecondsRealtime(AnimationDuration);
             
             SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
+            Time.timeScale = 1;
         }
 
         public void ExitApplication()

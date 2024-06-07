@@ -7,6 +7,7 @@ using Game.Terrain;
 using Internal;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game
 {
@@ -20,8 +21,11 @@ namespace Game
         
         [Header("Phase parameters")] 
         public bool StartFollowCam = true;
-        
+
         [Header("UI")]
+        public GameObject PauseUI;
+        public GameObject StartPanel;
+        public GameObject InfoBox;
         public TMP_Text CrystalCounter;
 
         public Action OnStopTransit;
@@ -29,6 +33,8 @@ namespace Game
         public Action<TerrainChunk> OnStopZoneReached;
 
         public bool IsInTransit = true;
+        public bool IsInPause { get; private set; }
+        public bool JoinPanelActive => StartPanel.activeSelf;
 
         private TerrainChunk _currentStopZone;
         
@@ -63,10 +69,37 @@ namespace Game
             }
         }
 
+        #region UI
+
+        public void SetPause(bool enable)
+        {
+            foreach (PlayerInput player in FindObjectsByType<PlayerInput>(FindObjectsSortMode.None))
+            {
+                if (enable)
+                    player.SwitchCurrentActionMap("UI");
+                else
+                    player.SwitchCurrentActionMap("Player");
+            }
+            IsInPause = enable;
+            Time.timeScale = enable ? 0 : 1;
+            PauseUI.SetActive(enable);
+        }
+
+        public void ShowInfoBox()
+        {
+            StartPanel.SetActive(false);
+            InfoBox.SetActive(true);
+        }
+
+        #endregion
+        
         #region Events
 
         private void StopConvoy()
         {
+            if (JoinPanelActive)
+                ShowInfoBox();
+            
             TerrainManager.Instance.EnableTransit = false;
             TerrainManager.Instance.GeneratePlayzone();
             TerrainManager.Instance.FinishTransit();

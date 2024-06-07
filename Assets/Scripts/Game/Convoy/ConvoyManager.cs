@@ -78,7 +78,7 @@ namespace Game.Convoy
                     break;
                 case > .35f:
                     GaugeFill.color = NominalColor;
-                    AudioManager.Instance.Stop();
+                    AudioManager.Instance.StopConvoyFX();
                     break;
             }
             

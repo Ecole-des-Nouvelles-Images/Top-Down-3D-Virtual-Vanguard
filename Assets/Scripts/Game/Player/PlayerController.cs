@@ -99,6 +99,11 @@ namespace Game.Player
             _operatingModule.Aim(input);
         }
 
+        public void OnJoin()
+        {
+            GameManager.Instance.SetPause(!GameManager.Instance.IsInPause);
+        }
+
         #endregion
 
         public void Move()
